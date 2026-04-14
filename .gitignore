@@ -1,0 +1,13 @@
+# Obsidian
+.obsidian/
+
+# System
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.log
+*.tmp
+
+# Optional (kalau file raw gede banget)
+# Raw/ 
