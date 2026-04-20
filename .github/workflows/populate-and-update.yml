@@ -5,7 +5,7 @@ on:
     paths:
       - 'wiki/**'
   schedule:
-    - cron: '0 2 * * *'   # Jalan tiap hari jam 09.00 WIB
+    - cron: '0 2 * * *'
   workflow_dispatch:
 
 jobs:
@@ -50,7 +50,7 @@ jobs:
       - name: Update wiki from approved feedback
         env:
           NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
-          NOTION_FEEDBACK_DB_ID: ${{ secrets.NOTION_FEEDBACK_DB_ID }}
+          NOTION_FEEDBACK_DB_ID: ${{ secrets.NOTION_DATABASE_ID }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           WIKI_DIR: wiki
         run: python scripts/update-wiki-from-feedback.py
