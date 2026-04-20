@@ -1,0 +1,64 @@
+name: Populate SOP Database & Process Feedback
+
+on:
+  push:
+    paths:
+      - 'wiki/**'
+  schedule:
+    - cron: '0 2 * * *'   # Jalan tiap hari jam 09.00 WIB
+  workflow_dispatch:
+
+jobs:
+  populate-sop-database:
+    name: Populate SOP Master Database
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Populate SOP Master Database from wiki
+        env:
+          NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
+          NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
+          WIKI_DIR: wiki
+        run: python scripts/populate-sop-database.py
+
+  process-approved-feedback:
+    name: Process Approved Feedback
+    runs-on: ubuntu-latest
+    needs: populate-sop-database
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Update wiki from approved feedback
+        env:
+          NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
+          NOTION_FEEDBACK_DB_ID: ${{ secrets.NOTION_FEEDBACK_DB_ID }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          WIKI_DIR: wiki
+        run: python scripts/update-wiki-from-feedback.py
+
+      - name: Commit updated wiki files
+        run: |
+          git config --global user.name "TechOps Bot"
+          git config --global user.email "bot@techops.com"
+          git add wiki/
+          git diff --staged --quiet || git commit -m "auto: update wiki from approved feedback $(date +'%Y-%m-%d')"
+          git push

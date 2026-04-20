@@ -41,13 +41,13 @@ Struktur tanggung jawab berikut **konsisten di seluruh SOP Engineering** PT EBI.
 
 ### Peran Khusus per SOP
 
-| Peran | SOP Relevan | Tanggung Jawab Tambahan |
-|---|---|---|
-| **Petugas Kebersihan** | EN-003 | Menjaga kebersihan, kerapian, dan kenyamanan gedung |
-| **Pengguna Area/Ruangan** | EN-003 | Menjaga fisik bangunan, melaporkan kerusakan, validasi checklist |
-| **Petugas/Admin Suku Cadang** | EN-005 | Buat Part Code, update Database Inventory |
-| **Teknisi HVAC** | EN-016 | Operasikan HVAC, pemantauan harian, follow up PJE HVAC |
-| **Teknisi K3 Listrik** | EN-001 | Inspeksi rutin sistem kelistrikan, lapor bahaya listrik |
+| Peran                         | SOP Relevan | Tanggung Jawab Tambahan                                          |
+| ----------------------------- | ----------- | ---------------------------------------------------------------- |
+| **Petugas Kebersihan**        | EN-003      | Menjaga kebersihan, kerapian, dan kenyamanan gedung              |
+| **Pengguna Area/Ruangan**     | EN-003      | Menjaga fisik bangunan, melaporkan kerusakan, validasi checklist |
+| **Petugas/Admin Suku Cadang** | EN-005      | Buat Part Code, update Database Inventory                        |
+| **Teknisi HVAC**              | EN-016      | Operasikan HVAC, pemantauan harian, follow up PJE HVAC           |
+| **Teknisi K3 Listrik**        | EN-001      | Inspeksi rutin sistem kelistrikan, lapor bahaya listrik          |
 
 ## Prinsip Umum yang Berlaku di Semua SOP
 

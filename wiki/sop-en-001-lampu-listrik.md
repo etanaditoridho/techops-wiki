@@ -1,3 +1,7 @@
+---
+link: https://www.notion.so/sop-en-001-lampu-listrik-348664a83e2481f8bdf7fe1cfb6c5fef
+notionID: 348664a8-3e24-81f8-bdf7-fe1cfb6c5fef
+---
 # SOP/EBI/EN-001 — Penanganan dan Perawatan Lampu & Sistem Listrik
 
 **Summary**: Source summary untuk SOP penanganan dan perawatan lampu penerangan serta sistem distribusi tenaga listrik di PT Etana Biotechnologies Indonesia.

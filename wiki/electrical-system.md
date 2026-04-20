@@ -1,3 +1,7 @@
+---
+link: https://www.notion.so/electrical-system-348664a83e2481b69674fd4d36ac47a7
+notionID: 348664a8-3e24-81b6-9674-fd4d36ac47a7
+---
 # Sistem Kelistrikan (Electrical System)
 
 **Summary**: Konsep sistem kelistrikan di PT EBI — distribusi listrik dari PLN, panel listrik, lampu penerangan, transformator tegangan menengah, dan prosedur perawatannya.
@@ -10,14 +14,14 @@
 
 ## Komponen Sistem Kelistrikan PT EBI
 
-| Komponen | Fungsi |
-|---|---|
-| **Jalur distribusi PLN** | Sumber listrik utama dari jaringan nasional (PLN) ke panel tegangan menengah |
-| **Transformator Tegangan Menengah** | Menurunkan tegangan menengah ke tegangan rendah untuk distribusi internal |
-| **Panel Listrik (LP)** | Mendistribusikan listrik ke semua peralatan dan area |
-| **Sistem Penerangan** | Lampu di area produksi, QC, gudang, kantor, dan halaman/jalan |
-| **Sistem Grounding** | Keamanan listrik — perlindungan dari arus bocor |
-| **Generator Set** | Backup otomatis saat terjadi pemadaman listrik (lihat SOP/EBI/EN-002) |
+| Komponen                            | Fungsi                                                                       |
+| ----------------------------------- | ---------------------------------------------------------------------------- |
+| **Jalur distribusi PLN**            | Sumber listrik utama dari jaringan nasional (PLN) ke panel tegangan menengah |
+| **Transformator Tegangan Menengah** | Menurunkan tegangan menengah ke tegangan rendah untuk distribusi internal    |
+| **Panel Listrik (LP)**              | Mendistribusikan listrik ke semua peralatan dan area                         |
+| **Sistem Penerangan**               | Lampu di area produksi, QC, gudang, kantor, dan halaman/jalan                |
+| **Sistem Grounding**                | Keamanan listrik — perlindungan dari arus bocor                              |
+| **Generator Set**                   | Backup otomatis saat terjadi pemadaman listrik (lihat SOP/EBI/EN-002)        |
 
 (source: SOP-EBI-EN-001.02 ...pdf)
 

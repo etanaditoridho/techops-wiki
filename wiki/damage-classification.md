@@ -1,3 +1,7 @@
+---
+link: https://www.notion.so/damage-classification-348664a83e2481108e46c3bcd7a111f3
+notionID: 348664a8-3e24-8110-8e46-c3bcd7a111f3
+---
 # Klasifikasi Kerusakan Bangunan (Damage Classification)
 
 **Summary**: Tiga tingkat klasifikasi kerusakan bangunan yang digunakan di PT EBI beserta batas biaya perbaikan masing-masing.
