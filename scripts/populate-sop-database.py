@@ -15,55 +15,77 @@ headers = {
     "Notion-Version": "2022-06-28"
 }
 
-# File yang di-skip
-SKIP_FILES = {"index", "log", "test-sync", "test integrasi ke obsidian"}
+SKIP_FILES = {"index", "log", "test-sync"}
 
 def is_wiki_file(filepath: Path) -> bool:
-    """Only process lowercase wiki files, skip SOP raw and system files."""
     name = filepath.stem.lower()
-    # Skip jika ada di SKIP_FILES
     if name in SKIP_FILES:
         return False
-    # Skip file SOP raw (huruf besar di awal, format SOP-EBI-EN-xxx)
     if filepath.stem.startswith("SOP-") or filepath.stem.startswith("Test"):
         return False
-    # Skip file dengan spasi di nama (biasanya raw)
     if " " in filepath.stem:
         return False
     return True
 
+def get_title_from_content(content: str, filepath: Path) -> str:
+    match = re.search(r'^# (.+)$', content, re.MULTILINE)
+    if match:
+        return re.sub(r'\s*\(.*?\)', '', match.group(1)).strip()
+    return filepath.stem.replace("-", " ").replace("_", " ").title()
+
+def md_to_notion_blocks(content: str) -> list:
+    blocks = []
+    lines = content.split("\n")
+    i = 0
+    while i < len(lines):
+        line = lines[i]
+        if line.startswith("### "):
+            blocks.append({"object":"block","type":"heading_3","heading_3":{"rich_text":[{"type":"text","text":{"content":line[4:].strip()}}]}})
+        elif line.startswith("## "):
+            blocks.append({"object":"block","type":"heading_2","heading_2":{"rich_text":[{"type":"text","text":{"content":line[3:].strip()}}]}})
+        elif line.startswith("# "):
+            # Skip H1 karena sudah jadi title
+            i += 1
+            continue
+        elif line.startswith("- [ ] ") or line.startswith("- [x] "):
+            checked = line.startswith("- [x] ")
+            blocks.append({"object":"block","type":"to_do","to_do":{"rich_text":[{"type":"text","text":{"content":line[6:].strip()}}],"checked":checked}})
+        elif line.startswith("- ") or line.startswith("* "):
+            blocks.append({"object":"block","type":"bulleted_list_item","bulleted_list_item":{"rich_text":[{"type":"text","text":{"content":line[2:].strip()}}]}})
+        elif len(line) > 2 and line[0].isdigit() and line[1] == "." and line[2] == " ":
+            blocks.append({"object":"block","type":"numbered_list_item","numbered_list_item":{"rich_text":[{"type":"text","text":{"content":line[3:].strip()}}]}})
+        elif line.startswith("```"):
+            lang = line[3:].strip() or "plain text"
+            code_lines = []
+            i += 1
+            while i < len(lines) and not lines[i].startswith("```"):
+                code_lines.append(lines[i])
+                i += 1
+            blocks.append({"object":"block","type":"code","code":{"rich_text":[{"type":"text","text":{"content":"\n".join(code_lines)}}],"language":lang}})
+        elif line.strip() in ["---", "***", "___"]:
+            blocks.append({"object":"block","type":"divider","divider":{}})
+        elif line.strip():
+            blocks.append({"object":"block","type":"paragraph","paragraph":{"rich_text":[{"type":"text","text":{"content":line.strip()[:2000]}}]}})
+        i += 1
+    return blocks
+
 def extract_metadata(content: str, filepath: Path) -> dict:
     meta = {
-        "name": "",
+        "name": get_title_from_content(content, filepath),
         "tags": [],
         "last_edited": "",
-        "folder": str(filepath.parent.name),
-        "file_path": str(filepath.as_posix()),
+        "folder": filepath.parent.name,
+        "file_path": filepath.as_posix(),
         "content_hash": hashlib.md5(content.encode()).hexdigest(),
     }
-
-    # Title dari H1
-    title_match = re.search(r'^# (.+)$', content, re.MULTILINE)
-    if title_match:
-        raw = title_match.group(1).strip()
-        meta["name"] = re.sub(r'\s*\(.*?\)', '', raw).strip()
-    else:
-        meta["name"] = filepath.stem.replace("-", " ").replace("_", " ").title()
-
-    # Last updated
     date_match = re.search(r'\*\*Last updated\*\*:\s*(\d{4}-\d{2}-\d{2})', content)
     if date_match:
         meta["last_edited"] = date_match.group(1)
-
-    # Tags dari wikilinks
     links = re.findall(r'\[\[(.+?)\]\]', content)
     meta["tags"] = list(set(
         l.replace("-", " ").replace("_", " ").title()
-        for l in links
-        if l.lower() not in ["index", "log"]
+        for l in links if l.lower() not in ["index", "log"]
     ))[:8]
-
-    # Tags dari Sources (kode SOP)
     sources_match = re.search(r'\*\*Sources?\*\*:\s*(.+)', content)
     if sources_match:
         codes = re.findall(r'EN-\d+', sources_match.group(1))
@@ -72,7 +94,6 @@ def extract_metadata(content: str, filepath: Path) -> dict:
             if tag not in meta["tags"]:
                 meta["tags"].append(tag)
     meta["tags"] = meta["tags"][:10]
-
     return meta
 
 def get_existing_entries() -> dict:
@@ -119,20 +140,51 @@ def build_properties(meta: dict, version: int = 1, is_update: bool = False) -> d
         props["Tags"] = {"multi_select": [{"name": t} for t in meta["tags"]]}
     return props
 
-def create_entry(meta: dict) -> bool:
+def clear_page_blocks(page_id: str):
+    """Hapus semua block dari halaman."""
+    url = f"https://api.notion.com/v1/blocks/{page_id}/children"
+    has_more = True
+    cursor = None
+    while has_more:
+        params = {"page_size": 100}
+        if cursor:
+            params["start_cursor"] = cursor
+        res = requests.get(url, headers=headers, params=params)
+        data = res.json()
+        for block in data.get("results", []):
+            requests.delete(f"https://api.notion.com/v1/blocks/{block['id']}", headers=headers)
+        has_more = data.get("has_more", False)
+        cursor = data.get("next_cursor")
+
+def add_blocks_to_page(page_id: str, blocks: list):
+    """Tambah blocks ke halaman dalam batch 100."""
+    for start in range(0, len(blocks), 100):
+        batch = blocks[start:start+100]
+        requests.patch(
+            f"https://api.notion.com/v1/blocks/{page_id}/children",
+            headers=headers,
+            json={"children": batch}
+        )
+
+def create_entry(meta: dict, blocks: list) -> bool:
     props = build_properties(meta, version=1, is_update=False)
-    res = requests.post(
-        "https://api.notion.com/v1/pages",
-        headers=headers,
-        json={"parent": {"database_id": SOP_DATABASE_ID}, "properties": props}
-    )
+    payload = {
+        "parent": {"database_id": SOP_DATABASE_ID},
+        "properties": props,
+        "children": blocks[:100]
+    }
+    res = requests.post("https://api.notion.com/v1/pages", headers=headers, json=payload)
     if res.status_code == 200:
+        page_id = res.json()["id"]
+        # Append sisa blocks jika lebih dari 100
+        if len(blocks) > 100:
+            add_blocks_to_page(page_id, blocks[100:])
         print(f"  ✓ Created: {meta['name']}")
         return True
     print(f"  ✗ Failed: {meta['name']} — {res.text[:150]}")
     return False
 
-def update_entry(page_id: str, meta: dict, current_version: int) -> bool:
+def update_entry(page_id: str, meta: dict, current_version: int, blocks: list) -> bool:
     new_version = current_version + 1
     props = build_properties(meta, version=new_version, is_update=True)
     res = requests.patch(
@@ -141,6 +193,9 @@ def update_entry(page_id: str, meta: dict, current_version: int) -> bool:
         json={"properties": props}
     )
     if res.status_code == 200:
+        # Update konten body
+        clear_page_blocks(page_id)
+        add_blocks_to_page(page_id, blocks)
         print(f"  ↻ Updated (v{new_version}): {meta['name']}")
         return True
     print(f"  ✗ Update failed: {meta['name']} — {res.text[:150]}")
@@ -152,46 +207,43 @@ def main():
         print(f"Wiki directory not found: {wiki_path}")
         return
 
-    # Filter hanya file wiki hasil olahan
     all_files = list(wiki_path.glob("*.md"))
     md_files = [f for f in all_files if is_wiki_file(f)]
-    skipped_files = [f.name for f in all_files if not is_wiki_file(f)]
+    skipped = [f.name for f in all_files if not is_wiki_file(f)]
 
-    print(f"Total .md files: {len(all_files)}")
-    print(f"Wiki files to process: {len(md_files)}")
-    print(f"Skipped: {len(skipped_files)} files ({', '.join(skipped_files)})")
-    print()
+    print(f"Total .md: {len(all_files)} | Diproses: {len(md_files)} | Di-skip: {len(skipped)}")
+    print(f"Skip: {', '.join(skipped)}\n")
 
     existing = get_existing_entries()
-    print(f"Existing entries in Notion DB: {len(existing)}")
-    print()
+    print(f"Existing entries di Notion DB: {len(existing)}\n")
 
-    created = updated = skipped = failed = 0
+    created = updated = skipped_count = failed = 0
 
     for filepath in sorted(md_files):
         try:
             content = filepath.read_text(encoding="utf-8")
             meta = extract_metadata(content, filepath)
-            file_path_key = str(filepath.as_posix())
+            blocks = md_to_notion_blocks(content)
+            file_path_key = filepath.as_posix()
 
             if file_path_key in existing:
                 page_id, stored_hash, version = existing[file_path_key]
                 if stored_hash == meta["content_hash"]:
                     print(f"  — No change: {meta['name']}")
-                    skipped += 1
+                    skipped_count += 1
                 else:
-                    ok = update_entry(page_id, meta, version)
+                    ok = update_entry(page_id, meta, version, blocks)
                     updated += 1 if ok else 0
                     failed += 0 if ok else 1
             else:
-                ok = create_entry(meta)
+                ok = create_entry(meta, blocks)
                 created += 1 if ok else 0
                 failed += 0 if ok else 1
         except Exception as e:
             print(f"  ✗ Error {filepath.name}: {e}")
             failed += 1
 
-    print(f"\nDone! Created: {created} | Updated: {updated} | Skipped (no change): {skipped} | Failed: {failed}")
+    print(f"\nDone! Created: {created} | Updated: {updated} | Skipped: {skipped_count} | Failed: {failed}")
 
 if __name__ == "__main__":
     main()
