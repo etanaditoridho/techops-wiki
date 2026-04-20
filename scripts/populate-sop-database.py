@@ -15,7 +15,22 @@ headers = {
     "Notion-Version": "2022-06-28"
 }
 
-# ── helpers ──────────────────────────────────────────────────────────────────
+# File yang di-skip
+SKIP_FILES = {"index", "log", "test-sync", "test integrasi ke obsidian"}
+
+def is_wiki_file(filepath: Path) -> bool:
+    """Only process lowercase wiki files, skip SOP raw and system files."""
+    name = filepath.stem.lower()
+    # Skip jika ada di SKIP_FILES
+    if name in SKIP_FILES:
+        return False
+    # Skip file SOP raw (huruf besar di awal, format SOP-EBI-EN-xxx)
+    if filepath.stem.startswith("SOP-") or filepath.stem.startswith("Test"):
+        return False
+    # Skip file dengan spasi di nama (biasanya raw)
+    if " " in filepath.stem:
+        return False
+    return True
 
 def extract_metadata(content: str, filepath: Path) -> dict:
     meta = {
@@ -23,40 +38,42 @@ def extract_metadata(content: str, filepath: Path) -> dict:
         "tags": [],
         "last_edited": "",
         "folder": str(filepath.parent.name),
-        "file_path": str(filepath),
+        "file_path": str(filepath.as_posix()),
         "content_hash": hashlib.md5(content.encode()).hexdigest(),
     }
 
-    # Title from first H1
+    # Title dari H1
     title_match = re.search(r'^# (.+)$', content, re.MULTILINE)
     if title_match:
         raw = title_match.group(1).strip()
-        # strip parenthetical English translation if exists e.g. "Judul (English)"
         meta["name"] = re.sub(r'\s*\(.*?\)', '', raw).strip()
     else:
         meta["name"] = filepath.stem.replace("-", " ").replace("_", " ").title()
 
-    # Last updated date
+    # Last updated
     date_match = re.search(r'\*\*Last updated\*\*:\s*(\d{4}-\d{2}-\d{2})', content)
     if date_match:
         meta["last_edited"] = date_match.group(1)
 
-    # Tags from Related pages wikilinks
+    # Tags dari wikilinks
     links = re.findall(r'\[\[(.+?)\]\]', content)
     meta["tags"] = list(set(
         l.replace("-", " ").replace("_", " ").title()
-        for l in links if l not in ["index", "log"]
-    ))[:10]
+        for l in links
+        if l.lower() not in ["index", "log"]
+    ))[:8]
 
-    # Tags also from Sources line
+    # Tags dari Sources (kode SOP)
     sources_match = re.search(r'\*\*Sources?\*\*:\s*(.+)', content)
     if sources_match:
         codes = re.findall(r'EN-\d+', sources_match.group(1))
-        meta["tags"] += [f"SOP {c}" for c in codes if f"SOP {c}" not in meta["tags"]]
+        for c in codes:
+            tag = f"SOP {c}"
+            if tag not in meta["tags"]:
+                meta["tags"].append(tag)
     meta["tags"] = meta["tags"][:10]
 
     return meta
-
 
 def get_existing_entries() -> dict:
     """Returns {file_path: (page_id, content_hash, version)}"""
@@ -83,66 +100,39 @@ def get_existing_entries() -> dict:
         cursor = data.get("next_cursor")
     return entries
 
-
 def build_properties(meta: dict, version: int = 1, is_update: bool = False) -> dict:
     now = datetime.now().strftime("%Y-%m-%d")
     props = {
-        "Name": {
-            "title": [{"text": {"content": meta["name"]}}]
-        },
-        "File Path": {
-            "rich_text": [{"text": {"content": meta["file_path"]}}]
-        },
-        "Folder": {
-            "rich_text": [{"text": {"content": meta["folder"]}}]
-        },
-        "Content Hash": {
-            "rich_text": [{"text": {"content": meta["content_hash"]}}]
-        },
-        "Source": {
-            "select": {"name": "Obsidian"}
-        },
-        "Sync Status": {
-            "select": {"name": "Updated" if is_update else "Synced"}
-        },
-        "Sync Time": {
-            "date": {"start": now}
-        },
-        "Version": {
-            "number": version
-        },
-        "Status": {
-            "status": {"name": "Published"}
-        }
+        "Name": {"title": [{"text": {"content": meta["name"]}}]},
+        "File Path": {"rich_text": [{"text": {"content": meta["file_path"]}}]},
+        "Folder": {"rich_text": [{"text": {"content": meta["folder"]}}]},
+        "Content Hash": {"rich_text": [{"text": {"content": meta["content_hash"]}}]},
+        "Source": {"select": {"name": "Obsidian"}},
+        "Sync Status": {"select": {"name": "Updated" if is_update else "Synced"}},
+        "Sync Time": {"date": {"start": now}},
+        "Version": {"number": version},
+        "Status": {"status": {"name": "Published"}}
     }
-
     if meta["last_edited"]:
         props["Last Edited"] = {"date": {"start": meta["last_edited"]}}
-
     if meta["tags"]:
-        props["Tags"] = {
-            "multi_select": [{"name": t} for t in meta["tags"]]
-        }
-
+        props["Tags"] = {"multi_select": [{"name": t} for t in meta["tags"]]}
     return props
 
-
-def create_entry(meta: dict):
+def create_entry(meta: dict) -> bool:
     props = build_properties(meta, version=1, is_update=False)
-    payload = {
-        "parent": {"database_id": SOP_DATABASE_ID},
-        "properties": props
-    }
-    res = requests.post("https://api.notion.com/v1/pages", headers=headers, json=payload)
+    res = requests.post(
+        "https://api.notion.com/v1/pages",
+        headers=headers,
+        json={"parent": {"database_id": SOP_DATABASE_ID}, "properties": props}
+    )
     if res.status_code == 200:
         print(f"  ✓ Created: {meta['name']}")
         return True
-    else:
-        print(f"  ✗ Create failed: {meta['name']} — {res.text[:150]}")
-        return False
+    print(f"  ✗ Failed: {meta['name']} — {res.text[:150]}")
+    return False
 
-
-def update_entry(page_id: str, meta: dict, current_version: int):
+def update_entry(page_id: str, meta: dict, current_version: int) -> bool:
     new_version = current_version + 1
     props = build_properties(meta, version=new_version, is_update=True)
     res = requests.patch(
@@ -153,20 +143,8 @@ def update_entry(page_id: str, meta: dict, current_version: int):
     if res.status_code == 200:
         print(f"  ↻ Updated (v{new_version}): {meta['name']}")
         return True
-    else:
-        print(f"  ✗ Update failed: {meta['name']} — {res.text[:150]}")
-        return False
-
-
-def mark_error(page_id: str, name: str):
-    requests.patch(
-        f"https://api.notion.com/v1/pages/{page_id}",
-        headers=headers,
-        json={"properties": {"Sync Status": {"select": {"name": "Error"}}}}
-    )
-    print(f"  ✗ Marked error: {name}")
-
-# ── main ─────────────────────────────────────────────────────────────────────
+    print(f"  ✗ Update failed: {meta['name']} — {res.text[:150]}")
+    return False
 
 def main():
     wiki_path = Path(WIKI_DIR)
@@ -174,19 +152,27 @@ def main():
         print(f"Wiki directory not found: {wiki_path}")
         return
 
-    md_files = [f for f in wiki_path.glob("*.md") if f.stem not in ["index", "log"]]
-    print(f"Found {len(md_files)} wiki files")
+    # Filter hanya file wiki hasil olahan
+    all_files = list(wiki_path.glob("*.md"))
+    md_files = [f for f in all_files if is_wiki_file(f)]
+    skipped_files = [f.name for f in all_files if not is_wiki_file(f)]
+
+    print(f"Total .md files: {len(all_files)}")
+    print(f"Wiki files to process: {len(md_files)}")
+    print(f"Skipped: {len(skipped_files)} files ({', '.join(skipped_files)})")
+    print()
 
     existing = get_existing_entries()
-    print(f"Found {len(existing)} existing entries in Notion DB")
+    print(f"Existing entries in Notion DB: {len(existing)}")
+    print()
 
     created = updated = skipped = failed = 0
 
-    for filepath in md_files:
+    for filepath in sorted(md_files):
         try:
             content = filepath.read_text(encoding="utf-8")
             meta = extract_metadata(content, filepath)
-            file_path_key = str(filepath)
+            file_path_key = str(filepath.as_posix())
 
             if file_path_key in existing:
                 page_id, stored_hash, version = existing[file_path_key]
@@ -202,10 +188,10 @@ def main():
                 created += 1 if ok else 0
                 failed += 0 if ok else 1
         except Exception as e:
-            print(f"  ✗ Error processing {filepath.name}: {e}")
+            print(f"  ✗ Error {filepath.name}: {e}")
             failed += 1
 
-    print(f"\nDone! Created: {created} | Updated: {updated} | Skipped: {skipped} | Failed: {failed}")
+    print(f"\nDone! Created: {created} | Updated: {updated} | Skipped (no change): {skipped} | Failed: {failed}")
 
 if __name__ == "__main__":
     main()
