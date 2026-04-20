@@ -1,0 +1,30 @@
+name: Sync Wiki to Notion
+
+on:
+  push:
+    paths:
+      - 'wiki/**'        # trigger saat ada perubahan di folder wiki
+  workflow_dispatch:     # bisa dijalankan manual
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Sync wiki to Notion
+        env:
+          NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
+          NOTION_PARENT_PAGE_ID: ${{ secrets.NOTION_PARENT_PAGE_ID }}
+          WIKI_DIR: wiki
+        run: python scripts/sync-to-notion.py

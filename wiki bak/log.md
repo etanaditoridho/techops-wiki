@@ -78,3 +78,19 @@ Catatan append-only dari semua operasi wiki.
 - `SOP-EBI-EN-004.02 ... - Copy.pdf` adalah draft dalam review — dicatat sebagai demikian, bukan sumber utama.
 
 ---
+
+## 2026-04-16 — Update: Ekstraksi Knowledge dari Raw SOP Docx
+
+**Sumber yang dibaca ulang:**
+1. `wiki/SOP-EBI-EN-003.03 Perawatan Gedung dan Infrastruktur.md` (hasil konversi docx)
+2. `wiki/SOP-EBI-EN-014.01 Penanganan Perbaikan Terhadap Semua Mesin-mesin...md` (hasil konversi docx)
+
+**Analisis gap:**
+- SOP-003: `sop-en-003-perawatan-gedung.md` hanya berisi metadata dokumen; prosedur aktual, tanggung jawab, alat & bahan belum tercermin.
+- SOP-014.01: `sop-en-014-perbaikan-mesin.md` sudah lengkap — tidak ada gap signifikan.
+
+**Halaman yang diperbarui (2 halaman):**
+- `sop-en-003-perawatan-gedung.md` — ditambahkan: Tanggung Jawab (5 peran termasuk *Pengguna Area/Ruangan* baru di Rev.03), Petunjuk Umum (termasuk ISO 14001), Alat & Bahan, Prosedur lengkap (inspeksi, perbaikan cepat/lama, PJE, pembersihan lantai/mesin/plafon)
+- `building-maintenance-overview.md` — ditambahkan: tabel Tanggung Jawab 5 peran, seksi Kepatuhan ISO 14001
+
+---

@@ -1,3 +1,7 @@
+---
+link: https://www.notion.so/hvac-system-344664a83e2481f9acd6f4c6f1fc02aa
+notionID: 344664a8-3e24-81f9-acd6-f4c6f1fc02aa
+---
 # Sistem HVAC (Heating, Ventilation, Air Conditioning)
 
 **Summary**: Konsep sistem HVAC di PT EBI — peralatan, fungsi, parameter kritis, dan kaitannya dengan persyaratan GMP/CPOB untuk area produksi farmasi.

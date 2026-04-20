@@ -1,3 +1,7 @@
+---
+link: https://www.notion.so/compressed-air-system-344664a83e2481d7bfc8f87adff6c6c9
+notionID: 344664a8-3e24-81d7-bfc8-f87adff6c6c9
+---
 # Sistem Udara Tekan (Compressed Air System)
 
 **Summary**: Konsep sistem udara tekan di PT EBI — klasifikasi, peralatan, dan standar kualitas untuk penggunaan di area produksi farmasi.

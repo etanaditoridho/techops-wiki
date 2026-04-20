@@ -56,6 +56,23 @@ Kerusakan bangunan dikategorikan berdasarkan dampak dan biaya perbaikan relatif 
 2. Wajib: masker kain dan kacamata pelindung.
 3. Bersihkan hingga tidak ada sarang laba-laba.
 
+## Tanggung Jawab
+
+| Peran | Tanggung Jawab |
+|---|---|
+| Teknisi Engineering | Melaksanakan SOP |
+| Supervisor Engineering | Training dan memastikan prosedur dijalankan |
+| Manager Engineering | Memastikan SOP berjalan; review jadwal tahunan |
+| Petugas Kebersihan | Menjaga kebersihan, kerapian, dan kenyamanan gedung |
+| **Pengguna Area / Ruangan** *(baru di Rev.03)* | Menjaga fisik bangunan; melaporkan kerusakan; memvalidasi ceklis di form evaluasi kondisi bangunan |
+
+(source: SOP-EBI-EN-003.03 Perawatan Gedung dan Infrastruktur.docx)
+
+## Kepatuhan ISO 14001
+
+Semua aktivitas pekerjaan harus sesuai **Sistem Manajemen Lingkungan ISO 14001**: kendalikan, kumpulkan, dan buang limbah ke **tempat pembuangan sementara** yang telah disediakan.
+(source: SOP-EBI-EN-003.03 Perawatan Gedung dan Infrastruktur.docx)
+
 ## Inspeksi dan Formulir
 
 | Formulir/Lampiran | Fungsi |
