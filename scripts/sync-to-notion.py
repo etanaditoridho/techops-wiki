@@ -6,8 +6,9 @@ import re
 from pathlib import Path
 
 NOTION_API_KEY = os.environ["NOTION_API_KEY"]
-NOTION_PARENT_PAGE_ID = os.environ["NOTION_PARENT_PAGE_ID"]
+NOTION_DATABASE_ID = os.environ["NOTION_DATABASE_ID"]
 WIKI_DIR = os.environ.get("WIKI_DIR", "wiki")
+NOTION_TITLE_PROPERTY = os.environ.get("NOTION_TITLE_PROPERTY", "Name")
 
 headers = {
     "Authorization": f"Bearer {NOTION_API_KEY}",
@@ -19,14 +20,6 @@ headers = {
 # ── helpers ──────────────────────────────────────────────────────────────────
 
 def normalize_title(value: str) -> str:
-    """
-    Normalize filename/page title for stable matching.
-    Makes compare tolerant to:
-    - case differences
-    - dashes / underscores
-    - repeated spaces
-    - file extension
-    """
     stem = Path(value).stem
     stem = stem.replace("-", " ").replace("_", " ")
     stem = re.sub(r"\s+", " ", stem).strip().lower()
@@ -34,10 +27,6 @@ def normalize_title(value: str) -> str:
 
 
 def file_to_title(filename: str) -> str:
-    """
-    Human-friendly title for creating new Notion pages.
-    Keeps old behavior-ish, but cleaner.
-    """
     stem = Path(filename).stem
     stem = stem.replace("_", " ").replace("-", " ")
     stem = re.sub(r"\s+", " ", stem).strip()
@@ -45,18 +34,12 @@ def file_to_title(filename: str) -> str:
 
 
 def split_text_content(text: str, max_len: int = 1900) -> list[str]:
-    """
-    Notion text content has size limits. Split large content safely.
-    """
     if not text:
         return [""]
     return [text[i:i + max_len] for i in range(0, len(text), max_len)]
 
 
 def rich_text_array(text: str) -> list:
-    """
-    Build Notion rich_text array, splitting if needed.
-    """
     parts = split_text_content(text)
     return [{"type": "text", "text": {"content": part}} for part in parts if part != ""] or [
         {"type": "text", "text": {"content": ""}}
@@ -64,7 +47,6 @@ def rich_text_array(text: str) -> list:
 
 
 def md_to_notion_blocks(content: str) -> list:
-    """Convert markdown text to Notion block objects."""
     blocks = []
     lines = content.split("\n")
     i = 0
@@ -163,10 +145,6 @@ def md_to_notion_blocks(content: str) -> list:
 
 
 def canonicalize_block(block: dict) -> dict:
-    """
-    Reduce a Notion block to a comparable canonical structure.
-    Removes volatile fields like id, parent, timestamps, etc.
-    """
     block_type = block.get("type")
     data = {"type": block_type}
 
@@ -190,16 +168,12 @@ def canonicalize_block(block: dict) -> dict:
         data["data"] = {}
 
     else:
-        # fallback for unsupported types
         data["data"] = {}
 
     return data
 
 
 def canonicalize_local_blocks(blocks: list) -> list:
-    """
-    Canonicalize locally generated blocks for fair comparison.
-    """
     result = []
     for block in blocks:
         block_type = block.get("type")
@@ -226,9 +200,6 @@ def canonicalize_local_blocks(blocks: list) -> list:
 
 
 def get_all_block_children(block_id: str) -> list:
-    """
-    Read all children blocks with pagination.
-    """
     url = f"https://api.notion.com/v1/blocks/{block_id}/children"
     items = []
     has_more = True
@@ -253,9 +224,6 @@ def get_all_block_children(block_id: str) -> list:
 
 
 def get_page_content_hash(page_id: str) -> str:
-    """
-    Hash existing Notion page content after canonicalization.
-    """
     blocks = get_all_block_children(page_id)
     canonical = [canonicalize_block(b) for b in blocks]
     payload = json.dumps(canonical, ensure_ascii=False, sort_keys=True)
@@ -263,9 +231,6 @@ def get_page_content_hash(page_id: str) -> str:
 
 
 def get_local_content_hash(blocks: list) -> str:
-    """
-    Hash locally generated blocks after canonicalization.
-    """
     canonical = canonicalize_local_blocks(blocks)
     payload = json.dumps(canonical, ensure_ascii=False, sort_keys=True)
     return hashlib.md5(payload.encode("utf-8")).hexdigest()
@@ -273,33 +238,40 @@ def get_local_content_hash(blocks: list) -> str:
 
 def get_all_notion_pages() -> dict:
     """
-    Get all child pages under parent.
+    Query all pages in target database.
     Returns:
       normalized_title -> {"id": page_id, "title": original_title}
     """
-    url = f"https://api.notion.com/v1/blocks/{NOTION_PARENT_PAGE_ID}/children"
+    url = f"https://api.notion.com/v1/databases/{NOTION_DATABASE_ID}/query"
     pages = {}
     has_more = True
     cursor = None
 
     while has_more:
-        params = {"page_size": 100}
+        payload = {"page_size": 100}
         if cursor:
-            params["start_cursor"] = cursor
+            payload["start_cursor"] = cursor
 
-        res = requests.get(url, headers=headers, params=params)
+        res = requests.post(url, headers=headers, json=payload)
         if res.status_code != 200:
-            print(f"Failed to read Notion pages: {res.status_code} {res.text[:300]}")
+            print(f"Failed to query Notion database: {res.status_code} {res.text[:300]}")
             return pages
 
         data = res.json()
 
-        for block in data.get("results", []):
-            if block.get("type") == "child_page":
-                original_title = block["child_page"]["title"]
+        for row in data.get("results", []):
+            props = row.get("properties", {})
+            title_prop = props.get(NOTION_TITLE_PROPERTY, {})
+            title_arr = title_prop.get("title", [])
+
+            original_title = "".join(
+                item.get("plain_text", "") for item in title_arr
+            ).strip()
+
+            if original_title:
                 norm_title = normalize_title(original_title)
                 pages[norm_title] = {
-                    "id": block["id"],
+                    "id": row["id"],
                     "title": original_title
                 }
 
@@ -310,14 +282,12 @@ def get_all_notion_pages() -> dict:
 
 
 def create_notion_page(title: str, blocks: list) -> str:
-    """
-    Create a new Notion page under parent. Returns page_id.
-    """
     first_batch = blocks[:100]
+
     payload = {
-        "parent": {"page_id": NOTION_PARENT_PAGE_ID},
+        "parent": {"database_id": NOTION_DATABASE_ID},
         "properties": {
-            "title": {
+            NOTION_TITLE_PROPERTY: {
                 "title": [
                     {"text": {"content": title}}
                 ]
@@ -347,9 +317,6 @@ def create_notion_page(title: str, blocks: list) -> str:
 
 
 def clear_page_blocks(page_id: str):
-    """
-    Delete all existing blocks from a Notion page.
-    """
     blocks = get_all_block_children(page_id)
     for block in blocks:
         res = requests.delete(f"https://api.notion.com/v1/blocks/{block['id']}", headers=headers)
@@ -358,9 +325,6 @@ def clear_page_blocks(page_id: str):
 
 
 def update_notion_page(page_id: str, blocks: list):
-    """
-    Clear and rewrite blocks on existing Notion page.
-    """
     clear_page_blocks(page_id)
 
     for start in range(0, len(blocks), 100):
@@ -375,9 +339,6 @@ def update_notion_page(page_id: str, blocks: list):
 
 
 def delete_notion_page(page_id: str) -> bool:
-    """
-    Archive (delete) a Notion page.
-    """
     res = requests.patch(
         f"https://api.notion.com/v1/pages/{page_id}",
         headers=headers,
@@ -385,8 +346,6 @@ def delete_notion_page(page_id: str) -> bool:
     )
     return res.status_code == 200
 
-
-# ── main ─────────────────────────────────────────────────────────────────────
 
 def main():
     wiki_path = Path(WIKI_DIR)
@@ -400,11 +359,10 @@ def main():
     print(f"Found {len(md_files)} wiki files locally")
 
     notion_pages = get_all_notion_pages()
-    print(f"Found {len(notion_pages)} pages in Notion")
+    print(f"Found {len(notion_pages)} rows in Notion database")
 
     created = updated = deleted = skipped = failed = 0
 
-    # CREATE / UPDATE
     for norm_title, filename in wiki_titles.items():
         filepath = md_files[filename]
         content = filepath.read_text(encoding="utf-8")
@@ -414,7 +372,7 @@ def main():
             human_title = file_to_title(filename)
             page_id = create_notion_page(human_title, blocks)
             if page_id:
-                print(f"  ✓ Created: {human_title}")
+                print(f"  ✓ Created row: {human_title}")
                 created += 1
             else:
                 failed += 1
@@ -427,21 +385,20 @@ def main():
 
             if local_hash != notion_hash:
                 update_notion_page(page_id, blocks)
-                print(f"  ↻ Updated: {original_title}")
+                print(f"  ↻ Updated row: {original_title}")
                 updated += 1
             else:
                 print(f"  — Skipped (no change): {original_title}")
                 skipped += 1
 
-    # DELETE / ARCHIVE
     for norm_title, page_info in notion_pages.items():
         if norm_title not in wiki_titles:
             ok = delete_notion_page(page_info["id"])
             if ok:
-                print(f"  ✗ Archived in Notion: {page_info['title']}")
+                print(f"  ✗ Archived row: {page_info['title']}")
                 deleted += 1
             else:
-                print(f"  ! Failed to archive: {page_info['title']}")
+                print(f"  ! Failed to archive row: {page_info['title']}")
                 failed += 1
 
     print(f"\nDone! Created: {created} | Updated: {updated} | Deleted: {deleted} | Skipped: {skipped} | Failed: {failed}")

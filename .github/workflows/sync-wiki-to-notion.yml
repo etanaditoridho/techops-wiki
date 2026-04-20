@@ -3,8 +3,13 @@ name: Sync Wiki to Notion
 on:
   push:
     paths:
-      - 'wiki/**'        # trigger saat ada perubahan di folder wiki
-  workflow_dispatch:     # bisa dijalankan manual
+      - 'wiki/**'
+      - 'scripts/sync-to-notion.py'
+      - '.github/workflows/sync-wiki-to-notion.yml'
+  workflow_dispatch:
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
   sync:
@@ -22,9 +27,41 @@ jobs:
       - name: Install dependencies
         run: pip install requests
 
-      - name: Sync wiki to Notion
+      - name: Debug files
+        run: |
+          echo "Repo root:"
+          ls -la
+          echo ""
+          echo "Wiki folder:"
+          ls -la wiki || true
+          echo ""
+          echo "Scripts folder:"
+          ls -la scripts || true
+
+      - name: Check required secrets
         env:
           NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
-          NOTION_PARENT_PAGE_ID: ${{ secrets.NOTION_PARENT_PAGE_ID }}
+          NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
+          NOTION_TITLE_PROPERTY: ${{ secrets.NOTION_TITLE_PROPERTY }}
+        run: |
+          if [ -z "$NOTION_API_KEY" ]; then
+            echo "ERROR: NOTION_API_KEY is missing"
+            exit 1
+          fi
+          if [ -z "$NOTION_DATABASE_ID" ]; then
+            echo "ERROR: NOTION_DATABASE_ID is missing"
+            exit 1
+          fi
+          if [ -z "$NOTION_TITLE_PROPERTY" ]; then
+            echo "ERROR: NOTION_TITLE_PROPERTY is missing"
+            exit 1
+          fi
+          echo "All required secrets are present"
+
+      - name: Sync wiki to Notion database
+        env:
+          NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
+          NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
+          NOTION_TITLE_PROPERTY: ${{ secrets.NOTION_TITLE_PROPERTY }}
           WIKI_DIR: wiki
-        run: python scripts/sync-to-notion.py
+        run: python -u scripts/sync-to-notion.py
