@@ -79,6 +79,37 @@ Catatan append-only dari semua operasi wiki.
 
 ---
 
+## 2026-04-21 — Ekstraksi Metadata & Restrukturisasi ke wiki/engineering/
+
+**Operasi:**
+- Baca semua 11 PDF di `raw/` menggunakan pdfplumber
+- Ekstrak per file: judul (ID+EN), SOP number, revision, effective date, prepared/reviewed/approved by (nama + jabatan)
+- Buat direktori `wiki/engineering/` sebagai lokasi canonical semua halaman SOP
+- Buat 11 halaman baru di `wiki/engineering/` (tidak ada .md yang cocok di wiki/engineering/ sebelumnya — direktori kosong)
+- Update `wiki/index.md`: semua referensi source pages diubah ke `engineering/` path; Dokumen Raw diperbarui dengan 11 PDF aktual
+
+**Halaman yang dibuat (11 halaman di wiki/engineering/):**
+- `sop-en-001-lampu-listrik.md` ← SOP/EBI/EN-001 Rev.02
+- `sop-en-003-perawatan-gedung.md` ← SOP/EBI/EN-003 Rev.03
+- `sop-en-004-perawatan-mesin.md` ← SOP/EBI/EN-004 Rev.02
+- `sop-en-005-suku-cadang.md` ← SOP/EBI/EN-005 Rev.03
+- `sop-en-013-udara-tekan.md` ← SOP/EBI/EN-013 Rev.04
+- `sop-en-014-perbaikan-mesin.md` ← SOP/EBI/EN-014 Rev.01
+- `sop-en-015-water-treatment.md` ← SOP/EBI/EN-015 Rev.08 (109 hal.)
+- `sop-en-016-hvac.md` ← SOP/EBI/EN-016 Rev.07
+- `sop-en-024-filling-bosch.md` ← SOP/EBI/EN-024 Rev.04 *(baru)*
+- `sop-en-044-filling-tofflon.md` ← SOP/EBI/EN-044 Rev.01 *(baru)*
+- `sop-en-055-bms-ems.md` ← SOP/EBI/EN-055 Rev.00 *(baru)*
+
+**Catatan:**
+- Effective Date kosong di semua PDF (kolom tidak diisi)
+- wiki/ root tidak ada .md selain index.md dan log.md — tidak ada file yang perlu dipindahkan
+- SOP-EBI-EN-015 adalah dokumen terpanjang (109 hal., Rev.08)
+- SOP-EBI-EN-055 adalah dokumen paling baru (Rev.00, approved oleh Project Leader Bhirawa Septariyanto)
+- PDF tool: pdfplumber (pdftoppm tidak tersedia di environment ini)
+
+---
+
 ## 2026-04-16 — Update: Ekstraksi Knowledge dari Raw SOP Docx
 
 **Sumber yang dibaca ulang:**

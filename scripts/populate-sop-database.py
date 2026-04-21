@@ -27,6 +27,17 @@ def is_wiki_file(filepath: Path) -> bool:
         return False
     return True
 
+def get_department(filepath: Path, wiki_root: Path) -> str:
+    """Ambil nama departemen dari subfolder di bawah wiki root."""
+    try:
+        rel = filepath.relative_to(wiki_root)
+        parts = rel.parts
+        if len(parts) > 1:
+            return parts[0].upper()  # engineering → ENGINEERING
+        return "GENERAL"
+    except:
+        return "GENERAL"
+
 def get_title_from_content(content: str, filepath: Path) -> str:
     match = re.search(r'^# (.+)$', content, re.MULTILINE)
     if match:
@@ -44,7 +55,6 @@ def md_to_notion_blocks(content: str) -> list:
         elif line.startswith("## "):
             blocks.append({"object":"block","type":"heading_2","heading_2":{"rich_text":[{"type":"text","text":{"content":line[3:].strip()}}]}})
         elif line.startswith("# "):
-            # Skip H1 karena sudah jadi title
             i += 1
             continue
         elif line.startswith("- [ ] ") or line.startswith("- [x] "):
@@ -69,13 +79,13 @@ def md_to_notion_blocks(content: str) -> list:
         i += 1
     return blocks
 
-def extract_metadata(content: str, filepath: Path) -> dict:
+def extract_metadata(content: str, filepath: Path, wiki_root: Path) -> dict:
     meta = {
         "name": get_title_from_content(content, filepath),
         "tags": [],
         "last_edited": "",
-        "folder": filepath.parent.name,
-        "file_path": filepath.as_posix(),
+        "folder": get_department(filepath, wiki_root),
+        "file_path": str(filepath.relative_to(wiki_root.parent)).replace("\\", "/"),
         "content_hash": hashlib.md5(content.encode()).hexdigest(),
     }
     date_match = re.search(r'\*\*Last updated\*\*:\s*(\d{4}-\d{2}-\d{2})', content)
@@ -97,7 +107,6 @@ def extract_metadata(content: str, filepath: Path) -> dict:
     return meta
 
 def get_existing_entries() -> dict:
-    """Returns {file_path: (page_id, content_hash, version)}"""
     url = f"https://api.notion.com/v1/databases/{SOP_DATABASE_ID}/query"
     entries = {}
     has_more = True
@@ -141,7 +150,6 @@ def build_properties(meta: dict, version: int = 1, is_update: bool = False) -> d
     return props
 
 def clear_page_blocks(page_id: str):
-    """Hapus semua block dari halaman."""
     url = f"https://api.notion.com/v1/blocks/{page_id}/children"
     has_more = True
     cursor = None
@@ -157,7 +165,6 @@ def clear_page_blocks(page_id: str):
         cursor = data.get("next_cursor")
 
 def add_blocks_to_page(page_id: str, blocks: list):
-    """Tambah blocks ke halaman dalam batch 100."""
     for start in range(0, len(blocks), 100):
         batch = blocks[start:start+100]
         requests.patch(
@@ -176,10 +183,9 @@ def create_entry(meta: dict, blocks: list) -> bool:
     res = requests.post("https://api.notion.com/v1/pages", headers=headers, json=payload)
     if res.status_code == 200:
         page_id = res.json()["id"]
-        # Append sisa blocks jika lebih dari 100
         if len(blocks) > 100:
             add_blocks_to_page(page_id, blocks[100:])
-        print(f"  ✓ Created: {meta['name']}")
+        print(f"  ✓ Created: [{meta['folder']}] {meta['name']}")
         return True
     print(f"  ✗ Failed: {meta['name']} — {res.text[:150]}")
     return False
@@ -193,21 +199,21 @@ def update_entry(page_id: str, meta: dict, current_version: int, blocks: list) -
         json={"properties": props}
     )
     if res.status_code == 200:
-        # Update konten body
         clear_page_blocks(page_id)
         add_blocks_to_page(page_id, blocks)
-        print(f"  ↻ Updated (v{new_version}): {meta['name']}")
+        print(f"  ↻ Updated (v{new_version}): [{meta['folder']}] {meta['name']}")
         return True
     print(f"  ✗ Update failed: {meta['name']} — {res.text[:150]}")
     return False
 
 def main():
-    wiki_path = Path(WIKI_DIR)
-    if not wiki_path.exists():
-        print(f"Wiki directory not found: {wiki_path}")
+    wiki_root = Path(WIKI_DIR)
+    if not wiki_root.exists():
+        print(f"Wiki directory not found: {wiki_root}")
         return
 
-    all_files = list(wiki_path.glob("*.md"))
+    # Scan semua subfolder di bawah wiki
+    all_files = list(wiki_root.rglob("*.md"))
     md_files = [f for f in all_files if is_wiki_file(f)]
     skipped = [f.name for f in all_files if not is_wiki_file(f)]
 
@@ -222,14 +228,14 @@ def main():
     for filepath in sorted(md_files):
         try:
             content = filepath.read_text(encoding="utf-8")
-            meta = extract_metadata(content, filepath)
+            meta = extract_metadata(content, filepath, wiki_root)
             blocks = md_to_notion_blocks(content)
-            file_path_key = filepath.as_posix()
+            file_path_key = meta["file_path"]
 
             if file_path_key in existing:
                 page_id, stored_hash, version = existing[file_path_key]
                 if stored_hash == meta["content_hash"]:
-                    print(f"  — No change: {meta['name']}")
+                    print(f"  — No change: [{meta['folder']}] {meta['name']}")
                     skipped_count += 1
                 else:
                     ok = update_entry(page_id, meta, version, blocks)

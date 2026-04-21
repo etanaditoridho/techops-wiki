@@ -7,16 +7,21 @@ Berisi ringkasan SOP, prosedur, dan konsep teknis yang dikelola oleh Claude Code
 
 ## Source Pages (Per SOP)
 
+Semua halaman SOP kini berada di subfolder `engineering/`.
+
 | Halaman | Deskripsi |
 |---|---|
-| [[sop-en-001-lampu-listrik]] | SOP/EBI/EN-001 Rev.02 — Penanganan & Perawatan Lampu dan Sistem Distribusi Listrik |
-| [[sop-en-003-perawatan-gedung]] | SOP/EBI/EN-003 Rev.03 — Perawatan Gedung & Infrastruktur |
-| [[sop-en-004-perawatan-mesin]] | SOP/EBI/EN-004 Rev.02 — Perawatan Preventive Maintenance Mesin |
-| [[sop-en-005-suku-cadang]] | SOP/EBI/EN-005 Rev.03 — Penyimpanan dan Pengelolaan Suku Cadang |
-| [[sop-en-013-udara-tekan]] | SOP/EBI/EN-013 — Pengoperasian dan Perawatan Sistem Udara Tekan |
-| [[sop-en-014-perbaikan-mesin]] | SOP/EBI/EN-014 / EN-014.01 — Penanganan dan Perbaikan Mesin |
-| [[sop-en-015-pure-water-form]] | SOP/EBI/EN-015-F01H — Formulir Pemantauan Harian Generator Air Murni (form only) |
-| [[sop-en-016-hvac]] | SOP/EBI/EN-016 Rev.07 — Pengoperasian dan Perawatan Sistem HVAC |
+| [[engineering/sop-en-001-lampu-listrik]] | SOP/EBI/EN-001 Rev.02 — Penanganan & Perawatan Lampu dan Sistem Distribusi Listrik |
+| [[engineering/sop-en-003-perawatan-gedung]] | SOP/EBI/EN-003 Rev.03 — Perawatan Gedung & Infrastruktur |
+| [[engineering/sop-en-004-perawatan-mesin]] | SOP/EBI/EN-004 Rev.02 — Perawatan Preventive Maintenance Mesin |
+| [[engineering/sop-en-005-suku-cadang]] | SOP/EBI/EN-005 Rev.03 — Penyimpanan dan Pengelolaan Suku Cadang |
+| [[engineering/sop-en-013-udara-tekan]] | SOP/EBI/EN-013 Rev.04 — Pengoperasian dan Perawatan Sistem Udara Tekan |
+| [[engineering/sop-en-014-perbaikan-mesin]] | SOP/EBI/EN-014 Rev.01 — Penanganan dan Perbaikan Mesin |
+| [[engineering/sop-en-015-water-treatment]] | SOP/EBI/EN-015 Rev.08 — Pengoperasian dan Perawatan Sistem Pengolahan Air (109 hal.) |
+| [[engineering/sop-en-016-hvac]] | SOP/EBI/EN-016 Rev.07 — Pengoperasian dan Perawatan Sistem HVAC |
+| [[engineering/sop-en-024-filling-bosch]] | SOP/EBI/EN-024 Rev.04 — Perawatan Mesin Filling Bosch FXS 2051 |
+| [[engineering/sop-en-044-filling-tofflon]] | SOP/EBI/EN-044 Rev.01 — Perawatan Mesin Filling Tofflon |
+| [[engineering/sop-en-055-bms-ems]] | SOP/EBI/EN-055 Rev.00 — Pengoperasian dan Perawatan Sistem EMS & BMS |
 
 ---
 
@@ -53,17 +58,14 @@ Berisi ringkasan SOP, prosedur, dan konsep teknis yang dikelola oleh Claude Code
 
 | File | SOP | Status |
 |---|---|---|
-| SOP-EBI-EN-001.02 ...pdf | SOP/EBI/EN-001 Rev.02 | ✅ Teringested |
-| SOP-EBI-EN-003.03 ...pdf | SOP/EBI/EN-003 Rev.03 | ✅ Teringested |
-| SOP-EBI-EN-004.02 ...docx | SOP/EBI/EN-004 Rev.02 | ✅ Teringested |
-| SOP-EBI-EN-004.02 ... - Copy.pdf | SOP/EBI/EN-004 Rev.02 (draft review) | ✅ Teringested — noted as draft, anotasi FD1–FD19 |
-| SOP-EBI-EN-005.03 ...docx | SOP/EBI/EN-005 Rev.03 | ✅ Teringested |
-| SOP-EBI-EN-005.03 ...pdf | SOP/EBI/EN-005 Rev.03 | ✅ Teringested — menambahkan kode lokasi dan jadwal Senin/Rabu/Jumat |
-| SOP-EBI-EN-013 ...DOC | SOP/EBI/EN-013 (versi lama) | ✅ Teringested |
-| SOP-EBI-EN-013 ...pdf | SOP/EBI/EN-013 Rev.04 | ✅ Teringested — parameter monitoring detail, jadwal L2/L3/L4 |
-| SOP-EBI-EN-014 ...DOC | SOP/EBI/EN-014 (versi lama) | ✅ Teringested |
-| SOP-EBI-EN-014 ...pdf | SOP/EBI/EN-014 Rev.01 | ✅ Teringested — konfirmasi Rev.01, nomor form (B suffix) |
-| SOP-EBI-EN-014.01 ...docx | SOP/EBI/EN-014.01 Rev.01 | ✅ Teringested |
-| SOP-EBI-EN-015-F01H ...docx | EN-015-F01H (form, template kosong) | ✅ Teringested |
-| SOP-EBI-EN-015-F01H ...pdf | EN-015-F01H (logbook, 61 hal.) | ✅ Teringested — 21 parameter monitoring lengkap |
-| SOP-EBI-EN-016.07 ...pdf | SOP/EBI/EN-016 Rev.07 | ✅ Teringested |
+| SOP-EBI-EN-001.02 ...pdf | SOP/EBI/EN-001 Rev.02 | ✅ Teringested — metadata extracted, wiki/engineering/ |
+| SOP-EBI-EN-003.03 ...pdf | SOP/EBI/EN-003 Rev.03 | ✅ Teringested — metadata extracted, wiki/engineering/ |
+| SOP-EBI-EN-004.02 ...pdf | SOP/EBI/EN-004 Rev.02 | ✅ Teringested — metadata extracted, wiki/engineering/ |
+| SOP-EBI-EN-005.03 ...pdf | SOP/EBI/EN-005 Rev.03 | ✅ Teringested — metadata extracted, wiki/engineering/ |
+| SOP-EBI-EN-013 ...pdf | SOP/EBI/EN-013 Rev.04 | ✅ Teringested — metadata extracted, wiki/engineering/ |
+| SOP-EBI-EN-014.01 ...pdf | SOP/EBI/EN-014 Rev.01 | ✅ Teringested — metadata extracted, wiki/engineering/ |
+| SOP-EBI-EN-015.08 ...pdf | SOP/EBI/EN-015 Rev.08 | ✅ Teringested — metadata extracted, 109 hal., wiki/engineering/ |
+| SOP-EBI-EN-016.07 ...pdf | SOP/EBI/EN-016 Rev.07 | ✅ Teringested — metadata extracted, wiki/engineering/ |
+| SOP-EBI-EN-024.04 ...pdf | SOP/EBI/EN-024 Rev.04 | ✅ Teringested — metadata extracted, wiki/engineering/ |
+| SOP-EBI-EN-044.01 ...pdf | SOP/EBI/EN-044 Rev.01 | ✅ Teringested — metadata extracted, wiki/engineering/ |
+| SOP-EBI-EN-055.00 ...pdf | SOP/EBI/EN-055 Rev.00 | ✅ Teringested — metadata extracted, wiki/engineering/ |
