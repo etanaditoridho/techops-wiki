@@ -28,12 +28,11 @@ def is_wiki_file(filepath: Path) -> bool:
     return True
 
 def get_department(filepath: Path, wiki_root: Path) -> str:
-    """Ambil nama departemen dari subfolder di bawah wiki root."""
     try:
         rel = filepath.relative_to(wiki_root)
         parts = rel.parts
         if len(parts) > 1:
-            return parts[0].upper()  # engineering → ENGINEERING
+            return parts[0].upper()
         return "GENERAL"
     except:
         return "GENERAL"
@@ -43,6 +42,13 @@ def get_title_from_content(content: str, filepath: Path) -> str:
     if match:
         return re.sub(r'\s*\(.*?\)', '', match.group(1)).strip()
     return filepath.stem.replace("-", " ").replace("_", " ").title()
+
+def get_prepared_by(content: str) -> str:
+    """Extract Prepared By dari metadata file .md"""
+    match = re.search(r'\*\*Prepared by\*\*:\s*(.+)', content)
+    if match:
+        return match.group(1).strip()
+    return ""
 
 def md_to_notion_blocks(content: str) -> list:
     blocks = []
@@ -87,6 +93,7 @@ def extract_metadata(content: str, filepath: Path, wiki_root: Path) -> dict:
         "folder": get_department(filepath, wiki_root),
         "file_path": str(filepath.relative_to(wiki_root.parent)).replace("\\", "/"),
         "content_hash": hashlib.md5(content.encode()).hexdigest(),
+        "owner": get_prepared_by(content),
     }
     date_match = re.search(r'\*\*Last updated\*\*:\s*(\d{4}-\d{2}-\d{2})', content)
     if date_match:
@@ -124,8 +131,9 @@ def get_existing_entries() -> dict:
             ch = props.get("Content Hash", {}).get("rich_text", [])
             content_hash = ch[0]["plain_text"] if ch else ""
             ver = props.get("Version", {}).get("number") or 1
-            if file_path:
-                entries[file_path] = (page["id"], content_hash, ver)
+            name_rich = props.get("Name", {}).get("title", [])
+            name = " ".join(r.get("plain_text", "") for r in name_rich)
+            entries[file_path or f"__no_path__{page['id']}"] = (page["id"], content_hash, ver, name)
         has_more = data.get("has_more", False)
         cursor = data.get("next_cursor")
     return entries
@@ -147,6 +155,8 @@ def build_properties(meta: dict, version: int = 1, is_update: bool = False) -> d
         props["Last Edited"] = {"date": {"start": meta["last_edited"]}}
     if meta["tags"]:
         props["Tags"] = {"multi_select": [{"name": t} for t in meta["tags"]]}
+    if meta["owner"]:
+        props["Owner"] = {"rich_text": [{"text": {"content": meta["owner"]}}]}
     return props
 
 def clear_page_blocks(page_id: str):
@@ -185,7 +195,7 @@ def create_entry(meta: dict, blocks: list) -> bool:
         page_id = res.json()["id"]
         if len(blocks) > 100:
             add_blocks_to_page(page_id, blocks[100:])
-        print(f"  ✓ Created: [{meta['folder']}] {meta['name']}")
+        print(f"  ✓ Created: [{meta['folder']}] {meta['name']} | Owner: {meta['owner'] or '-'}")
         return True
     print(f"  ✗ Failed: {meta['name']} — {res.text[:150]}")
     return False
@@ -201,10 +211,21 @@ def update_entry(page_id: str, meta: dict, current_version: int, blocks: list) -
     if res.status_code == 200:
         clear_page_blocks(page_id)
         add_blocks_to_page(page_id, blocks)
-        print(f"  ↻ Updated (v{new_version}): [{meta['folder']}] {meta['name']}")
+        print(f"  ↻ Updated (v{new_version}): [{meta['folder']}] {meta['name']} | Owner: {meta['owner'] or '-'}")
         return True
     print(f"  ✗ Update failed: {meta['name']} — {res.text[:150]}")
     return False
+
+def delete_entry(page_id: str, name: str):
+    res = requests.patch(
+        f"https://api.notion.com/v1/pages/{page_id}",
+        headers=headers,
+        json={"archived": True}
+    )
+    if res.status_code == 200:
+        print(f"  ✗ Deleted (not in Obsidian): {name}")
+    else:
+        print(f"  ✗ Delete failed: {name}")
 
 def main():
     wiki_root = Path(WIKI_DIR)
@@ -212,7 +233,6 @@ def main():
         print(f"Wiki directory not found: {wiki_root}")
         return
 
-    # Scan semua subfolder di bawah wiki
     all_files = list(wiki_root.rglob("*.md"))
     md_files = [f for f in all_files if is_wiki_file(f)]
     skipped = [f.name for f in all_files if not is_wiki_file(f)]
@@ -220,20 +240,24 @@ def main():
     print(f"Total .md: {len(all_files)} | Diproses: {len(md_files)} | Di-skip: {len(skipped)}")
     print(f"Skip: {', '.join(skipped)}\n")
 
+    local_file_paths = set()
+    local_map = {}
+    for filepath in md_files:
+        content = filepath.read_text(encoding="utf-8")
+        meta = extract_metadata(content, filepath, wiki_root)
+        local_file_paths.add(meta["file_path"])
+        local_map[meta["file_path"]] = (filepath, content, meta)
+
     existing = get_existing_entries()
     print(f"Existing entries di Notion DB: {len(existing)}\n")
 
-    created = updated = skipped_count = failed = 0
+    created = updated = skipped_count = deleted = failed = 0
 
-    for filepath in sorted(md_files):
+    for file_path_key, (filepath, content, meta) in sorted(local_map.items()):
         try:
-            content = filepath.read_text(encoding="utf-8")
-            meta = extract_metadata(content, filepath, wiki_root)
             blocks = md_to_notion_blocks(content)
-            file_path_key = meta["file_path"]
-
             if file_path_key in existing:
-                page_id, stored_hash, version = existing[file_path_key]
+                page_id, stored_hash, version, _ = existing[file_path_key]
                 if stored_hash == meta["content_hash"]:
                     print(f"  — No change: [{meta['folder']}] {meta['name']}")
                     skipped_count += 1
@@ -249,7 +273,13 @@ def main():
             print(f"  ✗ Error {filepath.name}: {e}")
             failed += 1
 
-    print(f"\nDone! Created: {created} | Updated: {updated} | Skipped: {skipped_count} | Failed: {failed}")
+    print("\nChecking for orphaned entries to delete...")
+    for file_path_key, (page_id, _, _, name) in existing.items():
+        if file_path_key not in local_file_paths:
+            delete_entry(page_id, name)
+            deleted += 1
+
+    print(f"\nDone! Created: {created} | Updated: {updated} | Skipped: {skipped_count} | Deleted: {deleted} | Failed: {failed}")
 
 if __name__ == "__main__":
     main()
