@@ -31,9 +31,9 @@ Semua halaman SOP kini berada di subfolder `engineering/`.
 
 | Halaman | Deskripsi |
 |---|---|
-| [[hvac-system]] | Sistem HVAC — komponen, parameter, filtrasi, dan konteks GMP |
-| [[compressed-air-system]] | Sistem udara tekan — klasifikasi, peralatan, dan standar kualitas |
-| [[electrical-system]] | Sistem kelistrikan — distribusi, panel, grounding, dan jadwal perawatan |
+| [[engineering/hvac-system]] | Sistem HVAC — komponen, parameter, filtrasi, dan konteks GMP |
+| [[engineering/compressed-air-system]] | Sistem udara tekan — klasifikasi, peralatan, dan standar kualitas |
+| [[engineering/electrical-system]] | Sistem kelistrikan — distribusi, panel, grounding, dan jadwal perawatan |
 | [[building-maintenance-overview]] | Konsep perawatan gedung — jenis pekerjaan dan prosedur pembersihan |
 | [[damage-classification]] | Tiga tingkat kerusakan bangunan dan batas biaya perawatan |
 
@@ -41,16 +41,36 @@ Semua halaman SOP kini berada di subfolder `engineering/`.
 
 | Halaman | Deskripsi |
 |---|---|
-| [[maintenance-types]] | Empat jenis perawatan: PM, CM, Breakdown, Autonomous |
+| [[engineering/maintenance-types]] | Empat jenis perawatan: PM, CM, Breakdown, Autonomous |
 | [[machine-repair-workflow]] | Alur commissioning mesin baru, breakdown, PJE, dan vendor |
-| [[pje-permintaan-jasa-engineering]] | Formulir dan proses Permintaan Jasa Engineering lintas departemen |
-| [[spare-parts-management]] | Klasifikasi suku cadang critical vs non-critical, Part Code, inventori |
+| [[engineering/pje-permintaan-jasa-engineering]] | Formulir dan proses Permintaan Jasa Engineering lintas departemen |
+| [[engineering/spare-parts-management]] | Klasifikasi suku cadang critical vs non-critical, Part Code, inventori |
 
 ### Organisasi
 
 | Halaman | Deskripsi |
 |---|---|
-| [[engineering-responsibilities]] | Matriks tanggung jawab Engineering (Teknisi, Supervisor, Manager) yang berlaku di semua SOP |
+| [[engineering/engineering-responsibilities]] | Matriks tanggung jawab Engineering (Teknisi, Supervisor, Manager) yang berlaku di semua SOP |
+
+---
+
+## Synthesis Pages (Engineering)
+
+| Halaman | Deskripsi |
+|---|---|
+| [[engineering/synthesis-emergency-shutdown]] | Prosedur emergency shutdown lintas sistem: HVAC, udara tekan, listrik, mesin |
+| [[engineering/synthesis-onboarding-teknisi]] | Panduan orientasi teknisi baru — sistem, prosedur, dan formulir wajib dikuasai |
+| [[engineering/synthesis-daily-monitoring]] | Checklist monitoring harian semua sistem Engineering |
+
+---
+
+## QA Pages
+
+| Halaman | Deskripsi |
+|---|---|
+| [[qa/sop-qa-004-change-control]] | SOP/EBI/QA-004 Rev.04 — Manajemen Perubahan (Change Control) |
+| [[qa/sop-qa-008-deviasi]] | SOP/EBI/QA-008 Rev.08 — Penanganan Penyimpangan (Deviation Handling) |
+| [[qa/sop-qa-035-capa]] | SOP/EBI/QA-035 Rev.06 — Penanganan dan Manajemen CAPA |
 
 ---
 

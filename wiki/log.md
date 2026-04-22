@@ -125,3 +125,46 @@ Catatan append-only dari semua operasi wiki.
 - `building-maintenance-overview.md` — ditambahkan: tabel Tanggung Jawab 5 peran, seksi Kepatuhan ISO 14001
 
 ---
+
+## 2026-04-22 — Buat Concept Pages, Synthesis Pages, dan Ingest 3 Dokumen QA
+
+### Concept Pages (7 halaman baru di wiki/engineering/)
+
+- `hvac-system.md` — komponen AHU/FCU/chiller, 6 parameter GMP, integrasi BMS/EMS, jadwal perawatan
+- `compressed-air-system.md` — klasifikasi kontak/non-kontak produk, 3 kompressor + 4 dryer, jadwal L2/L3/L4
+- `electrical-system.md` — alur distribusi PLN→MDP→SDP, standar PUIL 2011 + Permenaker 12/2015, grounding
+- `engineering-responsibilities.md` — matriks lengkap 3 peran utama + peran tambahan (administrasi suku cadang, housekeeping)
+- `maintenance-types.md` — 4 jenis PM/CM/BM/AM, tabel perbandingan, formulir F01B/F02B
+- `pje-permintaan-jasa-engineering.md` — alur PJE, kapan diperlukan vs tidak, integrasi dengan F03B
+- `spare-parts-management.md` — critical vs non-critical, Part Code, kode lokasi R1.A/B/C, jadwal Sen/Rab/Jum
+
+### Synthesis Pages (3 halaman baru di wiki/engineering/)
+
+- `synthesis-emergency-shutdown.md` — prosedur shutdown HVAC, udara tekan, listrik, mesin produksi; urutan; label; eskalasi
+- `synthesis-onboarding-teknisi.md` — 4 fase orientasi, checklist 10 item, formulir wajib, APD per area
+- `synthesis-daily-monitoring.md` — checklist harian 5 sistem; alur deviasi; tabel formulir per sistem
+
+### Ingest QA Dokumen (3 halaman baru di wiki/qa/)
+
+**Sumber yang diproses:**
+1. `SOP-EBI-QA-004.04 SOP Change Control (1).pdf` — 40 halaman, Rev.04
+2. `SOP-EBI-QA-008.08 Penanganan Penyimpangan.pdf` — 64 halaman, Rev.08
+3. `SOP-EBI-QA-035.06 Penanganan dan Manajemen CAPA.pdf` — 46 halaman, Rev.06
+
+**Halaman yang dibuat:**
+- `wiki/qa/sop-qa-004-change-control.md` — CC: 3 kategori (Kritikal/Mayor/Minor), 9 peran, alur CC, lampiran L05/L07
+- `wiki/qa/sop-qa-008-deviasi.md` — Deviasi: 3 klasifikasi event, alur penanganan, tren analisa periodik, form L04
+- `wiki/qa/sop-qa-035-capa.md` — CAPA: inisiasi dari 9+ sumber quality event, effectiveness check, tren analisa tahunan
+
+**index.md diperbarui:**
+- Concept pages diupdate ke path `engineering/`
+- Ditambahkan seksi Synthesis Pages (Engineering)
+- Ditambahkan seksi QA Pages
+
+**Catatan:**
+- Semua 3 QA PDF: Effective Date kosong (kolom tidak diisi)
+- QA-008 Rev.08 adalah revisi tertinggi di antara 3 dokumen — sistem deviasi paling mature
+- QA-004 melibatkan CRB (Cross Review Board) dan QMS berbasis SharePoint
+- QA-035 melibatkan 8 reviewer lintas departemen — CAPA berdampak ke seluruh PT EBI
+
+---
