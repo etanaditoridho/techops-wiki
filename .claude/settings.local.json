@@ -6,7 +6,8 @@
       "Bash(python -c \"import fitz; print\\('ok'\\)\")",
       "Bash(python -c \"import pdfplumber; print\\('pdfplumber'\\)\")",
       "Bash(python -c \"import PyPDF2; print\\('PyPDF2'\\)\")",
-      "Bash(python -)"
+      "Bash(python -)",
+      "Bash(python3 -c ' *)"
     ]
   }
 }
