@@ -2,7 +2,7 @@ name: Content Lint — Knowledge Base Health Check
 
 on:
   schedule:
-    - cron: '0 2 * * 1'  # tiap Senin jam 09.00 WIB, setelah weekly digest
+    - cron: '0 2 * * 1'  # tiap Senin jam 09.00 WIB
   workflow_dispatch:
 
 jobs:
@@ -25,13 +25,11 @@ jobs:
           notion = Client(auth=os.environ['NOTION_API_KEY'])
           claude = anthropic.Anthropic(api_key=os.environ['ANTHROPIC_API_KEY'])
           DATABASE_ID = os.environ['NOTION_DATABASE_ID']
-          QUERY_LOG_ID = os.environ['QUERY_LOG_PAGE_ID']
+          QUERY_LOG_DB_ID = os.environ['QUERY_LOG_PAGE_ID']
           LINT_PARENT_ID = os.environ['LINT_REPORT_PAGE_ID']
           today = date.today()
 
           print('[lint] Fetching all SOPs...')
-
-          # 1. Ambil semua SOP
           all_pages = notion.databases.query(database_id=DATABASE_ID)['results']
           sops = []
           for p in all_pages:
@@ -41,56 +39,45 @@ jobs:
               folder = (props.get('Folder', {}).get('rich_text', []) or [{}])[0].get('text', {}).get('content', '')
               tags = [t['name'] for t in props.get('Tags', {}).get('multi_select', [])]
               related = props.get('Related To', {}).get('relation', [])
-              sops.append({
-                  'id': p['id'],
-                  'name': name,
-                  'status': status,
-                  'folder': folder,
-                  'tags': tags,
-                  'related_count': len(related)
-              })
-
+              sops.append({'id': p['id'], 'name': name, 'status': status, 'folder': folder, 'tags': tags, 'related_count': len(related)})
           print('[lint] Found ' + str(len(sops)) + ' SOPs')
 
-          # 2. Ambil query log minggu ini untuk deteksi coverage gap
-          query_results = notion.databases.query(database_id=QUERY_LOG_ID).get('results', [])
+          print('[lint] Fetching unanswered queries...')
           unanswered_queries = []
-          for r in query_results:
-              props = r['properties']
-              answered = props.get('Answered', {}).get('select', {})
-              if answered and answered.get('name') == 'No':
-                  title = props.get('Name', {}).get('title', [])
-                  q = title[0]['text']['content'] if title else ''
-                  if q:
-                      unanswered_queries.append(q)
+          try:
+              query_results = notion.databases.query(database_id=QUERY_LOG_DB_ID).get('results', [])
+              for r in query_results:
+                  props = r['properties']
+                  answered = props.get('Answered', {}).get('select', {})
+                  if answered and answered.get('name') == 'No':
+                      title = props.get('Name', {}).get('title', [])
+                      q = title[0]['text']['content'] if title else ''
+                      if q:
+                          unanswered_queries.append(q)
+          except Exception as ex:
+              print('[lint] Query log error: ' + str(ex))
 
-          # 3. Deteksi orphan (tidak punya relasi sama sekali)
           orphans = [s['name'] for s in sops if s['related_count'] == 0 and s['status'] not in ['archived', 'obsoleted']]
 
-          # 4. Kirim ke Claude untuk analisis kontradiksi dan coverage gap
           sop_list = '\n'.join([
               '- ' + s['name'] + ' [' + s['status'] + '] folder=' + s['folder'] + ' tags=' + ','.join(s['tags'][:3])
               for s in sops if s['status'] not in ['archived', 'obsoleted']
           ])
-          unanswered_str = '\n'.join(['- ' + q for q in unanswered_queries]) or 'Tidak ada query tidak terjawab.'
+          unanswered_str = '\n'.join(['- ' + q for q in unanswered_queries]) or 'Tidak ada.'
 
           prompt = (
-              'Kamu adalah quality checker untuk knowledge base Engineering PT Etana Biotechnologies.\n\n'
+              'Kamu adalah quality checker knowledge base Engineering PT Etana.\n\n'
               'Daftar SOP aktif:\n' + sop_list + '\n\n'
-              'Query yang tidak terjawab oleh Claude (kemungkinan coverage gap):\n' + unanswered_str + '\n\n'
-              'Tugasmu:\n'
-              '1. Identifikasi kemungkinan kontradiksi antar SOP (berdasarkan nama dan folder)\n'
-              '2. Identifikasi topik yang belum punya SOP berdasarkan query tidak terjawab\n'
-              '3. Identifikasi coverage gap umum untuk tim Engineering farmasi\n\n'
-              'Return HANYA JSON ini tanpa teks lain:\n'
-              '{'
-              '"contradictions": [{"sop_a": "...", "sop_b": "...", "reason": "..."}],'
-              '"missing_sops": [{"topic": "...", "reason": "..."}],'
-              '"coverage_gaps": ["..."]'
-              '}'
+              'Query tidak terjawab:\n' + unanswered_str + '\n\n'
+              'Tugas:\n'
+              '1. Identifikasi kemungkinan kontradiksi antar SOP\n'
+              '2. Identifikasi topik belum ada SOP berdasarkan query tidak terjawab\n'
+              '3. Identifikasi coverage gap umum untuk engineering farmasi\n\n'
+              'Return HANYA JSON tanpa teks lain:\n'
+              '{\"contradictions\":[{\"sop_a\":\"...\",\"sop_b\":\"...\",\"reason\":\"...\"}],\"missing_sops\":[{\"topic\":\"...\",\"reason\":\"...\"}],\"coverage_gaps\":[\"...\"]}'
           )
 
-          print('[lint] Sending to Claude for analysis...')
+          print('[lint] Sending to Claude...')
           response = claude.messages.create(
               model='claude-sonnet-4-6',
               max_tokens=3000,
@@ -100,56 +87,41 @@ jobs:
           s, e = raw.find('{'), raw.rfind('}') + 1
           analysis = json.loads(raw[s:e]) if s != -1 and e > s else {}
 
-          # 5. Format laporan
           contradictions = analysis.get('contradictions', [])
           missing = analysis.get('missing_sops', [])
           gaps = analysis.get('coverage_gaps', [])
 
-          contra_str = '\n'.join([
-              '- **' + c['sop_a'] + '** vs **' + c['sop_b'] + '**: ' + c['reason']
-              for c in contradictions
-          ]) or 'Tidak ada kontradiksi terdeteksi.'
-
-          missing_str = '\n'.join([
-              '- **' + m['topic'] + '**: ' + m['reason']
-              for m in missing
-          ]) or 'Tidak ada SOP yang perlu ditambahkan.'
-
+          contra_str = '\n'.join(['- ' + c['sop_a'] + ' vs ' + c['sop_b'] + ': ' + c['reason'] for c in contradictions]) or 'Tidak ada kontradiksi terdeteksi.'
+          missing_str = '\n'.join(['- ' + m['topic'] + ': ' + m['reason'] for m in missing]) or 'Tidak ada.'
           gap_str = '\n'.join(['- ' + g for g in gaps]) or 'Coverage sudah cukup baik.'
           orphan_str = '\n'.join(['- ' + o for o in orphans]) or 'Tidak ada SOP orphan.'
+          active_count = str(len([s for s in sops if s['status'] not in ['archived', 'obsoleted']]))
 
-          content = (
-              '**Lint report otomatis ' + today.isoformat() + '**\n\n'
-              '---\n\n'
-              '## Ringkasan\n\n'
-              '| Metrik | Jumlah |\n'
-              '|---|---|\n'
-              '| Total SOP aktif | ' + str(len([s for s in sops if s[\"status\"] not in [\"archived\", \"obsoleted\"]])) + ' |\n'
-              '| SOP orphan (tanpa relasi) | ' + str(len(orphans)) + ' |\n'
-              '| Potensi kontradiksi | ' + str(len(contradictions)) + ' |\n'
-              '| Topik belum ada SOP | ' + str(len(missing)) + ' |\n'
-              '| Query tidak terjawab | ' + str(len(unanswered_queries)) + ' |\n\n'
-              '---\n\n'
-              '## Potensi Kontradiksi Antar SOP\n\n' + contra_str + '\n\n'
-              '---\n\n'
-              '## Topik yang Belum Punya SOP\n\n' + missing_str + '\n\n'
-              '---\n\n'
-              '## Coverage Gaps Umum\n\n' + gap_str + '\n\n'
-              '---\n\n'
-              '## SOP Orphan (Tidak Punya Relasi)\n\n' + orphan_str + '\n\n'
-              '---\n\n'
-              '> Laporan ini dibuat otomatis oleh Claude. Perlu divalidasi oleh Owner sebelum diambil tindakan.'
+          def make_blocks(text):
+              chunks = [text[i:i+1800] for i in range(0, len(text), 1800)]
+              return [{'object': 'block', 'type': 'paragraph', 'paragraph': {'rich_text': [{'type': 'text', 'text': {'content': c}}]}} for c in chunks]
+
+          blocks = []
+          blocks += make_blocks('Lint report otomatis ' + today.isoformat())
+          blocks += make_blocks(
+              'RINGKASAN\n'
+              'Total SOP aktif: ' + active_count + '\n'
+              'SOP orphan: ' + str(len(orphans)) + '\n'
+              'Potensi kontradiksi: ' + str(len(contradictions)) + '\n'
+              'Topik belum ada SOP: ' + str(len(missing)) + '\n'
+              'Query tidak terjawab: ' + str(len(unanswered_queries))
           )
+          blocks += make_blocks('POTENSI KONTRADIKSI\n' + contra_str)
+          blocks += make_blocks('TOPIK BELUM ADA SOP\n' + missing_str)
+          blocks += make_blocks('COVERAGE GAPS\n' + gap_str)
+          blocks += make_blocks('SOP ORPHAN (tidak punya relasi)\n' + orphan_str)
+          blocks += make_blocks('Laporan otomatis oleh Claude. Validasi Owner sebelum diambil tindakan.')
 
           title = 'Lint Report - ' + today.strftime('%d %B %Y')
           notion.pages.create(
               parent={'page_id': LINT_PARENT_ID},
               properties={'title': [{'text': {'content': title}}]},
-              children=[{
-                  'object': 'block',
-                  'type': 'paragraph',
-                  'paragraph': {'rich_text': [{'type': 'text', 'text': {'content': content}}]}
-              }]
+              children=blocks[:100]
           )
           print('[lint] Report created: ' + title)
           print('[lint] Contradictions: ' + str(len(contradictions)))
