@@ -36,32 +36,23 @@ def extract_sop_info(page):
 
 def llm_relate(sops):
     sop_list = "\n".join([
-        f"- ID: {s['id']} | Nama: {s['name']} | Tags: {', '.join(s['tags'])} | Folder: {s['folder']}"
+        "- ID: " + s["id"] + " | Nama: " + s["name"] + " | Tags: " + ", ".join(s["tags"]) + " | Folder: " + s["folder"]
         for s in sops
     ])
 
-    prompt = f"""Kamu adalah sistem knowledge management Engineering PT Etana Biotechnologies.
-
-Daftar SOP:
-{sop_list}
-
-Tentukan relasi antar SOP. Prinsip:
-- SOP perbaikan mesin terkait SOP suku cadang dan perawatan
-- SOP sistem (HVAC, udara tekan, listrik) terkait jika saling mendukung
-- SOP QA (deviasi, CAPA, change control) saling terkait
-- Maksimal 4 relasi per SOP
-- Hanya buat relasi yang benar-benar logis
-
-Return HANYA raw JSON, mulai dari {{ sampai }}, tanpa teks apapun di luar JSON:
-
-{{
-  "relations": {{
-    "sop_id": ["related_id_1", "related_id_2"]
-  }},
-  "reasoning": {{
-    "sop_id->related_id": "alasan"
-  }}
-}}"""
+    prompt = (
+        "Kamu adalah sistem knowledge management Engineering PT Etana Biotechnologies.\n\n"
+        "Daftar SOP:\n" + sop_list + "\n\n"
+        "Tentukan relasi antar SOP. Prinsip:\n"
+        "- SOP perbaikan mesin terkait SOP suku cadang dan perawatan\n"
+        "- SOP sistem (HVAC, udara tekan, listrik) terkait jika saling mendukung\n"
+        "- SOP QA (deviasi, CAPA, change control) saling terkait\n"
+        "- Maksimal 4 relasi per SOP\n"
+        "- Hanya buat relasi yang benar-benar logis\n\n"
+        "Return HANYA raw JSON. Mulai dari { sampai }. Tanpa teks apapun di luar JSON.\n"
+        "Format:\n"
+        "{\"relations\": {\"sop_id\": [\"related_id\"]}, \"reasoning\": {\"sop_id->related_id\": \"alasan\"}}"
+    )
 
     response = claude.messages.create(
         model="claude-sonnet-4-6",
@@ -71,14 +62,6 @@ Return HANYA raw JSON, mulai dari {{ sampai }}, tanpa teks apapun di luar JSON:
 
     raw = response.content[0].text.strip()
 
-    if "```" in raw:
-        for part in raw.split("```"):
-            part = part.strip().lstrip("json").strip()
-            if part.startswith("{"):
-                raw = part
-                break
-
-    # Ambil JSON dari { pertama sampai } terakhir
     start = raw.find("{")
     end = raw.rfind("}") + 1
     if start != -1 and end > start:
@@ -103,10 +86,10 @@ def update_notion_relations(sops, final_relations):
             )
             name = sop_id_map.get(sop_id, sop_id)
             related_names = [sop_id_map.get(r, r) for r in related_ids]
-            print(f"  OK: {name} -> {', '.join(related_names)}")
+            print("  OK: " + name + " -> " + ", ".join(related_names))
             updated += 1
         except Exception as e:
-            print(f"  ERROR {sop_id}: {e}")
+            print("  ERROR " + sop_id + ": " + str(e))
 
     return updated, skipped
 
@@ -115,18 +98,18 @@ def main():
     print("[auto-relate] Mengambil SOP dari Notion...")
     pages = get_all_sops()
     sops = [extract_sop_info(p) for p in pages]
-    print(f"[auto-relate] Ditemukan {len(sops)} SOP")
+    print("[auto-relate] Ditemukan " + str(len(sops)) + " SOP")
 
     print("[auto-relate] Mengirim ke Claude...")
     final_relations = llm_relate(sops)
 
     print("\n[auto-relate] Reasoning:")
     for pair, reason in final_relations.get("reasoning", {}).items():
-        print(f"  {pair}: {reason}")
+        print("  " + pair + ": " + reason)
 
     print("\n[auto-relate] Menulis ke Notion...")
     updated, skipped = update_notion_relations(sops, final_relations)
-    print(f"\n[auto-relate] Selesai. Updated: {updated}, Skipped: {skipped}")
+    print("\n[auto-relate] Selesai. Updated: " + str(updated) + ", Skipped: " + str(skipped))
 
 
 if __name__ == "__main__":
