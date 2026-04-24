@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """
 process-knowledge-pending.py
-Dijalankan oleh GitHub Actions setiap malam.
 Baca Notion "Knowledge Pending Review":
   - Status 'approved' → buat .md di wiki/ → archive di Notion
   - Status 'rejected' → hapus halaman dari Notion
@@ -38,8 +37,17 @@ def get_text_prop(props, key) -> str:
     return rt[0]["plain_text"] if rt else ""
 
 def get_select_prop(props, key) -> str:
-    sel = props.get(key, {}).get("select", {})
-    return sel.get("name", "") if sel else ""
+    """Handle both 'select' and 'status' property types."""
+    prop = props.get(key, {})
+    # Coba tipe 'select' dulu
+    sel = prop.get("select", {})
+    if sel:
+        return sel.get("name", "")
+    # Fallback ke tipe 'status'
+    sel = prop.get("status", {})
+    if sel:
+        return sel.get("name", "")
+    return ""
 
 def get_title_prop(props) -> str:
     rt = props.get("Name", {}).get("title", [])
@@ -53,15 +61,15 @@ def archive_page(page_id: str):
     )
 
 def create_wiki_md(item: dict) -> Path:
-    props  = item["properties"]
-    name   = get_title_prop(props)
-    ktype  = get_select_prop(props, "Type")
-    dept   = get_select_prop(props, "Department").lower()
+    props   = item["properties"]
+    name    = get_title_prop(props)
+    ktype   = get_select_prop(props, "Type")
+    dept    = get_select_prop(props, "Department").lower()
     summary = get_text_prop(props, "Summary")
     content = get_text_prop(props, "Content")
     related = get_text_prop(props, "Related SOP")
     wiki_file = get_text_prop(props, "Wiki File")
-    today  = datetime.now().strftime("%Y-%m-%d")
+    today   = datetime.now().strftime("%Y-%m-%d")
 
     slug = wiki_file if wiki_file else f"{ktype}-{slugify(name)}.md"
     if not slug.endswith(".md"):
@@ -98,7 +106,9 @@ def create_wiki_md(item: dict) -> Path:
 
 def main():
     items = get_pending_items()
-    approved = updated = rejected = 0
+    approved = rejected = 0
+
+    print(f"Found {len(items)} items in Knowledge Pending Review\n")
 
     for item in items:
         props  = item["properties"]
@@ -106,19 +116,21 @@ def main():
         name   = get_title_prop(props)
         pid    = item["id"]
 
+        print(f"  [{status}] {name}")
+
         if status == "approved":
             path = create_wiki_md(item)
             archive_page(pid)
             approved += 1
-            print(f"  ✓ Approved → wiki: {path}")
+            print(f"    ✓ Created wiki: {path}")
 
         elif status == "rejected":
             archive_page(pid)
             rejected += 1
-            print(f"  ✗ Rejected → deleted: {name}")
+            print(f"    ✗ Rejected → archived")
 
         else:
-            print(f"  — Pending (skip): {name}")
+            print(f"    — Skip (pending)")
 
     print(f"\nDone! Approved: {approved} | Rejected: {rejected}")
 
