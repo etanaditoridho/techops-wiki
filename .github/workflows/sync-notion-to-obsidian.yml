@@ -1,0 +1,146 @@
+name: Sync Notion → Obsidian Vault
+
+on:
+  schedule:
+    - cron: '0 19 * * *'  # tiap malam jam 02.00 WIB (setelah compile jam 00.00)
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - run: pip install "notion-client==1.0.0"
+
+      - name: Sync SOPs from Notion to Obsidian vault
+        run: |
+          python -c "
+          import os, re
+          from notion_client import Client
+          from datetime import date
+
+          notion = Client(auth=os.environ['NOTION_API_KEY'])
+          DATABASE_ID = os.environ['NOTION_DATABASE_ID']
+          VAULT_SOP_DIR = 'SOP'
+
+          os.makedirs(VAULT_SOP_DIR, exist_ok=True)
+
+          print('[sync] Fetching SOPs from Notion...')
+          results = []
+          cursor = None
+          while True:
+              kwargs = {'database_id': DATABASE_ID, 'page_size': 100}
+              if cursor:
+                  kwargs['start_cursor'] = cursor
+              r = notion.databases.query(**kwargs)
+              results.extend(r['results'])
+              if not r['has_more']:
+                  break
+              cursor = r['next_cursor']
+
+          print('[sync] Found ' + str(len(results)) + ' SOPs')
+          updated = 0
+
+          for page in results:
+              props = page['properties']
+              name = props['Name']['title'][0]['text']['content'] if props['Name']['title'] else ''
+              if not name:
+                  continue
+
+              status = props.get('Status', {}).get('status', {}).get('name', 'draft')
+              folder = (props.get('Folder', {}).get('rich_text', []) or [{}])[0].get('text', {}).get('content', 'General')
+              owner = (props.get('Owner', {}).get('rich_text', []) or [{}])[0].get('text', {}).get('content', '')
+              tags = [t['name'] for t in props.get('Tags', {}).get('multi_select', [])]
+              review_date = (props.get('Review Date', {}).get('date') or {}).get('start', '')
+              confidence = props.get('Confidence', {}).get('number', '')
+              version = props.get('Version', {}).get('number', 1)
+
+              # Ambil konten blocks dari Notion
+              blocks = notion.blocks.children.list(block_id=page['id']).get('results', [])
+              content_lines = []
+              for b in blocks:
+                  btype = b['type']
+                  if btype == 'paragraph':
+                      texts = b['paragraph'].get('rich_text', [])
+                      line = ''.join(t.get('plain_text', '') for t in texts)
+                      if line:
+                          content_lines.append(line)
+                  elif btype == 'heading_1':
+                      texts = b['heading_1'].get('rich_text', [])
+                      line = ''.join(t.get('plain_text', '') for t in texts)
+                      if line:
+                          content_lines.append('# ' + line)
+                  elif btype == 'heading_2':
+                      texts = b['heading_2'].get('rich_text', [])
+                      line = ''.join(t.get('plain_text', '') for t in texts)
+                      if line:
+                          content_lines.append('## ' + line)
+                  elif btype == 'heading_3':
+                      texts = b['heading_3'].get('rich_text', [])
+                      line = ''.join(t.get('plain_text', '') for t in texts)
+                      if line:
+                          content_lines.append('### ' + line)
+                  elif btype == 'bulleted_list_item':
+                      texts = b['bulleted_list_item'].get('rich_text', [])
+                      line = ''.join(t.get('plain_text', '') for t in texts)
+                      if line:
+                          content_lines.append('- ' + line)
+                  elif btype == 'numbered_list_item':
+                      texts = b['numbered_list_item'].get('rich_text', [])
+                      line = ''.join(t.get('plain_text', '') for t in texts)
+                      if line:
+                          content_lines.append('1. ' + line)
+                  elif btype == 'callout':
+                      texts = b['callout'].get('rich_text', [])
+                      line = ''.join(t.get('plain_text', '') for t in texts)
+                      if line:
+                          content_lines.append('> ' + line)
+
+              body = '\n'.join(content_lines)
+
+              # Build frontmatter Obsidian
+              tags_yaml = '\n'.join(['  - ' + t for t in tags])
+              frontmatter = (
+                  '---\n'
+                  'title: \"' + name + '\"\n'
+                  'status: ' + status + '\n'
+                  'folder: ' + folder + '\n'
+                  'owner: \"' + owner + '\"\n'
+                  'version: ' + str(version) + '\n'
+                  'review_date: ' + (review_date or '') + '\n'
+                  'confidence: ' + str(confidence or '') + '\n'
+                  'tags:\n' + (tags_yaml or '  - untagged') + '\n'
+                  'notion_id: ' + page['id'] + '\n'
+                  'synced: ' + date.today().isoformat() + '\n'
+                  '---\n\n'
+              )
+
+              # Nama file — sanitize karakter tidak valid
+              safe_name = re.sub(r'[\\/:*?\"<>|]', '-', name)
+              filepath = os.path.join(VAULT_SOP_DIR, safe_name + '.md')
+
+              with open(filepath, 'w', encoding='utf-8') as f:
+                  f.write(frontmatter + body)
+
+              updated += 1
+
+          print('[sync] Written ' + str(updated) + ' .md files to ' + VAULT_SOP_DIR + '/')
+          "
+        env:
+          NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
+          NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
+
+      - name: Commit and push to Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add SOP/
+          git diff --staged --quiet || git commit -m "sync: update Obsidian vault from Notion [$(date +'%Y-%m-%d')]"
+          git push
