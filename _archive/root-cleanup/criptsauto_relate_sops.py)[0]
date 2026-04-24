@@ -1,0 +1,119 @@
+warning: in the working copy of 'scripts/auto_relate_sops.py', LF will be replaced by CRLF the next time Git touches it
+[1mdiff --git a/scripts/auto_relate_sops.py b/scripts/auto_relate_sops.py[m
+[1mindex 21f5304..df3133a 100644[m
+[1m--- a/scripts/auto_relate_sops.py[m
+[1m+++ b/scripts/auto_relate_sops.py[m
+[36m@@ -1,4 +1,5 @@[m
+[31m-﻿import os[m
+[32m+[m[32m﻿$content = @'[m
+[32m+[m[32mimport os[m
+ import json[m
+ import anthropic[m
+ from notion_client import Client[m
+[36m@@ -39,51 +40,28 @@[m [mdef llm_relate(sops):[m
+         f"- ID: {s['id']} | Nama: {s['name']} | Tags: {', '.join(s['tags'])} | Folder: {s['folder']}"[m
+         for s in sops[m
+     ])[m
+[31m-[m
+[31m-    prompt = f"""Kamu adalah sistem knowledge management Engineering PT Etana Biotechnologies.[m
+[31m-[m
+[31m-Daftar SOP:[m
+[31m-{sop_list}[m
+[31m-[m
+[31m-Tentukan relasi antar SOP. Prinsip:[m
+[31m-- SOP perbaikan mesin terkait SOP suku cadang dan perawatan[m
+[31m-- SOP sistem (HVAC, udara tekan, listrik) terkait jika saling mendukung[m
+[31m-- SOP QA (deviasi, CAPA, change control) saling terkait[m
+[31m-- Maksimal 4 relasi per SOP[m
+[31m-- Hanya buat relasi yang benar-benar logis[m
+[31m-[m
+[31m-Return HANYA raw JSON, mulai dari {{ sampai }}, tanpa teks apapun di luar JSON:[m
+[31m-[m
+[31m-{{[m
+[31m-  "relations": {{[m
+[31m-    "sop_id": ["related_id_1", "related_id_2"][m
+[31m-  }},[m
+[31m-  "reasoning": {{[m
+[31m-    "sop_id->related_id": "alasan"[m
+[31m-  }}[m
+[31m-}}"""[m
+[31m-[m
+[32m+[m[32m    prompt = ([m
+[32m+[m[32m        "Kamu adalah sistem knowledge management Engineering PT Etana Biotechnologies.\n\n"[m
+[32m+[m[32m        "Daftar SOP:\n" + sop_list + "\n\n"[m
+[32m+[m[32m        "Tentukan relasi antar SOP. Prinsip:\n"[m
+[32m+[m[32m        "- SOP perbaikan mesin terkait SOP suku cadang dan perawatan\n"[m
+[32m+[m[32m        "- SOP sistem (HVAC, udara tekan, listrik) terkait jika saling mendukung\n"[m
+[32m+[m[32m        "- SOP QA (deviasi, CAPA, change control) saling terkait\n"[m
+[32m+[m[32m        "- Maksimal 4 relasi per SOP\n"[m
+[32m+[m[32m        "- Hanya buat relasi yang benar-benar logis\n\n"[m
+[32m+[m[32m        "Return HANYA raw JSON, mulai dari { sampai }, tanpa teks apapun di luar JSON:\n"[m
+[32m+[m[32m        "{\"relations\": {\"sop_id\": [\"related_id\"]}, \"reasoning\": {\"sop_id->related_id\": \"alasan\"}}"[m
+[32m+[m[32m    )[m
+     response = claude.messages.create([m
+         model="claude-sonnet-4-6",[m
+         max_tokens=4000,[m
+         messages=[{"role": "user", "content": prompt}][m
+     )[m
+[31m-[m
+     raw = response.content[0].text.strip()[m
+[31m-[m
+[31m-    if "```" in raw:[m
+[31m-        for part in raw.split("```"):[m
+[31m-            part = part.strip().lstrip("json").strip()[m
+[31m-            if part.startswith("{"):[m
+[31m-                raw = part[m
+[31m-                break[m
+[31m-[m
+[31m-    # Ambil JSON dari { pertama sampai } terakhir[m
+     start = raw.find("{")[m
+     end = raw.rfind("}") + 1[m
+     if start != -1 and end > start:[m
+         raw = raw[start:end][m
+[31m-[m
+     return json.loads(raw)[m
+ [m
+ [m
+[36m@@ -91,7 +69,6 @@[m [mdef update_notion_relations(sops, final_relations):[m
+     sop_id_map = {s["id"]: s["name"] for s in sops}[m
+     updated = 0[m
+     skipped = 0[m
+[31m-[m
+     for sop_id, related_ids in final_relations.get("relations", {}).items():[m
+         if not related_ids:[m
+             skipped += 1[m
+[36m@@ -107,7 +84,6 @@[m [mdef update_notion_relations(sops, final_relations):[m
+             updated += 1[m
+         except Exception as e:[m
+             print(f"  ERROR {sop_id}: {e}")[m
+[31m-[m
+     return updated, skipped[m
+ [m
+ [m
+[36m@@ -116,14 +92,11 @@[m [mdef main():[m
+     pages = get_all_sops()[m
+     sops = [extract_sop_info(p) for p in pages][m
+     print(f"[auto-relate] Ditemukan {len(sops)} SOP")[m
+[31m-[m
+     print("[auto-relate] Mengirim ke Claude...")[m
+     final_relations = llm_relate(sops)[m
+[31m-[m
+     print("\n[auto-relate] Reasoning:")[m
+     for pair, reason in final_relations.get("reasoning", {}).items():[m
+         print(f"  {pair}: {reason}")[m
+[31m-[m
+     print("\n[auto-relate] Menulis ke Notion...")[m
+     updated, skipped = update_notion_relations(sops, final_relations)[m
+     print(f"\n[auto-relate] Selesai. Updated: {updated}, Skipped: {skipped}")[m
+[36m@@ -131,3 +104,10 @@[m [mdef main():[m
+ [m
+ if __name__ == "__main__":[m
+     main()[m
+[32m+[m[32m'@[m
+[32m+[m
+[32m+[m[32m[System.IO.File]::WriteAllText([m
+[32m+[m[32m    (Join-Path (Get-Location) "scripts\auto_relate_sops.py"),[m
+[32m+[m[32m    $content,[m
+[32m+[m[32m    [System.Text.Encoding]::UTF8[m
+[32m+[m[32m)[m
+\ No newline at end of file[m

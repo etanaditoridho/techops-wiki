@@ -10,5 +10,9 @@ Thumbs.db
 *.tmp
 
 # Optional (kalau file raw gede banget)
-# Raw/ 
-.env 
+# Raw/
+
+# Local environment files
+.env
+.env.*
+!.env.example

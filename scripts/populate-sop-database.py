@@ -77,7 +77,11 @@ def get_title_from_content(content: str, filepath: Path) -> str:
     raw_title = strip_existing_prefix(raw_title)
     ktype = get_knowledge_type(filepath)
     if ktype and ktype in TYPE_PREFIX:
+        # Concept, finding, lesson, synthesis, dll → pakai emoji prefix
         return f"{TYPE_PREFIX[ktype]} {raw_title}"
+    # File hasil distilasi dari PDF SOP → tambah prefix "Distillation of"
+    if not raw_title.startswith("Distillation of"):
+        return f"Distillation of {raw_title}"
     return raw_title
 
 def get_prepared_by(content: str) -> str:
@@ -186,7 +190,7 @@ def build_properties(meta: dict, version: int = 1, is_update: bool = False) -> d
         "Sync Status": {"select": {"name": "Updated" if is_update else "Synced"}},
         "Sync Time": {"date": {"start": now}},
         "Version": {"number": version},
-        "Status": {"status": {"name": "Published"}}
+        "Status": {"status": {"name": "verified"}}
     }
     if meta["last_edited"]:
         props["Last Edited"] = {"date": {"start": meta["last_edited"]}}

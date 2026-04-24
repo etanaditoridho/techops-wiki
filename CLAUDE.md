@@ -12,10 +12,24 @@ Claude maintains the wiki. The human curates sources, asks questions, and guides
 
 ```
 raw/          -- source documents (immutable -- never modify these)
-wiki/         -- markdown pages maintained by Claude
+wiki/         -- markdown pages maintained by Claude; source of truth
 wiki/index.md -- table of contents for the entire wiki
 wiki/log.md   -- append-only record of all operations
+SOP/          -- generated markdown mirror for Obsidian consumption
+Notion        -- synced database/UI layer derived from wiki/
 ```
+
+## Sync Architecture
+
+- `raw/` is immutable source input. Never write back into it.
+- `wiki/` is the canonical source of truth for maintained knowledge.
+- Notion is a synced database/UI representation. It is not the primary authored store.
+- `SOP/` is a generated mirror from Notion for Obsidian consumption.
+- Keep sync one-way by function:
+  - `wiki/ -> Notion` via `scripts/populate-sop-database.py`
+  - `Notion -> SOP/` via `.github/workflows/sync-notion-to-obsidian.yml`
+- Do not introduce a two-way sync loop.
+- `scripts/sync-to-notion.py` is deprecated and must not be used unless the architecture is explicitly redesigned.
 
 ## Ingest workflow
 
