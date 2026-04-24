@@ -28,7 +28,7 @@ Digunakan oleh Departemen Engineering sebagai pedoman perawatan dan perbaikan ge
 - **Renovasi**: perbaikan bangunan rusak berat sebagian; fungsi, arsitektur, struktur, atau utilitas dapat berubah
 - **Restorasi**: perbaikan bangunan rusak berat; arsitektur dipertahankan; struktur/utilitas dapat berubah
 
-### Tingkat Kerusakan (lihat [[damage-classification]])
+### Tingkat Kerusakan (lihat [[maintenance-types]])
 - **Ringan**: kerusakan komponen non-struktural; biaya maks 35% HPP bangunan baru tipe/kelas sama
 - **Sedang**: kerusakan sebagian komponen non-struktural dan/atau struktural
 - **Berat**: kerusakan komponen struktural utama; memerlukan dokumen rencana teknis yang disetujui
@@ -58,7 +58,9 @@ Prosedur pembersihan dan perawatan gedung mengacu pada persyaratan ISO 14001 (ma
 
 ## Related pages
 
-- [[building-maintenance-overview]]
-- [[damage-classification]]
+- [[perawatan-gedung-infrastruktur]]
+- [[maintenance-types]]
 - [[pje-permintaan-jasa-engineering]]
 - [[engineering-responsibilities]]
+- [[electrical-system]]
+- [[synthesis-emergency-shutdown]]

@@ -126,6 +126,8 @@ Semua teknisi harus mengetahui urutan shutdown yang benar dan cara eskalasi yang
 - [[penanganan-perbaikan-mesin]]
 - [[operasi-perawatan-bms-ems]]
 - [[hvac-system]]
+- [[hvac-failure-diagnosis]]
+- [[boiler-leak-response]]
 - [[electrical-system]]
 - [[compressed-air-system]]
 - [[maintenance-types]]

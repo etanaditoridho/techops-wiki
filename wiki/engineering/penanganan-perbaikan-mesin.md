@@ -80,7 +80,7 @@ Prosedur khusus berlaku untuk mesin yang perlu dipindahkan keluar area GMP untuk
 
 ## Related pages
 
-- [[machine-repair-workflow]]
+- [[penanganan-perbaikan-mesin]]
 - [[maintenance-types]]
 - [[pje-permintaan-jasa-engineering]]
 - [[spare-parts-management]]

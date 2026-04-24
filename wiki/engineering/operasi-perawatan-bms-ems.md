@@ -56,6 +56,7 @@ SOP ini adalah versi pertama (Revision 00) — dokumen baru. Dibuat untuk menduk
 ## Related pages
 
 - [[hvac-system]]
+- [[hvac-failure-diagnosis]]
 - [[maintenance-types]]
 - [[engineering-responsibilities]]
 - [[operasi-perawatan-hvac]]

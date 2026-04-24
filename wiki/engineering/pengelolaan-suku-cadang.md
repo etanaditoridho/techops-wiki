@@ -61,5 +61,5 @@ Mencakup gudang suku cadang di Departemen Engineering PT EBI.
 ## Related pages
 
 - [[spare-parts-management]]
-- [[machine-repair-workflow]]
+- [[penanganan-perbaikan-mesin]]
 - [[engineering-responsibilities]]

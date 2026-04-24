@@ -57,3 +57,8 @@ Digunakan Departemen Engineering khususnya operator Sistem Pengolahan Air.
 - [[maintenance-types]]
 - [[engineering-responsibilities]]
 - [[compressed-air-system]]
+- [[synthesis-daily-monitoring]]
+- [[synthesis-emergency-shutdown]]
+- [[pje-permintaan-jasa-engineering]]
+- [[spare-parts-management]]
+- [[boiler-leak-response]]

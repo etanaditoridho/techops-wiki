@@ -34,15 +34,15 @@ Semua halaman SOP kini berada di subfolder `engineering/`.
 | [[engineering/hvac-system]] | Sistem HVAC — komponen, parameter, filtrasi, dan konteks GMP |
 | [[engineering/compressed-air-system]] | Sistem udara tekan — klasifikasi, peralatan, dan standar kualitas |
 | [[engineering/electrical-system]] | Sistem kelistrikan — distribusi, panel, grounding, dan jadwal perawatan |
-| [[building-maintenance-overview]] | Konsep perawatan gedung — jenis pekerjaan dan prosedur pembersihan |
-| [[damage-classification]] | Tiga tingkat kerusakan bangunan dan batas biaya perawatan |
+| [[engineering/perawatan-gedung-infrastruktur]] | Konsep perawatan gedung — jenis pekerjaan dan prosedur pembersihan |
+| [[engineering/maintenance-types]] | Tiga tingkat kerusakan bangunan dan batas biaya perawatan |
 
 ### Proses dan Prosedur
 
 | Halaman | Deskripsi |
 |---|---|
 | [[engineering/maintenance-types]] | Empat jenis perawatan: PM, CM, Breakdown, Autonomous |
-| [[machine-repair-workflow]] | Alur commissioning mesin baru, breakdown, PJE, dan vendor |
+| [[engineering/penanganan-perbaikan-mesin]] | Alur commissioning mesin baru, breakdown, PJE, dan vendor |
 | [[engineering/pje-permintaan-jasa-engineering]] | Formulir dan proses Permintaan Jasa Engineering lintas departemen |
 | [[engineering/spare-parts-management]] | Klasifikasi suku cadang critical vs non-critical, Part Code, inventori |
 

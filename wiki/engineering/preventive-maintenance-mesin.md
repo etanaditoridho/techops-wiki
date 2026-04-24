@@ -48,6 +48,6 @@ Mesin dan alat utility tetap diawasi selama libur panjang sesuai jadwal yang dit
 ## Related pages
 
 - [[maintenance-types]]
-- [[machine-repair-workflow]]
+- [[penanganan-perbaikan-mesin]]
 - [[spare-parts-management]]
 - [[engineering-responsibilities]]

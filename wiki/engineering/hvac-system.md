@@ -71,6 +71,8 @@ BMS (Building Management System) mengintegrasikan kontrol dan monitoring sistem 
 
 - [[operasi-perawatan-hvac]]
 - [[operasi-perawatan-bms-ems]]
+- [[hvac-failure-diagnosis]]
+- [[boiler-leak-response]]
 - [[maintenance-types]]
 - [[engineering-responsibilities]]
 - [[synthesis-daily-monitoring]]

@@ -132,6 +132,8 @@ Dokumentasikan di formulir yang relevan
 - [[operasi-perawatan-bms-ems]]
 - [[operasi-perawatan-udara-tekan]]
 - [[operasi-perawatan-hvac]]
+- [[hvac-failure-diagnosis]]
+- [[boiler-leak-response]]
 - [[maintenance-types]]
 - [[engineering-responsibilities]]
 - [[synthesis-emergency-shutdown]]

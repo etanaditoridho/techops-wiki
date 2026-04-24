@@ -65,5 +65,6 @@ Digunakan Departemen Engineering khususnya teknisi Utility.
 ## Related pages
 
 - [[compressed-air-system]]
+- [[finding-kompresor-trip-suhu-tinggi]]
 - [[maintenance-types]]
 - [[engineering-responsibilities]]
