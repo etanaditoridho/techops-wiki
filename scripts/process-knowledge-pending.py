@@ -1,14 +1,5 @@
 #!/usr/bin/env python3
-"""
-process-knowledge-pending.py
-Baca Notion "Knowledge Pending Review":
-  - Status 'approved' → buat .md di wiki/ → archive di Notion
-  - Status 'rejected' → hapus halaman dari Notion
-"""
-
-import os
-import re
-import requests
+import os, re, requests
 from pathlib import Path
 from datetime import datetime
 
@@ -27,6 +18,11 @@ def slugify(text: str) -> str:
     text = re.sub(r"[\s_]+", "-", text)
     return text.strip("-")[:60]
 
+def strip_md_link(text: str) -> str:
+    """Strip markdown link format [text](url) → text"""
+    match = re.match(r'^\[(.+?)\]\(.+?\)$', text.strip())
+    return match.group(1) if match else text.strip()
+
 def get_pending_items() -> list:
     url = f"https://api.notion.com/v1/databases/{NOTION_PENDING_DB}/query"
     res = requests.post(url, headers=HEADERS, json={"page_size": 100})
@@ -34,20 +30,13 @@ def get_pending_items() -> list:
 
 def get_text_prop(props, key) -> str:
     rt = props.get(key, {}).get("rich_text", [])
-    return rt[0]["plain_text"] if rt else ""
+    raw = rt[0]["plain_text"] if rt else ""
+    return strip_md_link(raw)
 
 def get_select_prop(props, key) -> str:
-    """Handle both 'select' and 'status' property types."""
     prop = props.get(key, {})
-    # Coba tipe 'select' dulu
-    sel = prop.get("select", {})
-    if sel:
-        return sel.get("name", "")
-    # Fallback ke tipe 'status'
-    sel = prop.get("status", {})
-    if sel:
-        return sel.get("name", "")
-    return ""
+    sel = prop.get("select") or prop.get("status") or {}
+    return sel.get("name", "") if sel else ""
 
 def get_title_prop(props) -> str:
     rt = props.get("Name", {}).get("title", [])
@@ -56,20 +45,19 @@ def get_title_prop(props) -> str:
 def archive_page(page_id: str):
     requests.patch(
         f"https://api.notion.com/v1/pages/{page_id}",
-        headers=HEADERS,
-        json={"archived": True}
+        headers=HEADERS, json={"archived": True}
     )
 
 def create_wiki_md(item: dict) -> Path:
-    props   = item["properties"]
-    name    = get_title_prop(props)
-    ktype   = get_select_prop(props, "Type")
-    dept    = get_select_prop(props, "Department").lower()
-    summary = get_text_prop(props, "Summary")
-    content = get_text_prop(props, "Content")
-    related = get_text_prop(props, "Related SOP")
+    props     = item["properties"]
+    name      = get_title_prop(props)
+    ktype     = get_select_prop(props, "Type")
+    dept      = get_select_prop(props, "Department").lower()
+    summary   = get_text_prop(props, "Summary")
+    content   = get_text_prop(props, "Content")
+    related   = get_text_prop(props, "Related SOP")
     wiki_file = get_text_prop(props, "Wiki File")
-    today   = datetime.now().strftime("%Y-%m-%d")
+    today     = datetime.now().strftime("%Y-%m-%d")
 
     slug = wiki_file if wiki_file else f"{ktype}-{slugify(name)}.md"
     if not slug.endswith(".md"):
