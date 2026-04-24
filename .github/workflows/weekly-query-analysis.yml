@@ -1,0 +1,105 @@
+name: Weekly Query Analysis
+
+on:
+  schedule:
+    - cron: '0 1 * * 1'  # tiap Senin jam 08.00 WIB, barengan weekly digest
+  workflow_dispatch:
+
+jobs:
+  query-analysis:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install "notion-client==1.0.0"
+
+      - name: Analyze query patterns
+        run: |
+          python -c "
+          import os
+          from datetime import date, timedelta
+          from notion_client import Client
+          from collections import Counter
+
+          notion = Client(auth=os.environ['NOTION_API_KEY'])
+          QUERY_LOG_ID = os.environ['QUERY_LOG_PAGE_ID']
+          DIGEST_PARENT_ID = os.environ['DIGEST_PARENT_PAGE_ID']
+
+          today = date.today()
+          week_ago = (today - timedelta(days=7)).isoformat()
+          today_iso = today.isoformat()
+
+          # Ambil semua query dari minggu ini
+          results = notion.databases.query(
+              database_id=QUERY_LOG_ID,
+              filter={
+                  'property': 'Date',
+                  'date': {'on_or_after': week_ago}
+              }
+          ).get('results', [])
+
+          print('[query-analysis] Found ' + str(len(results)) + ' queries this week')
+
+          if not results:
+              print('[query-analysis] No queries to analyze.')
+              exit(0)
+
+          # Analisis pola
+          categories = Counter()
+          unanswered = []
+          sop_refs = Counter()
+
+          for r in results:
+              props = r['properties']
+
+              # Category
+              cat = props.get('Category', {}).get('select', {})
+              if cat:
+                  categories[cat.get('name', 'Unknown')] += 1
+
+              # Unanswered
+              answered = props.get('Answered', {}).get('select', {})
+              if answered and answered.get('name') == 'No':
+                  title = props.get('Name', {}).get('title', [])
+                  q = title[0]['text']['content'] if title else '(no title)'
+                  unanswered.append(q)
+
+              # SOP referenced
+              sop = props.get('SOP Referenced', {}).get('rich_text', [])
+              if sop:
+                  for s in sop[0]['text']['content'].split(','):
+                      s = s.strip()
+                      if s:
+                          sop_refs[s] += 1
+
+          # Build content
+          cat_summary = '\n'.join(['- ' + k + ': ' + str(v) + ' query' for k, v in categories.most_common()]) or 'Tidak ada data.'
+          unanswered_summary = '\n'.join(['- ' + q for q in unanswered]) or 'Semua query berhasil dijawab.'
+          sop_summary = '\n'.join(['- ' + k + ': ' + str(v) + 'x direferensikan' for k, v in sop_refs.most_common(10)]) or 'Tidak ada data.'
+
+          content = (
+              'Analisis query otomatis minggu ' + today_iso + '\n\n'
+              '## Ringkasan\n\n'
+              'Total query minggu ini: ' + str(len(results)) + '\n'
+              'Query tidak terjawab: ' + str(len(unanswered)) + '\n\n'
+              '## Query per Kategori\n\n' + cat_summary + '\n\n'
+              '## SOP Paling Sering Direferensikan\n\n' + sop_summary + '\n\n'
+              '## Query Tidak Terjawab (perlu SOP baru)\n\n' + unanswered_summary + '\n\n'
+              '---\n'
+              'Jika ada query tidak terjawab, pertimbangkan untuk menambah SOP baru atau memperjelas konten SOP yang ada.'
+          )
+
+          title = 'Query Analysis - ' + today.strftime('%d %B %Y')
+          notion.pages.create(
+              parent={'page_id': DIGEST_PARENT_ID},
+              properties={'title': [{'text': {'content': title}}]},
+              children=[{'object': 'block', 'type': 'paragraph', 'paragraph': {'rich_text': [{'type': 'text', 'text': {'content': content}}]}}]
+          )
+          print('[query-analysis] Report created: ' + title)
+          "
+        env:
+          NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
+          QUERY_LOG_PAGE_ID: ${{ secrets.QUERY_LOG_PAGE_ID }}
+          DIGEST_PARENT_PAGE_ID: ${{ secrets.DIGEST_PARENT_PAGE_ID }}
