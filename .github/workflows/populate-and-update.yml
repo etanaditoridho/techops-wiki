@@ -39,6 +39,13 @@ jobs:
           git diff --staged --quiet || git commit -m "auto: ingest raw docs $(date +'%Y-%m-%d')"
           git push
 
+      - name: Process approved/rejected knowledge from Notion
+        env:
+          NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
+          NOTION_PENDING_DB_ID: ${{ secrets.NOTION_PENDING_DB_ID }}
+          WIKI_DIR: wiki
+        run: python scripts/process-knowledge-pending.py
+
   process-knowledge-pending:
     name: Process Knowledge Pending Review
     runs-on: ubuntu-latest

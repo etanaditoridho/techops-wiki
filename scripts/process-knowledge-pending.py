@@ -4,7 +4,7 @@ from pathlib import Path
 from datetime import datetime
 
 NOTION_API_KEY    = os.environ["NOTION_API_KEY"]
-NOTION_PENDING_DB = "8b588e0e-294d-4cdc-804a-5fdacc173322"
+NOTION_PENDING_DB = os.environ.get("NOTION_PENDING_DB_ID", "1f9f012d8a474fb6ad70562056df2687")
 WIKI_DIR          = Path(os.environ.get("WIKI_DIR", "wiki"))
 
 HEADERS = {
