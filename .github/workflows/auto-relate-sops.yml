@@ -19,3 +19,66 @@ jobs:
           NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
           NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      - name: Run auto-relate
+        run: |
+          python -c "
+          import os, json, anthropic
+          from notion_client import Client
+          notion = Client(auth=os.environ['NOTION_API_KEY'])
+          claude = anthropic.Anthropic(api_key=os.environ['ANTHROPIC_API_KEY'])
+          DATABASE_ID = os.environ['NOTION_DATABASE_ID']
+
+          def get_sops():
+              res, cur = [], None
+              while True:
+                  kw = {'database_id': DATABASE_ID, 'page_size': 100}
+                  if cur: kw['start_cursor'] = cur
+                  r = notion.databases.query(**kw)
+                  res.extend(r['results'])
+                  if not r['has_more']: break
+                  cur = r['next_cursor']
+              return res
+
+          def info(p):
+              pr = p['properties']
+              name = pr['Name']['title'][0]['text']['content'] if pr['Name']['title'] else ''
+              tags = [t['name'] for t in pr.get('Tags',{}).get('multi_select',[])][:3]
+              return {'id': p['id'], 'name': name, 'tags': tags}
+
+          def relate(batch, all_sops):
+              idx = '\n'.join('- ID: '+s['id']+' | '+s['name'] for s in all_sops)
+              items = '\n'.join('- ID: '+s['id']+' | '+s['name']+' | Tags: '+','.join(s['tags']) for s in batch)
+              prompt = 'SOP index:\n'+idx+'\n\nTentukan relasi untuk SOP berikut (maks 3, logis saja):\n'+items+'\n\nReturn JSON saja: {\"relations\": {\"id\": [\"related_id\"]}}'
+              r = claude.messages.create(model='claude-sonnet-4-6', max_tokens=1000, messages=[{'role':'user','content':prompt}])
+              raw = r.content[0].text.strip()
+              s, e = raw.find('{'), raw.rfind('}')+1
+              return json.loads(raw[s:e]) if s!=-1 and e>s else {'relations':{}}
+
+          sops = [info(p) for p in get_sops()]
+          print('Found: '+str(len(sops)))
+          all_rel = {}
+          for i in range(0, len(sops), 5):
+              batch = sops[i:i+5]
+              print('Batch '+str(i//5+1)+': '+', '.join(s['name'] for s in batch))
+              try:
+                  r = relate(batch, sops)
+                  all_rel.update(r.get('relations',{}))
+              except Exception as ex:
+                  print('  error: '+str(ex))
+          id_map = {s['id']:s['name'] for s in sops}
+          updated = 0
+          for sid, rids in all_rel.items():
+              valid = [r for r in rids if r in id_map]
+              if not valid: continue
+              try:
+                  notion.pages.update(page_id=sid, properties={'Related To': {'relation': [{'id':r} for r in valid]}})
+                  print('  OK: '+id_map.get(sid,sid)+' -> '+', '.join(id_map.get(r,r) for r in valid))
+                  updated += 1
+              except Exception as ex:
+                  print('  error: '+str(ex))
+          print('Done. Updated: '+str(updated))
+          "
+        env:
+          NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
+          NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
