@@ -29,39 +29,38 @@ def extract_sop_info(page):
     tags = [t["name"] for t in props.get("Tags", {}).get("multi_select", [])]
     folder = props.get("Folder", {}).get("rich_text", [])
     folder = folder[0]["text"]["content"] if folder else ""
-    owner = props.get("Owner", {}).get("rich_text", [])
-    owner = owner[0]["text"]["content"] if owner else ""
-    return {"id": page["id"], "name": name, "tags": tags[:5], "folder": folder, "owner": owner}
+    return {"id": page["id"], "name": name, "tags": tags[:3], "folder": folder}
 
 
-def llm_relate(sops):
-    sop_list = "\n".join([
-        "- ID: " + s["id"] + " | Nama: " + s["name"] + " | Tags: " + ", ".join(s["tags"]) + " | Folder: " + s["folder"]
-        for s in sops
+def llm_relate_batch(batch, all_sops):
+    sop_index = "\n".join([
+        "- ID: " + s["id"] + " | Nama: " + s["name"]
+        for s in all_sops
+    ])
+    batch_list = "\n".join([
+        "- ID: " + s["id"] + " | Nama: " + s["name"] + " | Tags: " + ", ".join(s["tags"])
+        for s in batch
     ])
 
     prompt = (
-        "Kamu adalah sistem knowledge management Engineering PT Etana Biotechnologies.\n\n"
-        "Daftar SOP:\n" + sop_list + "\n\n"
-        "Tentukan relasi antar SOP. Prinsip:\n"
-        "- SOP perbaikan mesin terkait SOP suku cadang dan perawatan\n"
-        "- SOP sistem (HVAC, udara tekan, listrik) terkait jika saling mendukung\n"
-        "- SOP QA (deviasi, CAPA, change control) saling terkait\n"
-        "- Maksimal 4 relasi per SOP\n"
-        "- Hanya buat relasi yang benar-benar logis\n\n"
-        "Return HANYA raw JSON. Mulai dari { sampai }. Tanpa teks apapun di luar JSON.\n"
-        "Format:\n"
-        "{\"relations\": {\"sop_id\": [\"related_id\"]}, \"reasoning\": {\"sop_id->related_id\": \"alasan\"}}"
+        "Kamu adalah sistem KM Engineering PT Etana.\n\n"
+        "Index semua SOP yang tersedia:\n" + sop_index + "\n\n"
+        "Tentukan relasi untuk SOP-SOP berikut (gunakan ID dari index di atas):\n" + batch_list + "\n\n"
+        "Aturan:\n"
+        "- Maks 3 relasi per SOP\n"
+        "- Hanya relasi yang logis secara domain engineering/farmasi\n"
+        "- Gunakan ID persis seperti di index\n\n"
+        "Return HANYA JSON ini, tanpa teks lain:\n"
+        "{\"relations\": {\"sop_id\": [\"related_id\"]}}"
     )
 
     response = claude.messages.create(
         model="claude-sonnet-4-6",
-        max_tokens=4000,
+        max_tokens=2000,
         messages=[{"role": "user", "content": prompt}]
     )
 
     raw = response.content[0].text.strip()
-
     start = raw.find("{")
     end = raw.rfind("}") + 1
     if start != -1 and end > start:
@@ -70,28 +69,29 @@ def llm_relate(sops):
     return json.loads(raw)
 
 
-def update_notion_relations(sops, final_relations):
+def update_notion_relations(sops, all_relations):
     sop_id_map = {s["id"]: s["name"] for s in sops}
     updated = 0
-    skipped = 0
 
-    for sop_id, related_ids in final_relations.get("relations", {}).items():
+    for sop_id, related_ids in all_relations.items():
         if not related_ids:
-            skipped += 1
+            continue
+        valid_ids = [rid for rid in related_ids if rid in sop_id_map]
+        if not valid_ids:
             continue
         try:
             notion.pages.update(
                 page_id=sop_id,
-                properties={"Related SOPs": {"relation": [{"id": rid} for rid in related_ids]}}
+                properties={"Related SOPs": {"relation": [{"id": rid} for rid in valid_ids]}}
             )
             name = sop_id_map.get(sop_id, sop_id)
-            related_names = [sop_id_map.get(r, r) for r in related_ids]
+            related_names = [sop_id_map.get(r, r) for r in valid_ids]
             print("  OK: " + name + " -> " + ", ".join(related_names))
             updated += 1
         except Exception as e:
             print("  ERROR " + sop_id + ": " + str(e))
 
-    return updated, skipped
+    return updated
 
 
 def main():
@@ -100,16 +100,24 @@ def main():
     sops = [extract_sop_info(p) for p in pages]
     print("[auto-relate] Ditemukan " + str(len(sops)) + " SOP")
 
-    print("[auto-relate] Mengirim ke Claude...")
-    final_relations = llm_relate(sops)
+    # Proses dalam batch 5 SOP
+    BATCH_SIZE = 5
+    all_relations = {}
 
-    print("\n[auto-relate] Reasoning:")
-    for pair, reason in final_relations.get("reasoning", {}).items():
-        print("  " + pair + ": " + reason)
+    for i in range(0, len(sops), BATCH_SIZE):
+        batch = sops[i:i + BATCH_SIZE]
+        batch_names = [s["name"] for s in batch]
+        print("[auto-relate] Batch " + str(i // BATCH_SIZE + 1) + ": " + ", ".join(batch_names))
+
+        try:
+            result = llm_relate_batch(batch, sops)
+            all_relations.update(result.get("relations", {}))
+        except Exception as e:
+            print("  ERROR batch: " + str(e))
 
     print("\n[auto-relate] Menulis ke Notion...")
-    updated, skipped = update_notion_relations(sops, final_relations)
-    print("\n[auto-relate] Selesai. Updated: " + str(updated) + ", Skipped: " + str(skipped))
+    updated = update_notion_relations(sops, all_relations)
+    print("\n[auto-relate] Selesai. Updated: " + str(updated) + " SOP")
 
 
 if __name__ == "__main__":
