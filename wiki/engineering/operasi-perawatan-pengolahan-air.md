@@ -1,5 +1,12 @@
 # SOP/EBI/EN-015 — Pengoperasian dan Perawatan Sistem Pengolahan Air
 
+##  LLM Summary
+- System: Sistem Pengolahan Air
+- Equipment: Water treatment system, alat ukur conductivity, TOC, boiler sanitasi
+- Symptoms: [pengoperasian sistem air, perawatan harian, pemantauan conductivity dan TOC, shutdown water system]
+- Keywords: [sistem pengolahan air, water system, conductivity, TOC, sanitasi, perawatan]
+- Severity: N/A
+
 **Summary**: Prosedur lengkap pengoperasian dan perawatan Water Treatment System PT EBI, mencakup 109 halaman dengan 21 parameter monitoring kritis, prosedur sanitasi, dan jadwal perawatan.
 
 **Sources**: `SOP-EBI-EN-015.08 Pengoperasian Dan Perawatan Terhadap Sistem Pengolahan Air.pdf`

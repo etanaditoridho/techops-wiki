@@ -1,5 +1,12 @@
 # SOP/EBI/EN-003 — Perawatan Gedung & Infrastruktur
 
+##  LLM Summary
+- System: Gedung dan Infrastruktur
+- Equipment: Bangunan, lantai, dinding, plafon, utilitas gedung, area kerja
+- Symptoms: [perawatan gedung, inspeksi berkala, pembersihan area, perbaikan sarana]
+- Keywords: [perawatan gedung, infrastruktur, inspeksi, pembersihan, perbaikan, ISO 14001]
+- Severity: N/A
+
 **Summary**: Panduan langkah pembersihan, perapihan, perawatan, dan perbaikan sarana bangunan serta infrastruktur di PT Etana Biotechnologies Indonesia sesuai standar bangunan terbaru.
 
 **Sources**: `SOP-EBI-EN-003.03 Perawatan Gedung dan Infrastruktur.pdf`

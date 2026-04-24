@@ -1,5 +1,12 @@
 # Sistem HVAC — Konsep & Komponen
 
+##  LLM Summary
+- System: HVAC
+- Equipment: AHU, FCU, exhaust fan, chiller, cooling tower, HWG, HEPA filter
+- Symptoms: []
+- Keywords: [HVAC, AHU, FCU, suhu, kelembaban, tekanan diferensial, HEPA]
+- Severity: N/A
+
 **Summary**: Konsep teknis sistem HVAC PT EBI meliputi komponen utama, parameter yang dikontrol, standar filtrasi, dan konteks GMP untuk area produksi farmasi steril.
 
 **Sources**: `SOP-EBI-EN-016.07 Pengoperasian Dan Perawatan Terhadap Sistem Ventilasi, Pemanas, Tata Udara.pdf`, `SOP-EBI-EN-055.00 BMS EMS Final engineering.pdf`

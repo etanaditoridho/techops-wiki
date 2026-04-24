@@ -1,5 +1,12 @@
 # SOP/EBI/EN-013 — Pengoperasian dan Perawatan Sistem Udara Tekan
 
+##  LLM Summary
+- System: Sistem Udara Tekan
+- Equipment: Kompresor, refrigerant dryer, desiccant dryer, filter, receiver tank
+- Symptoms: [pengoperasian udara tekan, perawatan harian, monitoring tekanan, rotasi kompresor]
+- Keywords: [udara tekan, kompresor, dryer, tekanan, perawatan utility, monitoring]
+- Severity: N/A
+
 **Summary**: Prosedur pengoperasian dan perawatan sistem udara tekan PT EBI, mencakup kompressor Ingersoll Rand IRN37 OF-A10, Atlas Copco ZT37KW, Refrigerator Dryer, Desiccant Dryer, dan Atlas Copco Dryer CD 130+.
 
 **Sources**: `SOP-EBI-EN-013 Pengoperasian Dan Perawatan Terhadap Sistem Udara Tekan.pdf`

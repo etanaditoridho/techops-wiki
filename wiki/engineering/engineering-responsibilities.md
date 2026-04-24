@@ -1,5 +1,12 @@
 # Matriks Tanggung Jawab Engineering
 
+##  LLM Summary
+- System: Organisasi Engineering
+- Equipment: N/A
+- Symptoms: []
+- Keywords: [tanggung jawab, teknisi, supervisor, manager, PIC, eskalasi]
+- Severity: N/A
+
 **Summary**: Matriks tanggung jawab standar tiga peran utama Departemen Engineering PT EBI — Teknisi, Supervisor, dan Manager — yang berlaku konsisten di semua SOP Engineering.
 
 **Sources**: `SOP-EBI-EN-001.02`, `SOP-EBI-EN-004.02`, `SOP-EBI-EN-005.03`, `SOP-EBI-EN-013 Rev.04`, `SOP-EBI-EN-014.01`, `SOP-EBI-EN-016.07`, `SOP-EBI-EN-055.00`

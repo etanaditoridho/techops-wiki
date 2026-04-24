@@ -1,5 +1,12 @@
 # TEST — Kompresor trip saat suhu ambient tinggi
 
+##  LLM Summary
+- System: Sistem Udara Tekan
+- Equipment: Kompresor, ventilasi ruang, filter udara, exhaust fan
+- Symptoms: [Kompresor trip berulang kali saat suhu ambient di ruang kompresor melebihi 35°C]
+- Keywords: [kompresor trip, suhu ambient tinggi, ruang kompresor panas, filter udara, exhaust fan]
+- Severity: Medium
+
 **Summary**: Kompresor cenderung trip ketika suhu ruang melebihi 35°C. Perlu tindakan preventif berupa pengecekan ventilasi dan filter udara.
 **Sources**: Knowledge capture dari sesi diskusi
 **Last updated**: 2026-04-24

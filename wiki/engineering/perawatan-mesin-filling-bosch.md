@@ -1,5 +1,12 @@
 # SOP/EBI/EN-024 — Perawatan Mesin Filling Bosch FXS 2051
 
+##  LLM Summary
+- System: Perawatan Mesin Filling
+- Equipment: Mesin Filling Bosch FXS 2051, klem, ferulle, baut, Air Service Regulator
+- Symptoms: [preventive maintenance mesin filling, perawatan harian operator, pengecekan komponen]
+- Keywords: [filling Bosch, mesin filling, PM, perawatan harian, operator produksi, QA]
+- Severity: N/A
+
 **Summary**: Prosedur Preventive Maintenance mesin Filling Bosch FXS 2051 di area produksi PT EBI, mencakup jadwal perawatan, tanggung jawab teknisi, operator produksi, dan QA.
 
 **Sources**: `SOP-EBI-EN-024.04 Perawatan Mesin Filling Bosch_OFC.pdf`

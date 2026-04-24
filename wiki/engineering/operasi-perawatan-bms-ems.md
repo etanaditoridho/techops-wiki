@@ -1,5 +1,12 @@
 # SOP/EBI/EN-055 — Pengoperasian dan Perawatan Sistem EMS & BMS
 
+##  LLM Summary
+- System: EMS / BMS
+- Equipment: EMS, BMS, sensor, alat ukur, sistem monitoring gedung
+- Symptoms: [pengoperasian sistem, perawatan berkala, pemantauan harian, alat ukur rusak]
+- Keywords: [EMS, BMS, monitoring gedung, sensor, perawatan berkala, formulir perawatan]
+- Severity: N/A
+
 **Summary**: Prosedur pengoperasian dan perawatan Environmental Monitoring System (EMS) dan Building Management System (BMS) di area Produksi, Warehouse & CUB PT EBI.
 
 **Sources**: `SOP-EBI-EN-055.00 BMS EMS Final engineering.pdf`

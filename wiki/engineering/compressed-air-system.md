@@ -1,5 +1,12 @@
 # Sistem Udara Tekan — Konsep & Komponen
 
+##  LLM Summary
+- System: Sistem Udara Tekan
+- Equipment: Kompresor, dryer, receiver tank, filter, distribusi udara tekan
+- Symptoms: []
+- Keywords: [udara tekan, kompresor, dryer, tekanan, kualitas udara, utility]
+- Severity: N/A
+
 **Summary**: Konsep teknis sistem udara tekan PT EBI meliputi klasifikasi udara, konfigurasi peralatan, standar kualitas, dan jadwal perawatan.
 
 **Sources**: `SOP-EBI-EN-013 Pengoperasian Dan Perawatan Terhadap Sistem Udara Tekan.pdf`

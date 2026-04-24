@@ -1,5 +1,12 @@
 # SOP/EBI/EN-004 — Perawatan Terhadap Semua Mesin di PT Etana Biotechnologies Indonesia
 
+##  LLM Summary
+- System: Preventive Maintenance Mesin
+- Equipment: Mesin produksi, mesin utility, peralatan Engineering, label status
+- Symptoms: [perawatan berkala, preventive maintenance, pengawasan libur panjang, jadwal PM]
+- Keywords: [perawatan mesin, preventive maintenance, corrective maintenance, jadwal PM, pengawasan]
+- Severity: N/A
+
 **Summary**: Prosedur Preventive Maintenance terjadwal untuk semua mesin utility, produksi, warehouse, QA, dan QC di PT EBI, termasuk pengawasan mesin selama libur panjang dan penjelasan kartu riwayat mesin.
 
 **Sources**: `SOP-EBI-EN-004.02 Perawatan terhadap mesin.pdf`

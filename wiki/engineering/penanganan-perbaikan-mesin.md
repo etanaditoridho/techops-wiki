@@ -1,5 +1,12 @@
 # SOP/EBI/EN-014 — Penanganan dan Perbaikan Semua Mesin di PT Etana Biotechnologies Indonesia
 
+##  LLM Summary
+- System: Penanganan Perbaikan Mesin
+- Equipment: Mesin produksi, mesin utility, label status mesin, formulir breakdown
+- Symptoms: [breakdown mesin, commissioning mesin, PJE, pekerjaan vendor, perbaikan mesin]
+- Keywords: [penanganan mesin, perbaikan mesin, breakdown, commissioning, PJE, vendor]
+- Severity: N/A
+
 **Summary**: Prosedur penanganan dan perbaikan mesin (breakdown, commissioning mesin baru/bekas, PJE dari departemen lain, pekerjaan vendor) di PT EBI termasuk sistem label mesin dan formulir pelaporan.
 
 **Sources**: `SOP-EBI-EN-014.01 Penanganan Perbaikan Terhadap Semua Mesin-mesin di PT Etana Biotechnologies Indonesia.pdf`

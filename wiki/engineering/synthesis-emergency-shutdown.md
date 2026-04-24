@@ -1,5 +1,12 @@
 # Synthesis: Prosedur Emergency Shutdown
 
+##  LLM Summary
+- System: Emergency Shutdown Lintas Sistem
+- Equipment: HVAC, kompresor, panel listrik, mesin produksi, chiller, pompa
+- Symptoms: [shutdown darurat, kegagalan sistem kritis, alarm, kebakaran, kebocoran, short circuit]
+- Keywords: [emergency shutdown, shutdown darurat, eskalasi, keselamatan, GMP, stop mesin]
+- Severity: High
+
 **Summary**: Sintesis prosedur penghentian darurat dan penanganan kegagalan sistem lintas semua SOP Engineering — HVAC, udara tekan, kelistrikan, dan mesin produksi.
 
 **Sources**: `SOP-EBI-EN-016.07`, `SOP-EBI-EN-013 Rev.04`, `SOP-EBI-EN-001.02`, `SOP-EBI-EN-014.01`, `SOP-EBI-EN-055.00`

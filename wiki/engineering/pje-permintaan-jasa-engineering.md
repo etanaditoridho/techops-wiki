@@ -1,5 +1,12 @@
 # PJE — Permintaan Jasa Engineering
 
+##  LLM Summary
+- System: Proses Permintaan Jasa Engineering
+- Equipment: Fasilitas, mesin, utility equipment, suku cadang
+- Symptoms: []
+- Keywords: [PJE, permintaan jasa engineering, user, perbaikan, modifikasi, formulir]
+- Severity: N/A
+
 **Summary**: Proses dan formulir Permintaan Jasa Engineering (PJE) — mekanisme resmi bagi departemen lain untuk meminta layanan dari Departemen Engineering PT EBI.
 
 **Sources**: `SOP-EBI-EN-014.01 Penanganan Perbaikan Terhadap Semua Mesin-mesin di PT Etana Biotechnologies Indonesia.pdf`, `SOP-EBI-EN-003.03 Perawatan Gedung dan Infrastruktur.pdf`, `SOP-EBI-EN-016.07`

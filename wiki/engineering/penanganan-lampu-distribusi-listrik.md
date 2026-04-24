@@ -1,5 +1,12 @@
 # SOP/EBI/EN-001 — Penanganan dan Perawatan Lampu Penerangan & Sistem Penyaluran Listrik
 
+##  LLM Summary
+- System: Sistem Kelistrikan
+- Equipment: Lampu penerangan, panel distribusi, grounding, genset, UPS
+- Symptoms: [perawatan lampu, inspeksi distribusi listrik, identifikasi hazard, perbaikan listrik]
+- Keywords: [lampu, distribusi listrik, panel, grounding, hazard listrik, perawatan]
+- Severity: High
+
 **Summary**: Prosedur penanganan dan perawatan sistem penerangan dan distribusi tenaga listrik di PT Etana Biotechnologies Indonesia, mencakup lampu, panel, dan transformator tegangan menengah.
 
 **Sources**: `SOP-EBI-EN-001.02 Penanganan dan Perawatan Terhadap Lampu Penerangan dan Sistem Penyaluran Tenaga Listrik.pdf`

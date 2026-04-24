@@ -1,5 +1,12 @@
 # Manajemen Suku Cadang Engineering
 
+##  LLM Summary
+- System: Manajemen Suku Cadang Engineering
+- Equipment: Critical part, non-critical part, part code, stok suku cadang
+- Symptoms: []
+- Keywords: [suku cadang, spare part, critical part, part code, stok, inventori]
+- Severity: N/A
+
 **Summary**: Klasifikasi, identifikasi, penyimpanan, dan pengendalian stok suku cadang Engineering PT EBI — mencakup perbedaan critical vs non-critical, sistem Part Code, dan prosedur inventori.
 
 **Sources**: `SOP-EBI-EN-005.03 Penyimpanan Dan Pengolahan Suku Cadang_OFC.pdf`

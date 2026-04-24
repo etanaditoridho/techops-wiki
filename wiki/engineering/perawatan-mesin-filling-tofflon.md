@@ -1,5 +1,12 @@
 # SOP/EBI/EN-044 — Perawatan Mesin Filling (Tofflon)
 
+##  LLM Summary
+- System: Perawatan Mesin Filling
+- Equipment: Mesin Filling Tofflon, pompa peristaltik, P&P, stoppering, komponen filling
+- Symptoms: [preventive maintenance mesin filling Tofflon, perawatan rutin, review bulanan]
+- Keywords: [filling Tofflon, mesin filling, PM, perawatan rutin, stoppering, pompa peristaltik]
+- Severity: N/A
+
 **Summary**: Prosedur Preventive Maintenance mesin Filling Tofflon di area produksi lantai 1 PT EBI, mencakup jadwal perawatan rutin, tanggung jawab multi-departemen, dan definisi komponen teknis.
 
 **Sources**: `SOP-EBI-EN-044.01 Perawatan Terhadap mesin Filling Tofflon.pdf`

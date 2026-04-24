@@ -1,5 +1,12 @@
 # Jenis-Jenis Perawatan Mesin
 
+##  LLM Summary
+- System: Manajemen Perawatan Mesin
+- Equipment: Mesin produksi, utility equipment, komponen mesin
+- Symptoms: []
+- Keywords: [preventive maintenance, corrective maintenance, breakdown, autonomous maintenance, perawatan mesin]
+- Severity: N/A
+
 **Summary**: Empat jenis perawatan mesin yang digunakan Departemen Engineering PT EBI — Preventive Maintenance, Corrective Maintenance, Breakdown Maintenance, dan Autonomous Maintenance — beserta definisi, tujuan, dan siapa yang bertanggung jawab.
 
 **Sources**: `SOP-EBI-EN-004.02 Perawatan terhadap mesin.pdf`, `SOP-EBI-EN-014.01 Penanganan Perbaikan Terhadap Semua Mesin-mesin di PT Etana Biotechnologies Indonesia.pdf`

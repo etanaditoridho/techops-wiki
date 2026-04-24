@@ -1,5 +1,12 @@
 # Sistem Kelistrikan — Konsep & Komponen
 
+##  LLM Summary
+- System: Sistem Kelistrikan
+- Equipment: Panel listrik, MDP, SDP, grounding, genset, UPS
+- Symptoms: []
+- Keywords: [kelistrikan, panel listrik, distribusi listrik, grounding, genset, UPS]
+- Severity: N/A
+
 **Summary**: Konsep teknis sistem distribusi listrik PT EBI meliputi sumber daya, panel distribusi, sistem grounding, standar regulasi, dan jadwal perawatan.
 
 **Sources**: `SOP-EBI-EN-001.02 Penanganan dan Perawatan Terhadap Lampu Penerangan dan Sistem Penyaluran Tenaga Listrik.pdf`

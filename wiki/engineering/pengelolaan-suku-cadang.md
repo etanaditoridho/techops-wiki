@@ -1,5 +1,12 @@
 # SOP/EBI/EN-005 — Penyimpanan dan Pengelolaan Suku Cadang
 
+##  LLM Summary
+- System: Pengelolaan Suku Cadang Engineering
+- Equipment: Suku cadang, gudang spare part, part code, stok critical part
+- Symptoms: [penyimpanan suku cadang, pengeluaran spare part, pemantauan stok, pemesanan ulang]
+- Keywords: [suku cadang, spare part, gudang engineering, stok, part code, critical part]
+- Severity: N/A
+
 **Summary**: Panduan pengelolaan suku cadang Engineering PT EBI, mencakup penerimaan, pemakaian, pemesanan, dan pengendalian stok suku cadang critical dan non-critical.
 
 **Sources**: `SOP-EBI-EN-005.03 Penyimpanan Dan Pengolahan Suku Cadang_OFC.pdf`

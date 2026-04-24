@@ -1,5 +1,12 @@
 # SOP/EBI/EN-016 — Pengoperasian dan Perawatan Sistem HVAC
 
+##  LLM Summary
+- System: HVAC
+- Equipment: AHU, FCU, exhaust fan, chiller, pompa sirkulasi, cooling tower, HEPA filter
+- Symptoms: [pengoperasian sistem HVAC, perawatan terjadwal, pemantauan parameter]
+- Keywords: [HVAC, pengoperasian, perawatan, suhu, kelembaban, tekanan, GMP]
+- Severity: N/A
+
 **Summary**: Prosedur pengoperasian dan perawatan sistem Heating, Ventilation, Air Conditioning (HVAC) PT EBI mencakup AHU, FCU, exhaust fan, chiller, pompa sirkulasi, cooling tower, hot water generator, dan HEPA filter.
 
 **Sources**: `SOP-EBI-EN-016.07 Pengoperasian Dan Perawatan Terhadap Sistem Ventilasi, Pemanas, Tata Udara.pdf`

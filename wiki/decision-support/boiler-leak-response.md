@@ -1,5 +1,12 @@
 # Boiler Leak Response
 
+##  LLM Summary
+- System: Boiler / hot water generator / HVAC heating loop
+- Equipment: Hot water generator, valve, utility piping, electrical panel
+- Symptoms: [leak, abnormal heat, pressure instability, visible damage]
+- Keywords: [kebocoran, boiler, air panas, tekanan, panel listrik, eskalasi]
+- Severity: High
+
 **Summary**: Decision-support flow for responding to suspected boiler, hot water generator, or heating-loop leakage while preserving safety, escalation discipline, and GMP impact awareness.
 
 **Sources**: Derived from existing TechOps KM pages. Review against controlled SOPs before operational use.
@@ -8,20 +15,26 @@
 
 ---
 
-## Use Case
+## Decision Context
 
 Use this page when an operator, technician, or supervisor observes water leakage, abnormal heat, steam-like discharge, pressure instability, unusual noise, or visible damage around heating equipment, utility piping, or related HVAC support equipment.
 
 This page does not replace controlled SOPs. It routes the responder to existing source-summary, concept, and synthesis pages.
 
-## Immediate Safety Check
+## When to Use
+
+- Suspected boiler, hot water generator, or heating-loop leakage.
+- Water leakage, abnormal heat, steam-like discharge, pressure instability, unusual noise, or visible damage around heating equipment.
+- Possible impact to HVAC support equipment, utility piping, production areas, or electrical safety.
+
+## Triage
 
 1. Stop work near the leak if there is burn, electrical, slip, or pressure-release risk.
 2. Keep personnel away from hot surfaces, standing water, and nearby electrical panels.
 3. If water is near electrical equipment, treat the condition as an electrical isolation concern and consult [[electrical-system]] and [[penanganan-lampu-distribusi-listrik]].
 4. Escalate immediately to Supervisor Engineering if the leak is large, hot, near production areas, or affects HVAC operation.
 
-## Initial Diagnosis
+## Diagnostic Cues
 
 | Observation | Likely Concern | Reference |
 |---|---|---|
@@ -30,7 +43,7 @@ This page does not replace controlled SOPs. It routes the responder to existing 
 | HVAC parameter instability after leak | Environmental control impact | [[operasi-perawatan-bms-ems]], [[synthesis-daily-monitoring]] |
 | Repeated recurrence after temporary repair | Maintenance or failure-mode pattern | [[maintenance-types]], [[penanganan-perbaikan-mesin]] |
 
-## Response Flow
+## Decision Flow
 
 1. Confirm location and severity without entering an unsafe area.
 2. Check whether the leak affects HVAC service, BMS/EMS readings, electrical panels, or production-area environmental conditions.
@@ -48,7 +61,7 @@ This page does not replace controlled SOPs. It routes the responder to existing 
 | Leak requires shutdown or isolation | Supervisor Engineering, then Manager Engineering if needed |
 | Spare part or vendor support is needed | Supervisor Engineering using [[spare-parts-management]] and [[pje-permintaan-jasa-engineering]] |
 
-## Evidence to Capture
+## Evidence / Output
 
 - Location and affected equipment.
 - Photos if safe and allowed.
