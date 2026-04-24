@@ -85,7 +85,9 @@ Tugasmu:
    Contoh: SOP perbaikan mesin SELALU butuh SOP suku cadang. SOP HVAC terkait dengan SOP udara tekan.
 3. Hapus relasi yang tidak logis.
 
-Return HANYA JSON dengan format ini, tanpa penjelasan lain:
+Return HANYA raw JSON. Tidak boleh ada teks, kalimat, atau markdown sebelum atau sesudah JSON.
+Mulai langsung dengan karakter { dan akhiri dengan }.
+Format:
 {{
   "relations": {{
     "sop_id_1": ["sop_id_2", "sop_id_3"],
@@ -102,7 +104,7 @@ Hanya sertakan SOP yang punya relasi (skip yang tidak punya relasi sama sekali).
 
     response = claude.messages.create(
         model="claude-opus-4-6",
-        max_tokens=4000,
+        max_tokens=8000,
         messages=[{"role": "user", "content": prompt}]
     )
     
