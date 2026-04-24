@@ -37,11 +37,48 @@ def get_department(filepath: Path, wiki_root: Path) -> str:
     except:
         return "GENERAL"
 
+TYPE_PREFIX = {
+    "finding":       "📍 Finding:",
+    "lesson":        "💡 Lesson:",
+    "clarification": "🔍 Clarification:",
+    "procedure":     "📋 Procedure:",
+    "decision":      "⚡ Decision:",
+    "synthesis":     "🔗 Synthesis:",
+    "concept":       "📚 Concept:",
+}
+
+CONCEPT_FILES = {
+    "hvac-system", "compressed-air-system", "electrical-system",
+    "building-maintenance-overview", "damage-classification",
+    "maintenance-types", "machine-repair-workflow",
+    "pje-permintaan-jasa-engineering", "spare-parts-management",
+    "engineering-responsibilities"
+}
+
+def get_knowledge_type(filepath: Path) -> str:
+    stem = filepath.stem.lower()
+    for ktype in TYPE_PREFIX:
+        if stem.startswith(ktype + "-"):
+            return ktype
+    if stem in CONCEPT_FILES:
+        return "concept"
+    return ""
+
+def strip_existing_prefix(title: str) -> str:
+    """Strip emoji + teks prefix yang sudah ada di H1."""
+    title = re.sub(r'^[\U0001F4CD\U0001F4A1\U0001F50D\U0001F4CB\u26A1\U0001F517\U0001F4DA]\s*\w+:\s*', '', title).strip()
+    title = re.sub(r'^(?:finding|lesson|clarification|procedure|decision|synthesis|concept):\s*', '', title, flags=re.IGNORECASE).strip()
+    return title
+
 def get_title_from_content(content: str, filepath: Path) -> str:
     match = re.search(r'^# (.+)$', content, re.MULTILINE)
-    if match:
-        return re.sub(r'\s*\(.*?\)', '', match.group(1)).strip()
-    return filepath.stem.replace("-", " ").replace("_", " ").title()
+    raw_title = match.group(1).strip() if match else filepath.stem.replace("-", " ").replace("_", " ").title()
+    raw_title = re.sub(r'\s*\(.*?\)', '', raw_title).strip()
+    raw_title = strip_existing_prefix(raw_title)
+    ktype = get_knowledge_type(filepath)
+    if ktype and ktype in TYPE_PREFIX:
+        return f"{TYPE_PREFIX[ktype]} {raw_title}"
+    return raw_title
 
 def get_prepared_by(content: str) -> str:
     """Extract Prepared By dari metadata file .md"""
