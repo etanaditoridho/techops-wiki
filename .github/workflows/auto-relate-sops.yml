@@ -1,0 +1,21 @@
+name: Auto-Relate SOPs
+
+on:
+  workflow_dispatch:        # Jalankan manual pertama kali
+  schedule:
+    - cron: '0 2 * * 0'   # Tiap Minggu jam 09.00 WIB — re-check relasi jika SOP baru ditambahkan
+
+jobs:
+  auto-relate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install notion-client anthropic
+      - run: python scripts/auto_relate_sops.py
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
