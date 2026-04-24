@@ -3,7 +3,7 @@ import json
 import anthropic
 from notion_client import Client
 
-notion = Client(auth=os.environ["NOTION_TOKEN"])
+notion = Client(auth=os.environ["NOTION_API_KEY"])
 claude = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
 DATABASE_ID = os.environ["NOTION_DATABASE_ID"]
 
