@@ -3,18 +3,29 @@ title: "Distillation of SOP/EBI/EN-015 — Pengoperasian dan Perawatan Sistem Pe
 status: verified
 folder: ENGINEERING
 owner: "Riki Depano (Engineering Sr. SPV)"
-version: 1
+version: 3
 review_date: 
 confidence: 
 tags:
-  - Compressed Air System
+  - Pje Permintaan Jasa Engineering
+  - Synthesis Daily Monitoring
+  - Spare Parts Management
   - Maintenance Types
+  - Synthesis Emergency Shutdown
   - Engineering Responsibilities
+  - Compressed Air System
+  - Boiler Leak Response
   - SOP EN-015
 notion_id: 34c664a8-3e24-81e1-8a1e-e78bd67e8727
 synced: 2026-04-24
 ---
 
+## LLM Summary
+- System: Sistem Pengolahan Air
+- Equipment: Water treatment system, alat ukur conductivity, TOC, boiler sanitasi
+- Symptoms: [pengoperasian sistem air, perawatan harian, pemantauan conductivity dan TOC, shutdown water system]
+- Keywords: [sistem pengolahan air, water system, conductivity, TOC, sanitasi, perawatan]
+- Severity: N/A
 **Summary**: Prosedur lengkap pengoperasian dan perawatan Water Treatment System PT EBI, mencakup 109 halaman dengan 21 parameter monitoring kritis, prosedur sanitasi, dan jadwal perawatan.
 **Sources**: `SOP-EBI-EN-015.08 Pengoperasian Dan Perawatan Terhadap Sistem Pengolahan Air.pdf`
 **SOP Number**: SOP/EBI/EN-015
@@ -53,3 +64,8 @@ Digunakan Departemen Engineering khususnya operator Sistem Pengolahan Air.
 - [[maintenance-types]]
 - [[engineering-responsibilities]]
 - [[compressed-air-system]]
+- [[synthesis-daily-monitoring]]
+- [[synthesis-emergency-shutdown]]
+- [[pje-permintaan-jasa-engineering]]
+- [[spare-parts-management]]
+- [[boiler-leak-response]]

@@ -3,12 +3,13 @@ title: "Distillation of SOP/EBI/EN-016 — Pengoperasian dan Perawatan Sistem HV
 status: verified
 folder: ENGINEERING
 owner: "Riki Depano (Engineering SPV)"
-version: 1
+version: 3
 review_date: 
 confidence: 
 tags:
-  - Hvac System
   - Pje Permintaan Jasa Engineering
+  - Hvac System
+  - Hvac Failure Diagnosis
   - Maintenance Types
   - Engineering Responsibilities
   - SOP EN-016
@@ -16,6 +17,12 @@ notion_id: 34c664a8-3e24-8103-83af-f946a0e117a8
 synced: 2026-04-24
 ---
 
+## LLM Summary
+- System: HVAC
+- Equipment: AHU, FCU, exhaust fan, chiller, pompa sirkulasi, cooling tower, HEPA filter
+- Symptoms: [pengoperasian sistem HVAC, perawatan terjadwal, pemantauan parameter]
+- Keywords: [HVAC, pengoperasian, perawatan, suhu, kelembaban, tekanan, GMP]
+- Severity: N/A
 **Summary**: Prosedur pengoperasian dan perawatan sistem Heating, Ventilation, Air Conditioning (HVAC) PT EBI mencakup AHU, FCU, exhaust fan, chiller, pompa sirkulasi, cooling tower, hot water generator, dan HEPA filter.
 **Sources**: `SOP-EBI-EN-016.07 Pengoperasian Dan Perawatan Terhadap Sistem Ventilasi, Pemanas, Tata Udara.pdf`
 **SOP Number**: SOP/EBI/EN-016
@@ -57,6 +64,7 @@ Digunakan Departemen Engineering khususnya teknisi HVAC. Mencakup semua sistem H
 Sistem HVAC kritis untuk mendukung proses produksi farmasi steril. Semua parameter harus sesuai standar GMP yang berlaku.
 ## Related pages
 - [[hvac-system]]
+- [[hvac-failure-diagnosis]]
 - [[maintenance-types]]
 - [[engineering-responsibilities]]
 - [[pje-permintaan-jasa-engineering]]

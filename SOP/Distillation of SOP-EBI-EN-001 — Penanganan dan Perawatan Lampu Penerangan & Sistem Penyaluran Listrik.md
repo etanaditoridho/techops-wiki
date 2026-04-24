@@ -3,7 +3,7 @@ title: "Distillation of SOP/EBI/EN-001 — Penanganan dan Perawatan Lampu Penera
 status: verified
 folder: ENGINEERING
 owner: "Muhamad Riki Depano (Engineering SPV), Wildan Nugraha (Prod Sr. SPV)"
-version: 1
+version: 2
 review_date: 
 confidence: 
 tags:
@@ -15,6 +15,12 @@ notion_id: 34c664a8-3e24-8116-9d6f-fc879a4da23a
 synced: 2026-04-24
 ---
 
+## LLM Summary
+- System: Sistem Kelistrikan
+- Equipment: Lampu penerangan, panel distribusi, grounding, genset, UPS
+- Symptoms: [perawatan lampu, inspeksi distribusi listrik, identifikasi hazard, perbaikan listrik]
+- Keywords: [lampu, distribusi listrik, panel, grounding, hazard listrik, perawatan]
+- Severity: High
 **Summary**: Prosedur penanganan dan perawatan sistem penerangan dan distribusi tenaga listrik di PT Etana Biotechnologies Indonesia, mencakup lampu, panel, dan transformator tegangan menengah.
 **Sources**: `SOP-EBI-EN-001.02 Penanganan dan Perawatan Terhadap Lampu Penerangan dan Sistem Penyaluran Tenaga Listrik.pdf`
 **SOP Number**: SOP/EBI/EN-001

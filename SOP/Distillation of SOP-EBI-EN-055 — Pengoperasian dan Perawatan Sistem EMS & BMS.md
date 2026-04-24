@@ -3,11 +3,12 @@ title: "Distillation of SOP/EBI/EN-055 — Pengoperasian dan Perawatan Sistem EM
 status: verified
 folder: ENGINEERING
 owner: "Riki Depano (Engineering SPV)"
-version: 1
+version: 3
 review_date: 
 confidence: 
 tags:
   - Hvac System
+  - Hvac Failure Diagnosis
   - Operasi Perawatan Hvac
   - Maintenance Types
   - Engineering Responsibilities
@@ -16,6 +17,12 @@ notion_id: 34c664a8-3e24-813b-aac0-c2c808564169
 synced: 2026-04-24
 ---
 
+## LLM Summary
+- System: EMS / BMS
+- Equipment: EMS, BMS, sensor, alat ukur, sistem monitoring gedung
+- Symptoms: [pengoperasian sistem, perawatan berkala, pemantauan harian, alat ukur rusak]
+- Keywords: [EMS, BMS, monitoring gedung, sensor, perawatan berkala, formulir perawatan]
+- Severity: N/A
 **Summary**: Prosedur pengoperasian dan perawatan Environmental Monitoring System (EMS) dan Building Management System (BMS) di area Produksi, Warehouse & CUB PT EBI.
 **Sources**: `SOP-EBI-EN-055.00 BMS EMS Final engineering.pdf`
 **SOP Number**: SOP/EBI/EN-055
@@ -53,6 +60,7 @@ Digunakan Departemen Engineering khususnya teknisi EMS & BMS. Mencakup sistem pe
 SOP ini adalah versi pertama (Revision 00) — dokumen baru. Dibuat untuk mendukung sistem pemantauan gedung yang terintegrasi dengan sistem HVAC.
 ## Related pages
 - [[hvac-system]]
+- [[hvac-failure-diagnosis]]
 - [[maintenance-types]]
 - [[engineering-responsibilities]]
 - [[operasi-perawatan-hvac]]

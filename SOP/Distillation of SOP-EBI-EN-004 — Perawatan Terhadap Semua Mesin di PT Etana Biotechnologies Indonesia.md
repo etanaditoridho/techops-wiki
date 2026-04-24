@@ -3,19 +3,25 @@ title: "Distillation of SOP/EBI/EN-004 — Perawatan Terhadap Semua Mesin di PT 
 status: verified
 folder: ENGINEERING
 owner: "Wendi Rukmansyah (Engineering Supervisor), Riki Depano (Engineering Supervisor), Burhanuddin Robbani (Engineering Supervisor)"
-version: 1
+version: 3
 review_date: 
 confidence: 
 tags:
-  - Machine Repair Workflow
-  - Maintenance Types
   - Engineering Responsibilities
   - Spare Parts Management
+  - Maintenance Types
+  - Penanganan Perbaikan Mesin
   - SOP EN-004
 notion_id: 34c664a8-3e24-8115-b5eb-d21a76c140ad
 synced: 2026-04-24
 ---
 
+## LLM Summary
+- System: Preventive Maintenance Mesin
+- Equipment: Mesin produksi, mesin utility, peralatan Engineering, label status
+- Symptoms: [perawatan berkala, preventive maintenance, pengawasan libur panjang, jadwal PM]
+- Keywords: [perawatan mesin, preventive maintenance, corrective maintenance, jadwal PM, pengawasan]
+- Severity: N/A
 **Summary**: Prosedur Preventive Maintenance terjadwal untuk semua mesin utility, produksi, warehouse, QA, dan QC di PT EBI, termasuk pengawasan mesin selama libur panjang dan penjelasan kartu riwayat mesin.
 **Sources**: `SOP-EBI-EN-004.02 Perawatan terhadap mesin.pdf`
 **SOP Number**: SOP/EBI/EN-004
@@ -47,6 +53,6 @@ Digunakan Departemen Engineering untuk perawatan mesin utility, produksi, wareho
 Mesin dan alat utility tetap diawasi selama libur panjang sesuai jadwal yang ditetapkan Supervisor Engineering.
 ## Related pages
 - [[maintenance-types]]
-- [[machine-repair-workflow]]
+- [[penanganan-perbaikan-mesin]]
 - [[spare-parts-management]]
 - [[engineering-responsibilities]]

@@ -3,19 +3,29 @@ title: "Distillation of SOP/EBI/EN-024 — Perawatan Mesin Filling Bosch FXS 205
 status: verified
 folder: ENGINEERING
 owner: "Wendi Rukmansyah (Engineering SPV)"
-version: 1
+version: 3
 review_date: 
 confidence: 
 tags:
-  - Machine Repair Workflow
+  - Pje Permintaan Jasa Engineering
+  - Synthesis Daily Monitoring
+  - Penanganan Perbaikan Mesin
+  - Perawatan Mesin Filling Tofflon
+  - Preventive Maintenance Mesin
+  - Spare Parts Management
   - Maintenance Types
   - Engineering Responsibilities
-  - Spare Parts Management
   - SOP EN-024
 notion_id: 34c664a8-3e24-811e-adce-de892259af06
 synced: 2026-04-24
 ---
 
+## LLM Summary
+- System: Perawatan Mesin Filling
+- Equipment: Mesin Filling Bosch FXS 2051, klem, ferulle, baut, Air Service Regulator
+- Symptoms: [preventive maintenance mesin filling, perawatan harian operator, pengecekan komponen]
+- Keywords: [filling Bosch, mesin filling, PM, perawatan harian, operator produksi, QA]
+- Severity: N/A
 **Summary**: Prosedur Preventive Maintenance mesin Filling Bosch FXS 2051 di area produksi PT EBI, mencakup jadwal perawatan, tanggung jawab teknisi, operator produksi, dan QA.
 **Sources**: `SOP-EBI-EN-024.04 Perawatan Mesin Filling Bosch_OFC.pdf`
 **SOP Number**: SOP/EBI/EN-024
@@ -51,7 +61,11 @@ Digunakan Departemen Engineering sebagai pedoman perawatan mesin Filling Bosch F
 ## Catatan Teknis
 Mesin Filling Bosch FXS 2051 digunakan untuk pengisian produk farmasi cair ke kemasan primer. Volume dalam kemasan primer harus akurat sesuai spesifikasi.
 ## Related pages
-- [[machine-repair-workflow]]
+- [[perawatan-mesin-filling-tofflon]]
+- [[penanganan-perbaikan-mesin]]
+- [[preventive-maintenance-mesin]]
+- [[pje-permintaan-jasa-engineering]]
+- [[synthesis-daily-monitoring]]
 - [[maintenance-types]]
 - [[spare-parts-management]]
 - [[engineering-responsibilities]]

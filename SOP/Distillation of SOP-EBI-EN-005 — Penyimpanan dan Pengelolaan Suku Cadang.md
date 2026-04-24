@@ -3,18 +3,24 @@ title: "Distillation of SOP/EBI/EN-005 — Penyimpanan dan Pengelolaan Suku Cada
 status: verified
 folder: ENGINEERING
 owner: "Jihan Salsabila (Engineering Staff)"
-version: 1
+version: 3
 review_date: 
 confidence: 
 tags:
-  - Machine Repair Workflow
   - Engineering Responsibilities
   - Spare Parts Management
+  - Penanganan Perbaikan Mesin
   - SOP EN-005
 notion_id: 34c664a8-3e24-81ae-8cd8-d3fc42633bed
 synced: 2026-04-24
 ---
 
+## LLM Summary
+- System: Pengelolaan Suku Cadang Engineering
+- Equipment: Suku cadang, gudang spare part, part code, stok critical part
+- Symptoms: [penyimpanan suku cadang, pengeluaran spare part, pemantauan stok, pemesanan ulang]
+- Keywords: [suku cadang, spare part, gudang engineering, stok, part code, critical part]
+- Severity: N/A
 **Summary**: Panduan pengelolaan suku cadang Engineering PT EBI, mencakup penerimaan, pemakaian, pemesanan, dan pengendalian stok suku cadang critical dan non-critical.
 **Sources**: `SOP-EBI-EN-005.03 Penyimpanan Dan Pengolahan Suku Cadang_OFC.pdf`
 **SOP Number**: SOP/EBI/EN-005
@@ -56,5 +62,5 @@ Mencakup gudang suku cadang di Departemen Engineering PT EBI.
 - Pemantauan inventori: jadwal Senin/Rabu/Jumat
 ## Related pages
 - [[spare-parts-management]]
-- [[machine-repair-workflow]]
+- [[penanganan-perbaikan-mesin]]
 - [[engineering-responsibilities]]

@@ -3,19 +3,27 @@ title: "Distillation of SOP/EBI/EN-003 — Perawatan Gedung & Infrastruktur"
 status: verified
 folder: ENGINEERING
 owner: "Ridwan Andriansyah (Site Management Specialist)"
-version: 1
+version: 3
 review_date: 
 confidence: 
 tags:
   - Pje Permintaan Jasa Engineering
-  - Building Maintenance Overview
-  - Damage Classification
+  - Electrical System
+  - Maintenance Types
+  - Synthesis Emergency Shutdown
   - Engineering Responsibilities
+  - Perawatan Gedung Infrastruktur
   - SOP EN-003
 notion_id: 34c664a8-3e24-81c8-9cc4-fff22cb8440b
 synced: 2026-04-24
 ---
 
+## LLM Summary
+- System: Gedung dan Infrastruktur
+- Equipment: Bangunan, lantai, dinding, plafon, utilitas gedung, area kerja
+- Symptoms: [perawatan gedung, inspeksi berkala, pembersihan area, perbaikan sarana]
+- Keywords: [perawatan gedung, infrastruktur, inspeksi, pembersihan, perbaikan, ISO 14001]
+- Severity: N/A
 **Summary**: Panduan langkah pembersihan, perapihan, perawatan, dan perbaikan sarana bangunan serta infrastruktur di PT Etana Biotechnologies Indonesia sesuai standar bangunan terbaru.
 **Sources**: `SOP-EBI-EN-003.03 Perawatan Gedung dan Infrastruktur.pdf`
 **SOP Number**: SOP/EBI/EN-003
@@ -33,7 +41,7 @@ Digunakan oleh Departemen Engineering sebagai pedoman perawatan dan perbaikan ge
 - **Rehabilitasi**: perbaikan bangunan rusak sebagian; fungsi dan arsitektur dipertahankan
 - **Renovasi**: perbaikan bangunan rusak berat sebagian; fungsi, arsitektur, struktur, atau utilitas dapat berubah
 - **Restorasi**: perbaikan bangunan rusak berat; arsitektur dipertahankan; struktur/utilitas dapat berubah
-### Tingkat Kerusakan (lihat [[damage-classification]])
+### Tingkat Kerusakan (lihat [[maintenance-types]])
 - **Ringan**: kerusakan komponen non-struktural; biaya maks 35% HPP bangunan baru tipe/kelas sama
 - **Sedang**: kerusakan sebagian komponen non-struktural dan/atau struktural
 - **Berat**: kerusakan komponen struktural utama; memerlukan dokumen rencana teknis yang disetujui
@@ -55,7 +63,9 @@ Digunakan oleh Departemen Engineering sebagai pedoman perawatan dan perbaikan ge
 ## Kepatuhan ISO 14001
 Prosedur pembersihan dan perawatan gedung mengacu pada persyaratan ISO 14001 (manajemen lingkungan).
 ## Related pages
-- [[building-maintenance-overview]]
-- [[damage-classification]]
+- [[perawatan-gedung-infrastruktur]]
+- [[maintenance-types]]
 - [[pje-permintaan-jasa-engineering]]
 - [[engineering-responsibilities]]
+- [[electrical-system]]
+- [[synthesis-emergency-shutdown]]

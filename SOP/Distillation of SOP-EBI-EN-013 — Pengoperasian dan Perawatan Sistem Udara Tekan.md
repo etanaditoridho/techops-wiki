@@ -3,18 +3,25 @@ title: "Distillation of SOP/EBI/EN-013 — Pengoperasian dan Perawatan Sistem Ud
 status: verified
 folder: ENGINEERING
 owner: "Riki Depano (Engineering Supervisor)"
-version: 1
+version: 3
 review_date: 
 confidence: 
 tags:
+  - Finding Kompresor Trip Suhu Tinggi
+  - Engineering Responsibilities
   - Compressed Air System
   - Maintenance Types
-  - Engineering Responsibilities
   - SOP EN-013
 notion_id: 34c664a8-3e24-817c-98ad-f6bec5a92bce
 synced: 2026-04-24
 ---
 
+## LLM Summary
+- System: Sistem Udara Tekan
+- Equipment: Kompresor, refrigerant dryer, desiccant dryer, filter, receiver tank
+- Symptoms: [pengoperasian udara tekan, perawatan harian, monitoring tekanan, rotasi kompresor]
+- Keywords: [udara tekan, kompresor, dryer, tekanan, perawatan utility, monitoring]
+- Severity: N/A
 **Summary**: Prosedur pengoperasian dan perawatan sistem udara tekan PT EBI, mencakup kompressor Ingersoll Rand IRN37 OF-A10, Atlas Copco ZT37KW, Refrigerator Dryer, Desiccant Dryer, dan Atlas Copco Dryer CD 130+.
 **Sources**: `SOP-EBI-EN-013 Pengoperasian Dan Perawatan Terhadap Sistem Udara Tekan.pdf`
 **SOP Number**: SOP/EBI/EN-013
@@ -58,5 +65,6 @@ Digunakan Departemen Engineering khususnya teknisi Utility.
 (Detail parameter monitoring numerik dan prosedur start/stop per equipment terdapat di sumber PDF Rev.04)
 ## Related pages
 - [[compressed-air-system]]
+- [[finding-kompresor-trip-suhu-tinggi]]
 - [[maintenance-types]]
 - [[engineering-responsibilities]]

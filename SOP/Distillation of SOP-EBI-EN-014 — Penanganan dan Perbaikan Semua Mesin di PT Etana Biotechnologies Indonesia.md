@@ -3,20 +3,26 @@ title: "Distillation of SOP/EBI/EN-014 — Penanganan dan Perbaikan Semua Mesin 
 status: verified
 folder: ENGINEERING
 owner: "Wendi Rukmansyah (Non Utility Engineering SPV)"
-version: 1
+version: 3
 review_date: 
 confidence: 
 tags:
-  - Maintenance Types
-  - Machine Repair Workflow
-  - Spare Parts Management
   - Pje Permintaan Jasa Engineering
+  - Penanganan Perbaikan Mesin
+  - Spare Parts Management
+  - Maintenance Types
   - Engineering Responsibilities
   - SOP EN-014
 notion_id: 34c664a8-3e24-81d1-9056-d3c9f39e94e3
 synced: 2026-04-24
 ---
 
+## LLM Summary
+- System: Penanganan Perbaikan Mesin
+- Equipment: Mesin produksi, mesin utility, label status mesin, formulir breakdown
+- Symptoms: [breakdown mesin, commissioning mesin, PJE, pekerjaan vendor, perbaikan mesin]
+- Keywords: [penanganan mesin, perbaikan mesin, breakdown, commissioning, PJE, vendor]
+- Severity: N/A
 **Summary**: Prosedur penanganan dan perbaikan mesin (breakdown, commissioning mesin baru/bekas, PJE dari departemen lain, pekerjaan vendor) di PT EBI termasuk sistem label mesin dan formulir pelaporan.
 **Sources**: `SOP-EBI-EN-014.01 Penanganan Perbaikan Terhadap Semua Mesin-mesin di PT Etana Biotechnologies Indonesia.pdf`
 **SOP Number**: SOP/EBI/EN-014
@@ -73,7 +79,7 @@ Prosedur khusus berlaku untuk mesin yang perlu dipindahkan keluar area GMP untuk
 | F04B | Laporan Pekerjaan Vendor |
 | F05B | (sesuai sumber PDF) |
 ## Related pages
-- [[machine-repair-workflow]]
+- [[penanganan-perbaikan-mesin]]
 - [[maintenance-types]]
 - [[pje-permintaan-jasa-engineering]]
 - [[spare-parts-management]]
