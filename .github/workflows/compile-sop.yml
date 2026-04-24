@@ -1,0 +1,128 @@
+name: Compile SOP from Raw Input
+
+on:
+  schedule:
+    - cron: '0 17 * * *'  # tiap malam jam 00.00 WIB
+  workflow_dispatch:
+
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install "notion-client==1.0.0" anthropic
+
+      - name: Compile raw input to SOP drafts
+        run: |
+          python -c "
+          import os, json, anthropic
+          from notion_client import Client
+
+          notion = Client(auth=os.environ['NOTION_API_KEY'])
+          claude = anthropic.Anthropic(api_key=os.environ['ANTHROPIC_API_KEY'])
+          RAW_PARENT_ID = os.environ['RAW_INPUT_PAGE_ID']
+          DATABASE_ID = os.environ['NOTION_DATABASE_ID']
+
+          # 1. Ambil semua halaman di Raw Input
+          children = notion.blocks.children.list(block_id=RAW_PARENT_ID).get('results', [])
+          raw_pages = [b for b in children if b['type'] == 'child_page']
+          print('[compile] Found ' + str(len(raw_pages)) + ' raw pages to compile')
+
+          if not raw_pages:
+              print('[compile] Nothing to compile.')
+              exit(0)
+
+          for raw in raw_pages:
+              raw_id = raw['id']
+              raw_title = raw['child_page']['title']
+              print('[compile] Processing: ' + raw_title)
+
+              # 2. Ambil konten halaman raw
+              blocks = notion.blocks.children.list(block_id=raw_id).get('results', [])
+              raw_content = raw_title + '\n\n'
+              for b in blocks:
+                  btype = b['type']
+                  if btype in ['paragraph', 'heading_1', 'heading_2', 'heading_3', 'bulleted_list_item', 'numbered_list_item']:
+                      texts = b.get(btype, {}).get('rich_text', [])
+                      for t in texts:
+                          raw_content += t.get('plain_text', '')
+                      raw_content += '\n'
+
+              # 3. Kirim ke Claude untuk compile jadi SOP
+              prompt = (
+                  'Kamu adalah knowledge compiler untuk tim Engineering PT Etana Biotechnologies.\n\n'
+                  'Berikut adalah raw material yang perlu dicompile menjadi SOP terstruktur:\n\n'
+                  '---\n' + raw_content + '\n---\n\n'
+                  'Tugas kamu:\n'
+                  '1. Baca dan pahami konten raw material\n'
+                  '2. Tentukan judul SOP yang tepat\n'
+                  '3. Tentukan folder yang sesuai (Engineering, QA, HSE, atau General)\n'
+                  '4. Tentukan tags yang relevan (maks 5)\n'
+                  '5. Tulis konten SOP yang terstruktur dalam Bahasa Indonesia\n\n'
+                  'Format SOP yang harus dihasilkan:\n'
+                  '- Tujuan: [1-2 kalimat tujuan SOP]\n'
+                  '- Ruang Lingkup: [siapa dan apa yang tercakup]\n'
+                  '- Referensi: [dokumen atau standar terkait jika ada]\n'
+                  '- Prosedur: [langkah-langkah numbered, jelas dan actionable]\n'
+                  '- Parameter Kritis: [nilai/batas yang tidak boleh dilanggar, jika ada]\n'
+                  '- PIC: [penanggung jawab berdasarkan konteks]\n\n'
+                  'Return HANYA JSON ini tanpa teks lain:\n'
+                  '{"title": "...", "folder": "...", "tags": ["..."], "content": "..."}'
+              )
+
+              try:
+                  response = claude.messages.create(
+                      model='claude-sonnet-4-6',
+                      max_tokens=3000,
+                      messages=[{'role': 'user', 'content': prompt}]
+                  )
+                  raw_resp = response.content[0].text.strip()
+                  s, e = raw_resp.find('{'), raw_resp.rfind('}') + 1
+                  result = json.loads(raw_resp[s:e])
+
+                  # 4. Buat halaman SOP baru di database sebagai draft
+                  notion.pages.create(
+                      parent={'database_id': DATABASE_ID},
+                      properties={
+                          'Name': {'title': [{'text': {'content': result['title']}}]},
+                          'Status': {'status': {'name': 'draft'}},
+                          'Folder': {'rich_text': [{'text': {'content': result.get('folder', 'General')}}]},
+                          'Tags': {'multi_select': [{'name': t} for t in result.get('tags', [])]},
+                          'Owner': {'rich_text': [{'text': {'content': 'Claude (pending review)'}}]},
+                          'Version': 1,
+                      },
+                      children=[{
+                          'object': 'block',
+                          'type': 'paragraph',
+                          'paragraph': {'rich_text': [{'type': 'text', 'text': {'content': result.get('content', '')}}]}
+                      }, {
+                          'object': 'block',
+                          'type': 'callout',
+                          'callout': {
+                              'rich_text': [{'type': 'text', 'text': {'content': 'SOP ini di-compile otomatis oleh Claude dari raw material: ' + raw_title + '. Wajib diverifikasi Owner sebelum digunakan.'}}],
+                              'icon': {'emoji': '⚠️'},
+                          }
+                      }]
+                  )
+                  print('  OK: Draft SOP created -> ' + result['title'])
+
+                  # 5. Tandai halaman raw sebagai sudah diproses (archive)
+                  notion.pages.update(
+                      page_id=raw_id,
+                      archived=True
+                  )
+                  print('  OK: Raw page archived -> ' + raw_title)
+
+              except Exception as ex:
+                  print('  ERROR: ' + raw_title + ' -> ' + str(ex))
+
+          print('[compile] Done.')
+          "
+        env:
+          NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
+          RAW_INPUT_PAGE_ID: ${{ secrets.RAW_INPUT_PAGE_ID }}
