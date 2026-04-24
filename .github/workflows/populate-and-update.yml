@@ -17,9 +17,9 @@ jobs:
     name: Ingest Raw Documents
     runs-on: ubuntu-latest
     if: |
-      contains(join(github.event.commits.*.modified, ','), 'raw/') ||
-      contains(join(github.event.commits.*.added, ','), 'raw/') ||
-      github.event_name == 'schedule'
+      github.event_name == 'workflow_dispatch' ||
+      github.event_name == 'schedule' ||
+      contains(toJson(github.event.commits), '"raw/')
     steps:
       - uses: actions/checkout@v4
         with:
