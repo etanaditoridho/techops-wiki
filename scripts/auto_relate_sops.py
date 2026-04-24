@@ -1,4 +1,4 @@
-import os
+﻿import os
 import json
 import anthropic
 from notion_client import Client
@@ -40,49 +40,49 @@ def llm_relate(sops):
         for s in sops
     ])
 
-    prompt = f"""Kamu adalah sistem knowledge management untuk tim Engineering PT Etana Biotechnologies Indonesia.
+    prompt = f"""Kamu adalah sistem knowledge management Engineering PT Etana Biotechnologies.
 
-Berikut daftar SOP yang ada:
+Daftar SOP:
 {sop_list}
 
-Tentukan relasi antar SOP berdasarkan domain knowledge engineering dan farmasi.
-Prinsip relasi:
-- SOP perbaikan mesin selalu terkait SOP suku cadang dan perawatan
-- SOP sistem (HVAC, udara tekan, listrik) terkait satu sama lain jika saling mendukung
-- SOP QA (deviasi, CAPA, change control) saling terkait satu sama lain
-- Hanya buat relasi yang benar-benar logis, jangan relasi semua ke semua
+Tentukan relasi antar SOP. Prinsip:
+- SOP perbaikan mesin terkait SOP suku cadang dan perawatan
+- SOP sistem (HVAC, udara tekan, listrik) terkait jika saling mendukung
+- SOP QA (deviasi, CAPA, change control) saling terkait
 - Maksimal 4 relasi per SOP
+- Hanya buat relasi yang benar-benar logis
 
-Return HANYA raw JSON. Tidak boleh ada teks apapun sebelum atau sesudah JSON.
-Mulai langsung dengan karakter {{ dan akhiri dengan }}.
+Return HANYA raw JSON, mulai dari {{ sampai }}, tanpa teks apapun di luar JSON:
 
 {{
   "relations": {{
-    "sop_id": ["related_sop_id_1", "related_sop_id_2"],
-    ...
+    "sop_id": ["related_id_1", "related_id_2"]
   }},
   "reasoning": {{
-    "sop_id->related_sop_id": "alasan singkat"
+    "sop_id->related_id": "alasan"
   }}
-}}
-
-Hanya sertakan SOP yang punya relasi."""
+}}"""
 
     response = claude.messages.create(
-        model="claude-opus-4-6",
-        max_tokens=8000,
+        model="claude-sonnet-4-6",
+        max_tokens=4000,
         messages=[{"role": "user", "content": prompt}]
     )
 
     raw = response.content[0].text.strip()
 
-    # Strip markdown fences jika ada
     if "```" in raw:
         for part in raw.split("```"):
             part = part.strip().lstrip("json").strip()
             if part.startswith("{"):
                 raw = part
                 break
+
+    # Ambil JSON dari { pertama sampai } terakhir
+    start = raw.find("{")
+    end = raw.rfind("}") + 1
+    if start != -1 and end > start:
+        raw = raw[start:end]
 
     return json.loads(raw)
 
@@ -96,40 +96,37 @@ def update_notion_relations(sops, final_relations):
         if not related_ids:
             skipped += 1
             continue
-
-        relation_payload = [{"id": rid} for rid in related_ids]
-
         try:
             notion.pages.update(
                 page_id=sop_id,
-                properties={"Related SOPs": {"relation": relation_payload}}
+                properties={"Related SOPs": {"relation": [{"id": rid} for rid in related_ids]}}
             )
             name = sop_id_map.get(sop_id, sop_id)
             related_names = [sop_id_map.get(r, r) for r in related_ids]
-            print(f"  ✓ {name} → {', '.join(related_names)}")
+            print(f"  OK: {name} -> {', '.join(related_names)}")
             updated += 1
         except Exception as e:
-            print(f"  ✗ Error updating {sop_id}: {e}")
+            print(f"  ERROR {sop_id}: {e}")
 
     return updated, skipped
 
 
 def main():
-    print("[auto-relate] Mengambil semua SOP dari Notion...")
+    print("[auto-relate] Mengambil SOP dari Notion...")
     pages = get_all_sops()
     sops = [extract_sop_info(p) for p in pages]
     print(f"[auto-relate] Ditemukan {len(sops)} SOP")
 
-    print("[auto-relate] Mengirim ke Claude untuk menentukan relasi...")
+    print("[auto-relate] Mengirim ke Claude...")
     final_relations = llm_relate(sops)
 
-    print("\n[auto-relate] Reasoning Claude:")
+    print("\n[auto-relate] Reasoning:")
     for pair, reason in final_relations.get("reasoning", {}).items():
         print(f"  {pair}: {reason}")
 
-    print("\n[auto-relate] Menulis relasi ke Notion...")
+    print("\n[auto-relate] Menulis ke Notion...")
     updated, skipped = update_notion_relations(sops, final_relations)
-    print(f"\n[auto-relate] Selesai. Updated: {updated} SOP, Skipped: {skipped} SOP")
+    print(f"\n[auto-relate] Selesai. Updated: {updated}, Skipped: {skipped}")
 
 
 if __name__ == "__main__":
