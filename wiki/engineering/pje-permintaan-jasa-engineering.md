@@ -68,8 +68,8 @@ Saat mengerjakan PJE, jika teknisi membutuhkan suku cadang atau material:
 
 ## Related pages
 
-- [[sop-en-014-perbaikan-mesin]]
-- [[sop-en-003-perawatan-gedung]]
+- [[penanganan-perbaikan-mesin]]
+- [[perawatan-gedung-infrastruktur]]
 - [[spare-parts-management]]
 - [[maintenance-types]]
 - [[engineering-responsibilities]]

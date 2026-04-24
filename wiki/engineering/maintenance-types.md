@@ -83,8 +83,8 @@
 
 ## Related pages
 
-- [[sop-en-004-perawatan-mesin]]
-- [[sop-en-014-perbaikan-mesin]]
+- [[preventive-maintenance-mesin]]
+- [[penanganan-perbaikan-mesin]]
 - [[engineering-responsibilities]]
 - [[spare-parts-management]]
 - [[pje-permintaan-jasa-engineering]]

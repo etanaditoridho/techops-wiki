@@ -34,7 +34,7 @@ Baca [[engineering-responsibilities]] untuk memahami:
 
 ### Sistem HVAC
 
-Baca [[hvac-system]] dan [[sop-en-016-hvac]]:
+Baca [[hvac-system]] dan [[operasi-perawatan-hvac]]:
 - Komponen: AHU, FCU, chiller, cooling tower, HWG, HEPA filter
 - Parameter yang dikontrol: partikel, suhu, aliran udara, tekanan, kelembaban
 - Konteks GMP — mengapa HVAC kritis di fasilitas farmasi
@@ -42,7 +42,7 @@ Baca [[hvac-system]] dan [[sop-en-016-hvac]]:
 
 ### Sistem Udara Tekan
 
-Baca [[compressed-air-system]] dan [[sop-en-013-udara-tekan]]:
+Baca [[compressed-air-system]] dan [[operasi-perawatan-udara-tekan]]:
 - Klasifikasi: kontak produk vs non-kontak produk
 - Peralatan: kompressor Ingersoll Rand + Atlas Copco, dryer refrigerant + desiccant
 - Pola rotasi harian kompressor dan dryer
@@ -50,14 +50,14 @@ Baca [[compressed-air-system]] dan [[sop-en-013-udara-tekan]]:
 
 ### Sistem Kelistrikan
 
-Baca [[electrical-system]] dan [[sop-en-001-lampu-listrik]]:
+Baca [[electrical-system]] dan [[penanganan-lampu-distribusi-listrik]]:
 - Alur distribusi: PLN → transformator → MDP → SDP → beban
 - Standar yang berlaku: PUIL 2011, Permenaker 12/2015
 - Persyaratan kompetensi: K3 Listrik
 
 ### EMS & BMS
 
-Baca [[sop-en-055-bms-ems]]:
+Baca [[operasi-perawatan-bms-ems]]:
 - Fungsi BMS: kontrol otomatis sistem HVAC
 - Fungsi EMS: monitoring lingkungan kritis, alert deviasi
 - Hanya personel terlatih yang boleh mengoperasikan
@@ -81,7 +81,7 @@ Baca [[pje-permintaan-jasa-engineering]]:
 
 ### Penanganan Breakdown
 
-Baca [[sop-en-014-perbaikan-mesin]]:
+Baca [[penanganan-perbaikan-mesin]]:
 - Terima laporan via F01B
 - Catat pekerjaan di F02B (Kartu Riwayat Mesin)
 - Uji coba 15 menit sebelum serahkan ke user
@@ -89,7 +89,7 @@ Baca [[sop-en-014-perbaikan-mesin]]:
 
 ### Manajemen Suku Cadang
 
-Baca [[spare-parts-management]] dan [[sop-en-005-suku-cadang]]:
+Baca [[spare-parts-management]] dan [[pengelolaan-suku-cadang]]:
 - Critical vs Non-Critical — perbedaan dan implikasi stok
 - Cara menggunakan Part Code dan Database Inventory
 - Prosedur minta suku cadang via F03B

@@ -86,7 +86,7 @@ Inspeksi tahanan grounding dilakukan secara berkala menggunakan earth tester.
 
 ## Related pages
 
-- [[sop-en-001-lampu-listrik]]
+- [[penanganan-lampu-distribusi-listrik]]
 - [[maintenance-types]]
 - [[engineering-responsibilities]]
 - [[synthesis-daily-monitoring]]

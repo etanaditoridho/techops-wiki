@@ -51,5 +51,5 @@ Mesin Filling Tofflon berada di area produksi lantai 1 PT EBI. SOP ini adalah ve
 - [[machine-repair-workflow]]
 - [[maintenance-types]]
 - [[spare-parts-management]]
-- [[sop-en-024-filling-bosch]]
+- [[perawatan-mesin-filling-bosch]]
 - [[engineering-responsibilities]]

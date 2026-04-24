@@ -20,14 +20,14 @@ Catatan append-only dari semua operasi wiki.
 **Halaman yang dibuat (17 halaman):**
 
 *Source pages:*
-- `sop-en-003-perawatan-gedung.md`
-- `sop-en-001-lampu-listrik.md`
-- `sop-en-004-perawatan-mesin.md`
-- `sop-en-005-suku-cadang.md`
-- `sop-en-013-udara-tekan.md`
-- `sop-en-014-perbaikan-mesin.md`
+- `perawatan-gedung-infrastruktur.md`
+- `penanganan-lampu-distribusi-listrik.md`
+- `preventive-maintenance-mesin.md`
+- `pengelolaan-suku-cadang.md`
+- `operasi-perawatan-udara-tekan.md`
+- `penanganan-perbaikan-mesin.md`
 - `sop-en-015-pure-water-form.md`
-- `sop-en-016-hvac.md`
+- `operasi-perawatan-hvac.md`
 
 *Concept pages:*
 - `building-maintenance-overview.md`
@@ -63,10 +63,10 @@ Catatan append-only dari semua operasi wiki.
 5. `SOP-EBI-EN-015-F01H Pemantauan Harian Terhadap Generator Air Murni ...pdf` — 61 halaman logbook
 
 **Halaman yang diperbarui (8 halaman):**
-- `sop-en-004-perawatan-mesin.md` — ditambahkan PDF Copy sebagai sumber, dicatat sebagai draft review dengan 19 anotasi reviewer
-- `sop-en-005-suku-cadang.md` — ditambahkan PDF sebagai sumber; kode lokasi suku cadang (`R. part – R1 . A/B/C`) dan jadwal Senin/Rabu/Jumat
-- `sop-en-013-udara-tekan.md` — **upgrade besar**: revisi ke Rev.04, prosedur start/stop tiap equipment, parameter monitoring numerik per mesin, jadwal L2/L3/L4
-- `sop-en-014-perbaikan-mesin.md` — riwayat revisi; prosedur pemindahan mesin dari area GMP; uji coba 15 menit; label Engineering/Vendor; tabel 5 formulir (F01B–F05B)
+- `preventive-maintenance-mesin.md` — ditambahkan PDF Copy sebagai sumber, dicatat sebagai draft review dengan 19 anotasi reviewer
+- `pengelolaan-suku-cadang.md` — ditambahkan PDF sebagai sumber; kode lokasi suku cadang (`R. part – R1 . A/B/C`) dan jadwal Senin/Rabu/Jumat
+- `operasi-perawatan-udara-tekan.md` — **upgrade besar**: revisi ke Rev.04, prosedur start/stop tiap equipment, parameter monitoring numerik per mesin, jadwal L2/L3/L4
+- `penanganan-perbaikan-mesin.md` — riwayat revisi; prosedur pemindahan mesin dari area GMP; uji coba 15 menit; label Engineering/Vendor; tabel 5 formulir (F01B–F05B)
 - `sop-en-015-pure-water-form.md` — **upgrade besar**: 21 parameter monitoring dengan nilai standar dan alert/action limits; frekuensi 6x/hari (3 shift)
 - `compressed-air-system.md` — parameter pemantauan kunci per equipment; interval perawatan L2/L3/L4
 - `spare-parts-management.md` — seksi Sistem Kode Lokasi dan Jadwal Pemantauan Inventori
@@ -89,17 +89,17 @@ Catatan append-only dari semua operasi wiki.
 - Update `wiki/index.md`: semua referensi source pages diubah ke `engineering/` path; Dokumen Raw diperbarui dengan 11 PDF aktual
 
 **Halaman yang dibuat (11 halaman di wiki/engineering/):**
-- `sop-en-001-lampu-listrik.md` ← SOP/EBI/EN-001 Rev.02
-- `sop-en-003-perawatan-gedung.md` ← SOP/EBI/EN-003 Rev.03
-- `sop-en-004-perawatan-mesin.md` ← SOP/EBI/EN-004 Rev.02
-- `sop-en-005-suku-cadang.md` ← SOP/EBI/EN-005 Rev.03
-- `sop-en-013-udara-tekan.md` ← SOP/EBI/EN-013 Rev.04
-- `sop-en-014-perbaikan-mesin.md` ← SOP/EBI/EN-014 Rev.01
-- `sop-en-015-water-treatment.md` ← SOP/EBI/EN-015 Rev.08 (109 hal.)
-- `sop-en-016-hvac.md` ← SOP/EBI/EN-016 Rev.07
-- `sop-en-024-filling-bosch.md` ← SOP/EBI/EN-024 Rev.04 *(baru)*
-- `sop-en-044-filling-tofflon.md` ← SOP/EBI/EN-044 Rev.01 *(baru)*
-- `sop-en-055-bms-ems.md` ← SOP/EBI/EN-055 Rev.00 *(baru)*
+- `penanganan-lampu-distribusi-listrik.md` ← SOP/EBI/EN-001 Rev.02
+- `perawatan-gedung-infrastruktur.md` ← SOP/EBI/EN-003 Rev.03
+- `preventive-maintenance-mesin.md` ← SOP/EBI/EN-004 Rev.02
+- `pengelolaan-suku-cadang.md` ← SOP/EBI/EN-005 Rev.03
+- `operasi-perawatan-udara-tekan.md` ← SOP/EBI/EN-013 Rev.04
+- `penanganan-perbaikan-mesin.md` ← SOP/EBI/EN-014 Rev.01
+- `operasi-perawatan-pengolahan-air.md` ← SOP/EBI/EN-015 Rev.08 (109 hal.)
+- `operasi-perawatan-hvac.md` ← SOP/EBI/EN-016 Rev.07
+- `perawatan-mesin-filling-bosch.md` ← SOP/EBI/EN-024 Rev.04 *(baru)*
+- `perawatan-mesin-filling-tofflon.md` ← SOP/EBI/EN-044 Rev.01 *(baru)*
+- `operasi-perawatan-bms-ems.md` ← SOP/EBI/EN-055 Rev.00 *(baru)*
 
 **Catatan:**
 - Effective Date kosong di semua PDF (kolom tidak diisi)
@@ -117,11 +117,11 @@ Catatan append-only dari semua operasi wiki.
 2. `wiki/SOP-EBI-EN-014.01 Penanganan Perbaikan Terhadap Semua Mesin-mesin...md` (hasil konversi docx)
 
 **Analisis gap:**
-- SOP-003: `sop-en-003-perawatan-gedung.md` hanya berisi metadata dokumen; prosedur aktual, tanggung jawab, alat & bahan belum tercermin.
-- SOP-014.01: `sop-en-014-perbaikan-mesin.md` sudah lengkap — tidak ada gap signifikan.
+- SOP-003: `perawatan-gedung-infrastruktur.md` hanya berisi metadata dokumen; prosedur aktual, tanggung jawab, alat & bahan belum tercermin.
+- SOP-014.01: `penanganan-perbaikan-mesin.md` sudah lengkap — tidak ada gap signifikan.
 
 **Halaman yang diperbarui (2 halaman):**
-- `sop-en-003-perawatan-gedung.md` — ditambahkan: Tanggung Jawab (5 peran termasuk *Pengguna Area/Ruangan* baru di Rev.03), Petunjuk Umum (termasuk ISO 14001), Alat & Bahan, Prosedur lengkap (inspeksi, perbaikan cepat/lama, PJE, pembersihan lantai/mesin/plafon)
+- `perawatan-gedung-infrastruktur.md` — ditambahkan: Tanggung Jawab (5 peran termasuk *Pengguna Area/Ruangan* baru di Rev.03), Petunjuk Umum (termasuk ISO 14001), Alat & Bahan, Prosedur lengkap (inspeksi, perbaikan cepat/lama, PJE, pembersihan lantai/mesin/plafon)
 - `building-maintenance-overview.md` — ditambahkan: tabel Tanggung Jawab 5 peran, seksi Kepatuhan ISO 14001
 
 ---

@@ -52,7 +52,7 @@ Sistem HVAC adalah **sistem kritis** dalam produksi farmasi steril. Kegagalan si
 - Memicu out-of-specification (OOS) kondisi lingkungan
 - Mengharuskan investigasi dan potensi reject batch produksi
 
-Semua parameter harus terdokumentasi dan dipantau secara real-time via [[sop-en-055-bms-ems|EMS/BMS]].
+Semua parameter harus terdokumentasi dan dipantau secara real-time via [[operasi-perawatan-bms-ems|EMS/BMS]].
 
 ## Integrasi dengan BMS/EMS
 
@@ -69,8 +69,8 @@ BMS (Building Management System) mengintegrasikan kontrol dan monitoring sistem 
 
 ## Related pages
 
-- [[sop-en-016-hvac]]
-- [[sop-en-055-bms-ems]]
+- [[operasi-perawatan-hvac]]
+- [[operasi-perawatan-bms-ems]]
 - [[maintenance-types]]
 - [[engineering-responsibilities]]
 - [[synthesis-daily-monitoring]]

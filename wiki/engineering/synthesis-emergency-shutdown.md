@@ -120,11 +120,11 @@ Semua teknisi harus mengetahui urutan shutdown yang benar dan cara eskalasi yang
 
 ## Related pages
 
-- [[sop-en-016-hvac]]
-- [[sop-en-013-udara-tekan]]
-- [[sop-en-001-lampu-listrik]]
-- [[sop-en-014-perbaikan-mesin]]
-- [[sop-en-055-bms-ems]]
+- [[operasi-perawatan-hvac]]
+- [[operasi-perawatan-udara-tekan]]
+- [[penanganan-lampu-distribusi-listrik]]
+- [[penanganan-perbaikan-mesin]]
+- [[operasi-perawatan-bms-ems]]
 - [[hvac-system]]
 - [[electrical-system]]
 - [[compressed-air-system]]

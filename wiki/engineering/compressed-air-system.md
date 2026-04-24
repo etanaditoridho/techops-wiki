@@ -71,7 +71,7 @@ Kompressor dijalankan secara bergantian (rotasi harian) untuk pemerataan jam ope
 
 ## Related pages
 
-- [[sop-en-013-udara-tekan]]
+- [[operasi-perawatan-udara-tekan]]
 - [[maintenance-types]]
 - [[engineering-responsibilities]]
 - [[synthesis-daily-monitoring]]

@@ -11,17 +11,17 @@ Semua halaman SOP kini berada di subfolder `engineering/`.
 
 | Halaman | Deskripsi |
 |---|---|
-| [[engineering/sop-en-001-lampu-listrik]] | SOP/EBI/EN-001 Rev.02 — Penanganan & Perawatan Lampu dan Sistem Distribusi Listrik |
-| [[engineering/sop-en-003-perawatan-gedung]] | SOP/EBI/EN-003 Rev.03 — Perawatan Gedung & Infrastruktur |
-| [[engineering/sop-en-004-perawatan-mesin]] | SOP/EBI/EN-004 Rev.02 — Perawatan Preventive Maintenance Mesin |
-| [[engineering/sop-en-005-suku-cadang]] | SOP/EBI/EN-005 Rev.03 — Penyimpanan dan Pengelolaan Suku Cadang |
-| [[engineering/sop-en-013-udara-tekan]] | SOP/EBI/EN-013 Rev.04 — Pengoperasian dan Perawatan Sistem Udara Tekan |
-| [[engineering/sop-en-014-perbaikan-mesin]] | SOP/EBI/EN-014 Rev.01 — Penanganan dan Perbaikan Mesin |
-| [[engineering/sop-en-015-water-treatment]] | SOP/EBI/EN-015 Rev.08 — Pengoperasian dan Perawatan Sistem Pengolahan Air (109 hal.) |
-| [[engineering/sop-en-016-hvac]] | SOP/EBI/EN-016 Rev.07 — Pengoperasian dan Perawatan Sistem HVAC |
-| [[engineering/sop-en-024-filling-bosch]] | SOP/EBI/EN-024 Rev.04 — Perawatan Mesin Filling Bosch FXS 2051 |
-| [[engineering/sop-en-044-filling-tofflon]] | SOP/EBI/EN-044 Rev.01 — Perawatan Mesin Filling Tofflon |
-| [[engineering/sop-en-055-bms-ems]] | SOP/EBI/EN-055 Rev.00 — Pengoperasian dan Perawatan Sistem EMS & BMS |
+| [[engineering/penanganan-lampu-distribusi-listrik]] | SOP/EBI/EN-001 Rev.02 — Penanganan & Perawatan Lampu dan Sistem Distribusi Listrik |
+| [[engineering/perawatan-gedung-infrastruktur]] | SOP/EBI/EN-003 Rev.03 — Perawatan Gedung & Infrastruktur |
+| [[engineering/preventive-maintenance-mesin]] | SOP/EBI/EN-004 Rev.02 — Perawatan Preventive Maintenance Mesin |
+| [[engineering/pengelolaan-suku-cadang]] | SOP/EBI/EN-005 Rev.03 — Penyimpanan dan Pengelolaan Suku Cadang |
+| [[engineering/operasi-perawatan-udara-tekan]] | SOP/EBI/EN-013 Rev.04 — Pengoperasian dan Perawatan Sistem Udara Tekan |
+| [[engineering/penanganan-perbaikan-mesin]] | SOP/EBI/EN-014 Rev.01 — Penanganan dan Perbaikan Mesin |
+| [[engineering/operasi-perawatan-pengolahan-air]] | SOP/EBI/EN-015 Rev.08 — Pengoperasian dan Perawatan Sistem Pengolahan Air (109 hal.) |
+| [[engineering/operasi-perawatan-hvac]] | SOP/EBI/EN-016 Rev.07 — Pengoperasian dan Perawatan Sistem HVAC |
+| [[engineering/perawatan-mesin-filling-bosch]] | SOP/EBI/EN-024 Rev.04 — Perawatan Mesin Filling Bosch FXS 2051 |
+| [[engineering/perawatan-mesin-filling-tofflon]] | SOP/EBI/EN-044 Rev.01 — Perawatan Mesin Filling Tofflon |
+| [[engineering/operasi-perawatan-bms-ems]] | SOP/EBI/EN-055 Rev.00 — Pengoperasian dan Perawatan Sistem EMS & BMS |
 
 ---
 

@@ -28,6 +28,6 @@ SOP/EBI/EN-013
 
 ## Related pages
 - [[compressed-air-system]]
-- [[sop-en-013-udara-tekan]]
-- [[sop-en-004-perawatan-mesin]]
+- [[operasi-perawatan-udara-tekan]]
+- [[preventive-maintenance-mesin]]
 - [[synthesis-daily-monitoring]]

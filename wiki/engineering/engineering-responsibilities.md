@@ -90,6 +90,6 @@ Manager Engineering
 - [[maintenance-types]]
 - [[pje-permintaan-jasa-engineering]]
 - [[spare-parts-management]]
-- [[sop-en-004-perawatan-mesin]]
-- [[sop-en-014-perbaikan-mesin]]
+- [[preventive-maintenance-mesin]]
+- [[penanganan-perbaikan-mesin]]
 - [[synthesis-onboarding-teknisi]]

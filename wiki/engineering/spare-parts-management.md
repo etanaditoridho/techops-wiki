@@ -81,8 +81,8 @@ Setiap kali spesifikasi spare parts **kritikal** diubah (berbeda dari spesifikas
 
 ## Related pages
 
-- [[sop-en-005-suku-cadang]]
+- [[pengelolaan-suku-cadang]]
 - [[maintenance-types]]
 - [[pje-permintaan-jasa-engineering]]
 - [[engineering-responsibilities]]
-- [[sop-en-014-perbaikan-mesin]]
+- [[penanganan-perbaikan-mesin]]
