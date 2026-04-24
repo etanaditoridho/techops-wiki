@@ -1,0 +1,39 @@
+---
+title: "📍 Finding: TEST — Kompresor trip saat suhu ambient tinggi"
+status: verified
+folder: ENGINEERING
+owner: ""
+version: 1
+review_date: 
+confidence: 
+tags:
+  - Operasi Perawatan Udara Tekan
+  - Synthesis Daily Monitoring
+  - Compressed Air System
+  - Preventive Maintenance Mesin
+notion_id: 34c664a8-3e24-8117-8eda-f4eb9e73e011
+synced: 2026-04-24
+---
+
+**Summary**: Kompresor cenderung trip ketika suhu ruang melebihi 35°C. Perlu tindakan preventif berupa pengecekan ventilasi dan filter udara.
+**Sources**: Knowledge capture dari sesi diskusi
+**Last updated**: 2026-04-24
+**Department**: Engineering
+**Type**: finding
+## Knowledge
+## Temuan
+Kompresor trip berulang kali saat suhu ambient di ruang kompresor melebihi 35°C.
+## Langkah Penanganan
+1. Cek suhu ambient di sekitar kompresor
+1. Pastikan ventilasi ruang tidak terblokir
+1. Bersihkan filter udara masuk kompresor
+1. Jika suhu tetap tinggi, aktifkan exhaust fan tambahan
+## Rekomendasi
+Tambahkan monitoring suhu otomatis di ruang kompresor dan set alert di 33°C sebelum mencapai threshold trip.
+## SOP Terkait
+SOP/EBI/EN-013
+## Related pages
+- [[compressed-air-system]]
+- [[operasi-perawatan-udara-tekan]]
+- [[preventive-maintenance-mesin]]
+- [[synthesis-daily-monitoring]]
