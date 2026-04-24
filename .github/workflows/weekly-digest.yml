@@ -1,0 +1,76 @@
+name: Weekly SOP Digest
+
+on:
+  schedule:
+    - cron: '0 1 * * 1'  # tiap Senin jam 08.00 WIB
+  workflow_dispatch:
+
+jobs:
+  weekly-digest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install "notion-client==1.0.0"
+
+      - name: Run weekly digest
+        run: |
+          python -c "
+          import os
+          from datetime import date, timedelta
+          from notion_client import Client
+
+          notion = Client(auth=os.environ['NOTION_API_KEY'])
+          DATABASE_ID = os.environ['NOTION_DATABASE_ID']
+          PARENT_PAGE_ID = os.environ['DIGEST_PARENT_PAGE_ID']
+
+          today = date.today()
+          today_iso = today.isoformat()
+          in_30 = (today + timedelta(days=30)).isoformat()
+
+          def name(p): return p['properties']['Name']['title'][0]['text']['content'] if p['properties']['Name']['title'] else '(no name)'
+          def owner(p):
+              o = p['properties'].get('Owner', {}).get('rich_text', [])
+              return o[0]['text']['content'] if o else '(no owner)'
+
+          all_pages = notion.databases.query(database_id=DATABASE_ID)['results']
+          stale = [p for p in all_pages if p['properties'].get('Status', {}).get('status', {}).get('name') == 'stale']
+          verified = [p for p in all_pages if p['properties'].get('Status', {}).get('status', {}).get('name') == 'verified']
+
+          upcoming = notion.databases.query(
+              database_id=DATABASE_ID,
+              filter={'and': [
+                  {'property': 'Review Date', 'date': {'on_or_after': today_iso}},
+                  {'property': 'Review Date', 'date': {'on_or_before': in_30}},
+                  {'property': 'Status', 'status': {'does_not_equal': 'stale'}}
+              ]}
+          )['results']
+
+          stale_list = '\n'.join(['- ' + name(p) + ' (Owner: ' + owner(p) + ')' for p in stale]) or 'Tidak ada SOP stale.'
+          upcoming_list = '\n'.join(['- ' + name(p) + ' (Owner: ' + owner(p) + ')' for p in upcoming]) or 'Tidak ada SOP jatuh tempo 30 hari ke depan.'
+
+          title = 'Weekly Digest - ' + today.strftime('%d %B %Y')
+          content = (
+              'Digest otomatis - ' + today_iso + '\n\n'
+              '## Ringkasan\n\n'
+              'Total SOP: ' + str(len(all_pages)) + '\n'
+              'Verified: ' + str(len(verified)) + '\n'
+              'Stale: ' + str(len(stale)) + '\n'
+              'Jatuh tempo 30 hari: ' + str(len(upcoming)) + '\n\n'
+              '## SOP Stale - Perlu Diperbarui\n\n' + stale_list + '\n\n'
+              '## SOP Mendekati Review Date\n\n' + upcoming_list
+          )
+
+          notion.pages.create(
+              parent={'page_id': PARENT_PAGE_ID},
+              properties={'title': [{'text': {'content': title}}]},
+              children=[{'object': 'block', 'type': 'paragraph', 'paragraph': {'rich_text': [{'type': 'text', 'text': {'content': content}}]}}]
+          )
+          print('[weekly-digest] Created: ' + title)
+          "
+        env:
+          NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
+          NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
+          DIGEST_PARENT_PAGE_ID: ${{ secrets.DIGEST_PARENT_PAGE_ID }}

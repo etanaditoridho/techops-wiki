@@ -1,0 +1,60 @@
+name: SOP Staleness Check
+
+on:
+  schedule:
+    - cron: '0 18 * * *'  # tiap hari jam 01.00 WIB
+  workflow_dispatch:
+
+jobs:
+  check-staleness:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install "notion-client==1.0.0"
+
+      - name: Run staleness check
+        run: |
+          python -c "
+          import os
+          from datetime import date
+          from notion_client import Client
+
+          notion = Client(auth=os.environ['NOTION_API_KEY'])
+          DATABASE_ID = os.environ['NOTION_DATABASE_ID']
+          today = date.today().isoformat()
+
+          print('[staleness-check] Running for: ' + today)
+
+          response = notion.databases.query(
+              database_id=DATABASE_ID,
+              filter={
+                  'and': [
+                      {'property': 'Review Date', 'date': {'on_or_before': today}},
+                      {'property': 'Status', 'status': {'does_not_equal': 'stale'}},
+                      {'property': 'Status', 'status': {'does_not_equal': 'archived'}},
+                      {'property': 'Status', 'status': {'does_not_equal': 'obsoleted'}}
+                  ]
+              }
+          )
+
+          pages = response.get('results', [])
+          print('[staleness-check] Found ' + str(len(pages)) + ' SOP to mark stale')
+
+          for page in pages:
+              name = page['properties']['Name']['title'][0]['text']['content'] if page['properties']['Name']['title'] else '(no name)'
+              owner = page['properties'].get('Owner', {}).get('rich_text', [])
+              owner_name = owner[0]['text']['content'] if owner else '(no owner)'
+              notion.pages.update(
+                  page_id=page['id'],
+                  properties={'Status': {'status': {'name': 'stale'}}}
+              )
+              print('  stale: ' + name + ' (Owner: ' + owner_name + ')')
+
+          print('[staleness-check] Done.')
+          "
+        env:
+          NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
+          NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
