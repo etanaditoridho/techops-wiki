@@ -16,7 +16,7 @@ tags:
   - Electrical System
   - Operasi Perawatan Hvac
 notion_id: 34c664a8-3e24-8145-bc2a-e50e8a10f484
-synced: 2026-04-24
+synced: 2026-04-25
 ---
 
 ## LLM Summary

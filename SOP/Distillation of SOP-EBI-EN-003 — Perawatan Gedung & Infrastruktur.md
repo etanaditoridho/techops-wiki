@@ -15,7 +15,7 @@ tags:
   - Perawatan Gedung Infrastruktur
   - SOP EN-003
 notion_id: 34c664a8-3e24-81c8-9cc4-fff22cb8440b
-synced: 2026-04-24
+synced: 2026-04-25
 ---
 
 ## LLM Summary

@@ -11,7 +11,7 @@ tags:
   - Engineering Responsibilities
   - Sop Qa 008 Deviasi
 notion_id: 34c664a8-3e24-8113-b137-e707e092b5cd
-synced: 2026-04-24
+synced: 2026-04-25
 ---
 
 **Summary**: Prosedur dokumentasi dan pengelolaan Tindakan Korektif dan Preventif (CAPA) PT EBI — mencakup inisiasi, asesmen SME, persetujuan, implementasi, pemeriksaan efektivitas, dan penutupan CAPA dari semua sumber quality event.
