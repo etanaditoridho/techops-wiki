@@ -12,7 +12,7 @@ tags:
   - Operasi Perawatan Udara Tekan
   - Synthesis Daily Monitoring
 notion_id: 34c664a8-3e24-8117-8eda-f4eb9e73e011
-synced: 2026-04-25
+synced: 2026-04-26
 ---
 
 ## LLM Summary
