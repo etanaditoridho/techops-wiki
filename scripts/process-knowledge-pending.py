@@ -2,19 +2,16 @@
 """
 process-knowledge-pending.py
 Baca Notion "Knowledge Pending Review":
-  - Status 'approved' → buat .md di wiki/ dengan nama file yang proper → archive di Notion
+  - Status 'approved' → buat .md baru atau UPDATE file existing (append) → archive di Notion
   - Status 'rejected' → hapus halaman dari Notion
 
-Naming convention file .md:
-  finding-[topik].md
-  lesson-[topik].md
-  clarification-[topik].md
-  procedure-[topik].md
-  decision-[topik].md
-  synthesis-[topik].md
+Versioning strategy:
+  - File baru → buat fresh
+  - File sudah exist → append section baru dengan tanggal, JANGAN overwrite
+  - Git history menyimpan semua versi lama secara otomatis
 """
 
-import os, re, requests
+import os, re, requests, subprocess
 from pathlib import Path
 from datetime import datetime
 
@@ -28,7 +25,6 @@ HEADERS = {
     "Notion-Version": "2022-06-28"
 }
 
-# Prefix emoji untuk H1 di dalam file .md
 TYPE_EMOJI = {
     "finding":       "📍",
     "lesson":        "💡",
@@ -74,21 +70,14 @@ def archive_page(page_id: str):
     )
 
 def make_filename(ktype: str, name: str, wiki_file: str) -> str:
-    """Buat nama file .md yang proper berdasarkan tipe knowledge."""
-    # Kalau sudah ada wiki_file yang proper, pakai itu
     if wiki_file:
         slug = wiki_file if wiki_file.endswith(".md") else wiki_file + ".md"
-        # Pastikan prefix tipe ada di nama file
         for t in TYPE_EMOJI:
             if slug.startswith(t + "-"):
                 return slug
-        # Kalau tidak ada prefix, tambahkan
         if ktype in TYPE_EMOJI:
             return f"{ktype}-{slug}"
         return slug
-
-    # Buat slug dari nama
-    # Hapus prefix emoji kalau ada di nama
     clean_name = re.sub(r'^[^\w]+\s*\w+:\s*', '', name).strip()
     slug = slugify(clean_name)
     if ktype in TYPE_EMOJI:
@@ -96,37 +85,71 @@ def make_filename(ktype: str, name: str, wiki_file: str) -> str:
     return f"{slug}.md"
 
 def make_h1_title(ktype: str, name: str) -> str:
-    """Buat judul H1 yang proper dengan emoji prefix."""
-    # Bersihkan nama dari prefix yang mungkin sudah ada
     clean_name = re.sub(r'^[📍💡🔍📋⚡🔗📚]\s*\w+:\s*', '', name).strip()
     clean_name = re.sub(r'^\w+:\s*', '', clean_name).strip()
-
     emoji = TYPE_EMOJI.get(ktype, "")
     ktype_label = ktype.capitalize() if ktype else ""
-
     if emoji and ktype_label:
         return f"{emoji} {ktype_label}: {clean_name}"
     return clean_name
 
-def create_wiki_md(item: dict) -> Path:
-    props     = item["properties"]
-    name      = get_title_prop(props)
-    ktype     = get_select_prop(props, "Type")
-    dept      = get_select_prop(props, "Department").lower()
-    summary   = get_text_prop(props, "Summary")
-    content   = get_text_prop(props, "Content")
-    related   = get_text_prop(props, "Related SOP")
+def build_update_section(content: str, summary: str, related: str, today: str) -> str:
+    """Build an update section to append to existing file."""
+    return f"""
+
+---
+
+## Update — {today}
+
+**Summary update**: {summary}
+
+{content}
+
+{f"**SOP Terkait**: {related}" if related else ""}
+"""
+
+def process_item(item: dict) -> tuple[Path, bool]:
+    """
+    Returns (filepath, is_new_file).
+    If file exists → append update section.
+    If file doesn't exist → create fresh.
+    """
+    props   = item["properties"]
+    name    = get_title_prop(props)
+    ktype   = get_select_prop(props, "Type")
+    dept    = get_select_prop(props, "Department").lower()
+    summary = get_text_prop(props, "Summary")
+    content = get_text_prop(props, "Content")
+    related = get_text_prop(props, "Related SOP")
     wiki_file = get_text_prop(props, "Wiki File")
-    today     = datetime.now().strftime("%Y-%m-%d")
+    today   = datetime.now().strftime("%Y-%m-%d")
 
-    filename  = make_filename(ktype, name, wiki_file)
-    h1_title  = make_h1_title(ktype, name)
-
+    filename    = make_filename(ktype, name, wiki_file)
+    h1_title    = make_h1_title(ktype, name)
     dept_folder = WIKI_DIR / (dept or "engineering")
     dept_folder.mkdir(parents=True, exist_ok=True)
     filepath = dept_folder / filename
 
-    md = f"""# {h1_title}
+    if filepath.exists():
+        # File already exists → APPEND update section, don't overwrite
+        existing = filepath.read_text(encoding="utf-8")
+
+        # Update Last updated in frontmatter
+        existing = re.sub(
+            r'\*\*Last updated\*\*:.*',
+            f'**Last updated**: {today}',
+            existing
+        )
+
+        # Append update section
+        update_section = build_update_section(content, summary, related, today)
+        new_content = existing.rstrip() + update_section
+        filepath.write_text(new_content, encoding="utf-8")
+        return filepath, False  # False = not new, was updated
+
+    else:
+        # File doesn't exist → create fresh
+        md = f"""# {h1_title}
 
 **Summary**: {summary}
 **Sources**: Knowledge capture dari sesi diskusi
@@ -148,12 +171,12 @@ def create_wiki_md(item: dict) -> Path:
 - [[engineering-responsibilities]]
 - [[maintenance-types]]
 """
-    filepath.write_text(md, encoding="utf-8")
-    return filepath
+        filepath.write_text(md, encoding="utf-8")
+        return filepath, True  # True = new file
 
 def main():
     items = get_pending_items()
-    approved = rejected = 0
+    created = updated = rejected = 0
 
     print(f"Found {len(items)} items in Knowledge Pending Review\n")
 
@@ -166,10 +189,17 @@ def main():
         print(f"  [{status}] {name}")
 
         if status == "approved":
-            path = create_wiki_md(item)
-            archive_page(pid)
-            approved += 1
-            print(f"    ✓ Created: {path.name}")
+            try:
+                path, is_new = process_item(item)
+                archive_page(pid)
+                if is_new:
+                    created += 1
+                    print(f"    ✓ Created: {path.name}")
+                else:
+                    updated += 1
+                    print(f"    ✓ Updated (appended): {path.name}")
+            except Exception as e:
+                print(f"    ✗ Error: {e}")
 
         elif status == "rejected":
             archive_page(pid)
@@ -179,7 +209,7 @@ def main():
         else:
             print(f"    — Skip (pending)")
 
-    print(f"\nDone! Approved: {approved} | Rejected: {rejected}")
+    print(f"\nDone! Created: {created} | Updated: {updated} | Rejected: {rejected}")
 
 if __name__ == "__main__":
     main()
