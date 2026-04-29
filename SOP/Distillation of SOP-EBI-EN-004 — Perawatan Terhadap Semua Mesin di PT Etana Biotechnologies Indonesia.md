@@ -13,7 +13,7 @@ tags:
   - Penanganan Perbaikan Mesin
   - SOP EN-004
 notion_id: 34c664a8-3e24-8115-b5eb-d21a76c140ad
-synced: 2026-04-28
+synced: 2026-04-29
 ---
 
 ## LLM Summary

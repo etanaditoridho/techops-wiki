@@ -12,7 +12,7 @@ tags:
   - Sop Qa 008 Deviasi
   - Spare Parts Management
 notion_id: 34c664a8-3e24-8197-a89a-c8ad220f27f6
-synced: 2026-04-28
+synced: 2026-04-29
 ---
 
 **Summary**: Prosedur manajemen perubahan PT EBI yang mencakup pembuatan, kajian risiko, kategori (Kritikal/Mayor/Minor), persetujuan, dan penutupan change control untuk semua perubahan yang terkait mutu produk dan aktivitas GMP/GDP/GLP.

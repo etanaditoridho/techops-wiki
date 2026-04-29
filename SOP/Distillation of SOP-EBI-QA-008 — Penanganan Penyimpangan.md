@@ -11,7 +11,7 @@ tags:
   - Sop Qa 035 Capa
   - Engineering Responsibilities
 notion_id: 34c664a8-3e24-81ac-88ad-c431c0b5b59a
-synced: 2026-04-28
+synced: 2026-04-29
 ---
 
 **Summary**: Prosedur manajemen penyimpangan PT EBI mencakup pelaporan, klasifikasi dampak (Event Comment/Non-Conformity/Laporan Penyimpangan), investigasi akar masalah, CAPA, dan penutupan — berlaku untuk semua aktivitas GMP, GDP, dan GLP.

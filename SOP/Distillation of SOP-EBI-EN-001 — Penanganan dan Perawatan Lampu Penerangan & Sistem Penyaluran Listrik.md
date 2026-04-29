@@ -12,7 +12,7 @@ tags:
   - Engineering Responsibilities
   - SOP EN-001
 notion_id: 34c664a8-3e24-8116-9d6f-fc879a4da23a
-synced: 2026-04-28
+synced: 2026-04-29
 ---
 
 ## LLM Summary
