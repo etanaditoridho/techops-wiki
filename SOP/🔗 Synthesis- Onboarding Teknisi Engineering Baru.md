@@ -18,7 +18,7 @@ tags:
   - SOP EN-001
   - SOP EN-003
 notion_id: 34c664a8-3e24-8199-8e35-e80aaa468f08
-synced: 2026-05-01
+synced: 2026-05-02
 ---
 
 **Summary**: Panduan orientasi bagi teknisi Engineering baru di PT EBI — apa yang harus dipelajari, sistem apa yang harus dipahami, dan prosedur apa yang wajib dikuasai sebelum bekerja mandiri.

@@ -18,7 +18,7 @@ tags:
   - SOP EN-016
   - SOP EN-013
 notion_id: 34c664a8-3e24-818c-9982-db8e72d0f2ec
-synced: 2026-05-01
+synced: 2026-05-02
 ---
 
 **Summary**: Sintesis tugas pemantauan harian yang harus dilakukan teknisi Engineering PT EBI — mencakup semua sistem utama: HVAC, udara tekan, EMS/BMS, kelistrikan, dan mesin produksi.
