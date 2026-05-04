@@ -1,0 +1,46 @@
+name: Process SOP — Power Automate Trigger
+
+on:
+  repository_dispatch:
+    types: [process-sop]
+
+jobs:
+  process-sop:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install requests python-dotenv markitdown
+
+      - name: Process SOP from Power Automate
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GITHUB_TOKEN:      ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPO:       ${{ github.repository }}
+          SOP_FILENAME:      ${{ github.event.client_payload.filename }}
+          SOP_DOWNLOAD_URL:  ${{ github.event.client_payload.download_url }}
+        run: |
+          cd middleware
+          python process_single.py
+
+      - name: Trigger Notion sync
+        if: success()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.actions.createWorkflowDispatch({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id: 'populate-and-update.yml',
+              ref: 'main'
+            });
+            console.log('Triggered Notion sync workflow');
