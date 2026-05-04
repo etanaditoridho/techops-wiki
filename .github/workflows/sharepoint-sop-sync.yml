@@ -1,0 +1,46 @@
+name: SharePoint SOP Sync
+
+on:
+  schedule:
+    - cron: '0 18 * * *'  # Jam 01:00 WIB = 18:00 UTC
+  workflow_dispatch:       # Bisa di-trigger manual juga
+
+jobs:
+  sync-sop:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install msal requests anthropic PyMuPDF
+
+      - name: Run SOP sync
+        env:
+          SHAREPOINT_TENANT_ID: ${{ secrets.SHAREPOINT_TENANT_ID }}
+          SHAREPOINT_CLIENT_ID: ${{ secrets.SHAREPOINT_CLIENT_ID }}
+          SHAREPOINT_CLIENT_SECRET: ${{ secrets.SHAREPOINT_CLIENT_SECRET }}
+          CLAUDE_API_KEY: ${{ secrets.CLAUDE_API_KEY }}
+          SHAREPOINT_SITE_ID: ${{ secrets.SHAREPOINT_SITE_ID }}
+        run: |
+          python middleware/sync_sharepoint_sop.py
+
+      - name: Commit and push wiki
+        run: |
+          git config user.name "TechOps KM Bot"
+          git config user.email "techops-km@etanabiotech.com"
+          git add wiki/
+          git add middleware/processed_files.json
+          git diff --staged --quiet || git commit -m "chore: sync SOP wiki dari SharePoint [$(date '+%Y-%m-%d %H:%M WIB')]"
+          git push

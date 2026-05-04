@@ -1,0 +1,62 @@
+name: SharePoint Sync — TechOps KM
+
+on:
+  schedule:
+    # Jalan setiap hari jam 02:00 WIB (19:00 UTC)
+    - cron: "0 19 * * *"
+  workflow_dispatch:
+    # Bisa dijalankan manual dari GitHub Actions tab
+    inputs:
+      dry_run:
+        description: 'Dry run (scan only, no push)'
+        required: false
+        default: 'false'
+        type: boolean
+
+jobs:
+  sharepoint-sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install requests python-dotenv markitdown
+
+      - name: Run SharePoint sync pipeline
+        env:
+          AZURE_TENANT_ID:     ${{ secrets.AZURE_TENANT_ID }}
+          AZURE_CLIENT_ID:     ${{ secrets.AZURE_CLIENT_ID }}
+          AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+          SHAREPOINT_SITE_URL: ${{ secrets.SHAREPOINT_SITE_URL }}
+          SHAREPOINT_FOLDER:   ${{ secrets.SHAREPOINT_FOLDER }}
+          ANTHROPIC_API_KEY:   ${{ secrets.ANTHROPIC_API_KEY }}
+          GITHUB_TOKEN:        ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPO:         ${{ github.repository }}
+        run: |
+          cd middleware
+          if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
+            python main.py --dry-run
+          else
+            python main.py
+          fi
+
+      - name: Trigger enrich and Notion sync
+        if: success()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.actions.createWorkflowDispatch({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id: 'populate-and-update.yml',
+              ref: 'main'
+            });
+            console.log('Triggered populate-and-update workflow');
