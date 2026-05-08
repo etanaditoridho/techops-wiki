@@ -13,6 +13,13 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y sshpass
 
+      - name: Check secrets presence
+        run: |
+          [ -n '${{ secrets.SFTP_HOST }}' ] && echo "HOST OK" || echo "HOST EMPTY"
+          [ -n '${{ secrets.SFTP_PORT }}' ] && echo "PORT OK" || echo "PORT EMPTY"
+          [ -n '${{ secrets.SFTP_USER }}' ] && echo "USER OK" || echo "USER EMPTY"
+          [ -n '${{ secrets.SFTP_PASSWORD }}' ] && echo "PASSWORD OK" || echo "PASSWORD EMPTY"
+
       - name: Test SFTP connection
         run: |
           sshpass -p '${{ secrets.SFTP_PASSWORD }}' sftp \
@@ -25,10 +32,3 @@ jobs:
           ls
           bye
           EOF
-
- - name: Check secrets presence
-        run: |
-          [ -n '${{ secrets.SFTP_HOST }}' ] && echo "HOST OK" || echo "HOST EMPTY"
-          [ -n '${{ secrets.SFTP_PORT }}' ] && echo "PORT OK" || echo "PORT EMPTY"
-          [ -n '${{ secrets.SFTP_USER }}' ] && echo "USER OK" || echo "USER EMPTY"
-          [ -n '${{ secrets.SFTP_PASSWORD }}' ] && echo "PASSWORD OK" || echo "PASSWORD EMPTY"
