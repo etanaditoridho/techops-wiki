@@ -13,19 +13,19 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y sshpass
 
-      - name: Test SFTP connection
-        env:
-          SSHPASS: ${{ secrets.SFTP_PASSWORD }}
+      - name: Check secrets presence
         run: |
-          if [ -z "$SSHPASS" ]; then
-            echo "SFTP_PASSWORD is EMPTY"
-            exit 1
-          fi
+          [ -n '${{ secrets.SFTP_HOST }}' ] && echo "HOST OK" || echo "HOST EMPTY"
+          [ -n '${{ secrets.SFTP_PORT }}' ] && echo "PORT OK" || echo "PORT EMPTY"
+          [ -n '${{ secrets.SFTP_USER }}' ] && echo "USER OK" || echo "USER EMPTY"
+          [ -n '${{ secrets.SFTP_PASSWORD }}' ] && echo "PASSWORD OK" || echo "PASSWORD EMPTY"
 
-          sshpass -e sftp \
+      - name: Test SFTP connection
+        run: |
+          sshpass -p '${{ secrets.SFTP_PASSWORD }}' sftp \
             -o StrictHostKeyChecking=no \
-            -P 7235 \
-            aikms@renodoc.asiatirtapharma.com <<'EOF'
+            -P '${{ secrets.SFTP_PORT }}' \
+            '${{ secrets.SFTP_USER }}@${{ secrets.SFTP_HOST }}' <<'EOF'
           pwd
           ls
           cd sop
