@@ -32,3 +32,11 @@ jobs:
           ls
           bye
           EOF
+      - name: Test basic connectivity
+        run: |
+            echo "Testing DNS..."
+            nslookup renodoc.asiatirtapharma.com
+            echo "Testing port..."
+            nc -zv renodoc.asiatirtapharma.com 7235 -w 10
+            echo "Testing curl..."
+            curl -v telnet://renodoc.asiatirtapharma.com:7235 --max-time 10
