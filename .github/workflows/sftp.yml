@@ -8,18 +8,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Install sshpass
+      - name: Install tools
         run: |
           sudo apt-get update
-          sudo apt-get install -y sshpass
+          sudo apt-get install -y sshpass netcat-openbsd
 
-      - name: Check secrets presence
+      - name: Test basic connectivity
         run: |
-          [ -n '${{ secrets.SFTP_HOST }}' ] && echo "HOST OK" || echo "HOST EMPTY"
-          [ -n '${{ secrets.SFTP_PORT }}' ] && echo "PORT OK" || echo "PORT EMPTY"
-          [ -n '${{ secrets.SFTP_USER }}' ] && echo "USER OK" || echo "USER EMPTY"
-          [ -n '${{ secrets.SFTP_PASSWORD }}' ] && echo "PASSWORD OK" || echo "PASSWORD EMPTY"
-
+          echo "=== DNS Check ==="
+          nslookup renodoc.asiatirtapharma.com
+          echo "=== Port Check ==="
+          nc -zv renodoc.asiatirtapharma.com 7235 -w 10 || echo "Port tidak bisa diakses"
+          
       - name: Test SFTP connection
         run: |
           sshpass -p '${{ secrets.SFTP_PASSWORD }}' sftp \
@@ -28,15 +28,5 @@ jobs:
             '${{ secrets.SFTP_USER }}@${{ secrets.SFTP_HOST }}' <<'EOF'
           pwd
           ls
-          cd sop
-          ls
           bye
           EOF
-      - name: Test basic connectivity
-        run: |
-            echo "Testing DNS..."
-            nslookup renodoc.asiatirtapharma.com
-            echo "Testing port..."
-            nc -zv renodoc.asiatirtapharma.com 7235 -w 10
-            echo "Testing curl..."
-            curl -v telnet://renodoc.asiatirtapharma.com:7235 --max-time 10
