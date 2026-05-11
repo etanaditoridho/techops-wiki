@@ -1,0 +1,45 @@
+name: TechOps KM - SFTP SOP Sync
+
+on:
+  schedule:
+    - cron: '0 18 * * *'  # Jam 01.00 WIB = 18.00 UTC
+  workflow_dispatch:       # Bisa trigger manual
+
+jobs:
+  sync-sop:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install paramiko anthropic PyMuPDF
+
+      - name: Run SFTP SOP Sync
+        env:
+          SFTP_HOST: ${{ secrets.SFTP_HOST }}
+          SFTP_PORT: ${{ secrets.SFTP_PORT }}
+          SFTP_USER: ${{ secrets.SFTP_USER }}
+          SFTP_PASSWORD: ${{ secrets.SFTP_PASSWORD }}
+          CLAUDE_API_KEY: ${{ secrets.CLAUDE_API_KEY }}
+        run: |
+          python middleware/sync_sftp_sop.py
+
+      - name: Commit dan push wiki
+        run: |
+          git config user.name "TechOps KM Bot"
+          git config user.email "techops-km@etanabiotech.com"
+          git add wiki/
+          git diff --staged --quiet || git commit -m "chore: sync wiki SOP dari SFTP [$(date '+%Y-%m-%d %H:%M WIB')]"
+          git push

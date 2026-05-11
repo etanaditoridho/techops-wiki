@@ -7,6 +7,12 @@ and removes .md files for deleted PDFs.
 
 Flow:
   raw/<dept>/<file>.pdf  →  Claude API  →  wiki/<dept>/<slug>.md
+
+Fixes:
+  - Unicode output fix untuk Windows CMD
+  - State file repair (wiki path yang kosong)
+  - Skip file dengan nama bermasalah (double dot, spasi berlebih)
+  - Summary output di akhir proses
 """
 
 import os
@@ -18,6 +24,10 @@ import time
 import requests
 from pathlib import Path
 
+# Fix unicode output di Windows CMD
+if hasattr(sys.stdout, 'reconfigure'):
+    sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+
 ANTHROPIC_API_KEY = os.environ["ANTHROPIC_API_KEY"]
 WIKI_DIR = Path(os.environ.get("WIKI_DIR", "wiki"))
 RAW_DIR = Path(os.environ.get("RAW_DIR", "raw"))
@@ -25,6 +35,13 @@ STATE_FILE = Path(".raw-ingest-state.json")
 SKIP_DIRS = {"__pycache__", ".git"}
 
 # ── helpers ──────────────────────────────────────────────────────────────────
+
+def safe_print(msg: str):
+    """Print dengan fallback untuk karakter yang tidak bisa ditampilkan."""
+    try:
+        print(msg)
+    except UnicodeEncodeError:
+        print(msg.encode('ascii', errors='replace').decode('ascii'))
 
 def file_hash(path: Path) -> str:
     h = hashlib.md5()
@@ -35,11 +52,14 @@ def file_hash(path: Path) -> str:
 
 def load_state() -> dict:
     if STATE_FILE.exists():
-        return json.loads(STATE_FILE.read_text())
+        return json.loads(STATE_FILE.read_text(encoding="utf-8"))
     return {}
 
 def save_state(state: dict):
-    STATE_FILE.write_text(json.dumps(state, indent=2))
+    STATE_FILE.write_text(
+        json.dumps(state, indent=2, ensure_ascii=False),
+        encoding="utf-8"
+    )
 
 def slugify(name: str) -> str:
     name = re.sub(r"SOP-EBI-", "", name, flags=re.IGNORECASE)
@@ -67,13 +87,25 @@ def find_existing_wiki(slug: str, dept: str) -> Path | None:
                 return f
     return None
 
+def is_valid_filename(name: str) -> bool:
+    """
+    Cek apakah nama file valid untuk diproses.
+    Skip file dengan nama bermasalah.
+    """
+    if len(name) < 5:
+        return False
+    # Double dot sebelum extension (contoh: "file..pdf")
+    if re.search(r'\.\.[a-z]{2,4}$', name, re.IGNORECASE):
+        safe_print(f"    ⚠ Skip (double dot): {name}")
+        return False
+    return True
+
 # ── Claude API ────────────────────────────────────────────────────────────────
 
 SYSTEM_PROMPT = """Kamu adalah technical writer untuk PT Etana Biotechnologies Indonesia.
 Baca dokumen SOP terlampir dan buat file wiki dalam format Markdown (.md) yang lengkap.
 
 FORMAT WAJIB:
----
 # [Judul SOP Bahasa Indonesia]
 
 **Summary**: [Ringkasan 1-2 kalimat]
@@ -176,7 +208,7 @@ def process_pdf_with_claude(pdf_path: Path, today: str) -> str:
             return data["content"][0]["text"]
         except requests.exceptions.HTTPError as e:
             if resp.status_code == 429 and attempt < 2:
-                print(f"    Rate limit, tunggu 60 detik...")
+                safe_print(f"    Rate limit, tunggu 60 detik...")
                 time.sleep(60)
             else:
                 raise
@@ -195,16 +227,18 @@ def extract_slug_from_content(content: str, fallback: str) -> str:
 def scan_raw() -> dict:
     """Scan semua PDF di raw/ dan return {rel_path: hash}."""
     result = {}
-    for pdf in RAW_DIR.rglob("*.pdf"):
-        if any(p in SKIP_DIRS for p in pdf.parts):
-            continue
-        rel = str(pdf.relative_to(RAW_DIR))
-        result[rel] = file_hash(pdf)
-    for pdf in RAW_DIR.rglob("*.PDF"):
-        if any(p in SKIP_DIRS for p in pdf.parts):
-            continue
-        rel = str(pdf.relative_to(RAW_DIR))
-        result[rel] = file_hash(pdf)
+    for ext in ["*.pdf", "*.PDF"]:
+        for pdf in RAW_DIR.rglob(ext):
+            if any(p in SKIP_DIRS for p in pdf.parts):
+                continue
+            if not is_valid_filename(pdf.name):
+                continue
+            try:
+                rel = str(pdf.relative_to(RAW_DIR))
+                result[rel] = file_hash(pdf)
+            except Exception as e:
+                safe_print(f"    ⚠ Skip (error): {pdf.name} — {e}")
+                continue
     return result
 
 def get_wiki_path(pdf_rel: str, content: str = None) -> Path:
@@ -218,78 +252,135 @@ def get_wiki_path(pdf_rel: str, content: str = None) -> Path:
         slug = base_slug
     return WIKI_DIR / dept / f"{slug}.md"
 
+def repair_state(state: dict) -> dict:
+    """
+    Repair state file lama yang punya wiki path kosong.
+    Coba temukan wiki yang sudah ada di folder wiki/.
+    """
+    repaired = 0
+    for key in state:
+        if isinstance(state[key], dict) and state[key].get("wiki") == "":
+            pdf_path = Path(key)
+            dept = pdf_path.parts[0].lower() if len(pdf_path.parts) > 1 else "engineering"
+            slug = slugify(pdf_path.stem)
+            existing = find_existing_wiki(slug, dept)
+            if existing:
+                state[key]["wiki"] = str(existing)
+                repaired += 1
+    if repaired > 0:
+        safe_print(f"  [REPAIR] Fixed {repaired} empty wiki paths in state\n")
+    return state
+
 def main():
     from datetime import date
     today = date.today().isoformat()
 
-    print(f"Scanning raw/ for changes...\n")
+    safe_print(f"Scanning raw/ for changes...\n")
 
-    state = load_state()          # {rel_pdf_path: {"hash": ..., "wiki": ...}}
-    current = scan_raw()          # {rel_pdf_path: hash}
+    state = load_state()
+    state = repair_state(state)  # Fix state lama yang wiki path-nya kosong
+    current = scan_raw()
 
     added   = [p for p in current if p not in state]
-    changed = [p for p in current if p in state and current[p] != state[p]["hash"]]
-    deleted = [p for p in state  if p not in current]
+    changed = []
+    for p in current:
+        if p in state and current[p] != state[p]["hash"]:
+            # Cek apakah wiki sudah ada
+            wiki_path = Path(state[p]["wiki"]) if state[p].get("wiki") else None
+            if wiki_path and wiki_path.exists():
+                changed.append(p)  # PDF berubah, wiki sudah ada → update
+            else:
+                added.append(p)    # Wiki belum ada → treat as new
+    deleted = [p for p in state if p not in current]
 
-    print(f"Added: {len(added)} | Changed: {len(changed)} | Deleted: {len(deleted)}\n")
+    safe_print(f"Added: {len(added)} | Changed: {len(changed)} | Deleted: {len(deleted)}\n")
 
     if not added and not changed and not deleted:
-        print("No changes detected. Done.")
+        safe_print("No changes detected. Done.")
         return
+
+    processed = []
+    skipped   = []
+    errors    = []
 
     # ── Process added & changed ──────────────────────────────────────────────
     for rel in added + changed:
         pdf_path = RAW_DIR / rel
         action = "NEW" if rel in added else "UPDATED"
-        print(f"  [{action}] {rel}")
+        safe_print(f"  [{action}] {Path(rel).name}")
 
-        # Kalau ini UPDATE dan punya wiki lama → mark wiki lama sebagai obsoleted
-        if rel in changed and "wiki" in state[rel]:
+        # Skip jika wiki sudah ada dan file tidak berubah
+        if rel in added and rel in state and state[rel].get("wiki"):
+            wiki_path = Path(state[rel]["wiki"])
+            if wiki_path.exists():
+                safe_print(f"    ↳ Wiki already exists: {wiki_path.name} — skip")
+                skipped.append(rel)
+                continue
+
+        # Mark obsoleted jika UPDATE
+        if rel in changed and state[rel].get("wiki"):
             old_wiki = Path(state[rel]["wiki"])
             if old_wiki.exists():
                 content = old_wiki.read_text(encoding="utf-8")
-                # Tambah header obsoleted di atas file lama
                 if "**Status**: obsoleted" not in content:
                     content = f"**Status**: obsoleted\n**Superseded by**: [versi terbaru]\n\n---\n\n" + content
                     old_wiki.write_text(content, encoding="utf-8")
-                    print(f"    ↳ Marked obsoleted: {old_wiki}")
-                # Rename file lama dengan suffix _obsoleted
                 obsoleted_path = old_wiki.with_stem(old_wiki.stem + "_obsoleted")
                 old_wiki.rename(obsoleted_path)
-                print(f"    ↳ Renamed to: {obsoleted_path.name}")
+                safe_print(f"    ↳ Renamed to: {obsoleted_path.name}")
 
         # Process PDF dengan Claude API
-        print(f"    ↳ Processing with Claude API...")
+        safe_print(f"    ↳ Processing with Claude API...")
         try:
             content = process_pdf_with_claude(pdf_path, today)
         except Exception as e:
-            print(f"    ✗ Error: {e}")
+            safe_print(f"    ✗ Error: {e}")
+            errors.append(rel)
             continue
 
         # Tentukan path wiki baru
         wiki_path = get_wiki_path(rel, content)
         wiki_path.parent.mkdir(parents=True, exist_ok=True)
         wiki_path.write_text(content, encoding="utf-8")
-        print(f"    ✓ Written: {wiki_path}")
+        safe_print(f"    ✓ Written: {wiki_path}")
 
-        # Update state
-        state[rel] = {"hash": current[rel], "wiki": str(wiki_path)}
+        # Update state — simpan path wiki dengan benar
+        state[rel] = {
+            "hash": current[rel],
+            "wiki": str(wiki_path)
+        }
 
-        # Jeda antar file untuk hindari rate limit
+        processed.append((rel, str(wiki_path)))
         time.sleep(5)
 
     # ── Process deleted ──────────────────────────────────────────────────────
     for rel in deleted:
-        print(f"  [DELETED] {rel}")
-        if "wiki" in state[rel]:
+        safe_print(f"  [DELETED] {Path(rel).name}")
+        if state[rel].get("wiki"):
             wiki_path = Path(state[rel]["wiki"])
             if wiki_path.exists():
                 wiki_path.unlink()
-                print(f"    ✓ Removed wiki: {wiki_path}")
+                safe_print(f"    ✓ Removed wiki: {wiki_path}")
         del state[rel]
 
     save_state(state)
-    print(f"\nDone! State saved to {STATE_FILE}")
+
+    # ── Summary ──────────────────────────────────────────────────────────────
+    safe_print(f"\n{'='*55}")
+    safe_print(f"SUMMARY — {today}")
+    safe_print(f"{'='*55}")
+    safe_print(f"  Processed : {len(processed)} files")
+    safe_print(f"  Skipped   : {len(skipped)} files (wiki already exists)")
+    safe_print(f"  Errors    : {len(errors)} files")
+    if processed:
+        safe_print(f"\nWiki files created/updated:")
+        for rel, wiki in processed:
+            safe_print(f"  ✓ {Path(wiki).name}")
+    if errors:
+        safe_print(f"\nFiles with errors:")
+        for rel in errors:
+            safe_print(f"  ✗ {Path(rel).name}")
+    safe_print(f"\nState saved to {STATE_FILE}")
 
 if __name__ == "__main__":
     main()

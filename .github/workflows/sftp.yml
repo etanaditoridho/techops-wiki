@@ -19,7 +19,7 @@ jobs:
           nslookup renodoc.asiatirtapharma.com
           echo "=== Port Check ==="
           nc -zv renodoc.asiatirtapharma.com 7235 -w 10 || echo "Port tidak bisa diakses"
-          
+
       - name: Test SFTP connection
         run: |
           sshpass -p '${{ secrets.SFTP_PASSWORD }}' sftp \
@@ -29,4 +29,3 @@ jobs:
           pwd
           ls
           bye
-          EOF

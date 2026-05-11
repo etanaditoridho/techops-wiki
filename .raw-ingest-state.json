@@ -1,58 +1,50 @@
 {
-  "Engineering/SOP-EBI-EN-001.02 Penanganan dan Perawatan Terhadap Lampu Penerangan dan Sistem Penyaluran Tenaga Listrik.pdf": {
+  "Engineering\\SOP-EBI-EN-001.02 Penanganan dan Perawatan Terhadap Lampu Penerangan dan Sistem Penyaluran Tenaga Listrik.pdf": {
     "hash": "3a122341a6de4a484f34d6a5ed6de11e",
-    "wiki": ""
+    "wiki": "wiki\\Engineering\\penanganan-dan-perawatan-terhadap-lampu-penerangan-dan-siste.md"
   },
-  "Engineering/SOP-EBI-EN-003.03  Perawatan Gedung dan Infrastruktur.pdf": {
-    "hash": "5cab8e8e0f7bbdbefb587d69d5882689",
-    "wiki": ""
+  "Engineering\\SOP-EBI-EN-002.02 Pengoperasian dan Perawatan Terhadap Generator Set Perkins.pdf": {
+    "hash": "b3b47cbfc2827e3ddf754e760663e7dc",
+    "wiki": "wiki\\Engineering\\pengoperasian-dan-perawatan-terhadap-generator-set.md"
   },
-  "Engineering/SOP-EBI-EN-004.02 Perawatan terhadap mesin.pdf": {
-    "hash": "0530f6cee1c439d9adca42ee02642b60",
-    "wiki": ""
+  "Engineering\\SOP-EBI-EN-003.03  Perawatan Gedung dan Infrastruktur.pdf": {
+    "hash": "4f6788c512aabce87563c55fd0b09c52",
+    "wiki": "wiki\\Engineering\\perawatan-gedung-infrastruktur.md"
   },
-  "Engineering/SOP-EBI-EN-005.03 Penyimpanan Dan Pengolahan Suku Cadang_OFC.pdf": {
-    "hash": "688c991ebe1534b3ed97bc5dbfad568b",
-    "wiki": ""
+  "Engineering\\SOP-EBI-EN-004.02 Perawatan terhadap mesin.pdf": {
+    "hash": "142418808bd8b41c03419c117fc8bb94",
+    "wiki": "wiki\\Engineering\\perawatan-terhadap-semua-mesin-mesin-di-pt-etana-biotechnolo.md"
   },
-  "Engineering/SOP-EBI-EN-013 Pengoperasian Dan Perawatan Terhadap Sistem Udara Tekan.pdf": {
+  "Engineering\\SOP-EBI-EN-005.03 Penyimpanan Dan Pengolahan Suku Cadang_OFC.pdf": {
+    "hash": "ac97d4b882f081387b47d3dc2192446b",
+    "wiki": "wiki\\Engineering\\penyimpanan-dan-pengelolaan-suku-cadang.md"
+  },
+  "Engineering\\SOP-EBI-EN-006.01 Sistem Pengelolaan dan Penyimpanan Pelumas dan Grease.pdf": {
+    "hash": "951c85d26333111d4d4727c6e67a9c08",
+    "wiki": "wiki\\Engineering\\sistem-pengelolaan-dan-penyimpanan-pelumas-dan-grease.md"
+  },
+  "Engineering\\SOP-EBI-EN-013 Pengoperasian Dan Perawatan Terhadap Sistem Udara Tekan.pdf": {
     "hash": "9145ffd8329cda156dd9964d196fd203",
-    "wiki": ""
+    "wiki": "wiki\\Engineering\\pengoperasian-dan-perawatan-terhadap-sistem-udara-tekan.md"
   },
-  "Engineering/SOP-EBI-EN-014.01 Penanganan Perbaikan Terhadap Semua Mesin-mesin di PT  Etana Biotechnologies Indonesia.pdf": {
-    "hash": "16ce48bc4ce2016fd69e95908f4a81dd",
-    "wiki": ""
+  "Engineering\\SOP-EBI-EN-014.01 Penanganan Perbaikan Terhadap Semua Mesin-mesin di PT  Etana Biotechnologies Indonesia.pdf": {
+    "hash": "23fe472c255983526126608e1da5daeb",
+    "wiki": "wiki\\Engineering\\penanganan-dan-perbaikan-terhadap-semua-mesin-mesin-di-pt-et.md"
   },
-  "Engineering/SOP-EBI-EN-015.08 Pengoperasian Dan Perawatan Terhadap Sistem Pengolahan Air.pdf": {
-    "hash": "3c9a56006fd83923c8e41cae0715ace0",
-    "wiki": ""
+  "Engineering\\SOP-EBI-EN-015-F01H Pemantauan Harian Terhadap Generator Air Murni dan Distribusi Skidnya (2).pdf": {
+    "hash": "afc453414d6b6e9a17ef9dc3d0b6f74f",
+    "wiki": "wiki\\Engineering\\pemantauan-harian-terhadap-generator-air-murni-dan-distribus.md"
   },
-  "Engineering/SOP-EBI-EN-016.07 Pengoperasian Dan Perawatan Terhadap Sistem Ventilasi, Pemanas, Tata Udara.pdf": {
-    "hash": "ac9bc11f2b38173b89f1e23cb9c7065c",
-    "wiki": ""
+  "Engineering\\SOP-EBI-EN-024.04 Perawatan Mesin Filling Bosch_OFC.pdf": {
+    "hash": "3654c80136e387f35a7fa541d229a4eb",
+    "wiki": "wiki\\Engineering\\perawatan-terhadap-mesin-filling-bosch-fxs-2051.md"
   },
-  "Engineering/SOP-EBI-EN-024.04 Perawatan Mesin Filling Bosch_OFC.pdf": {
-    "hash": "32a0fc10571a1d3ba9761661927d8302",
-    "wiki": ""
-  },
-  "Engineering/SOP-EBI-EN-044.01 Perawatan Terhadap mesin Filling Tofflon.pdf": {
+  "Engineering\\SOP-EBI-EN-044.01 Perawatan Terhadap mesin Filling Tofflon.pdf": {
     "hash": "f1cd13e10d872419ae63ecebb85c0a97",
-    "wiki": ""
+    "wiki": "wiki\\Engineering\\perawatan-terhadap-mesin-filling.md"
   },
-  "Engineering/SOP-EBI-EN-055.00 BMS EMS Final engineering.pdf": {
-    "hash": "ab763f8b913dd03782460ee06a52a1dc",
-    "wiki": ""
-  },
-  "QA/SOP-EBI-QA-004.04 SOP Change Control (1).pdf": {
-    "hash": "365e7855b1a52a2fe2bd8b3accc11b9a",
-    "wiki": ""
-  },
-  "QA/SOP-EBI-QA-008.08 Penanganan Penyimpangan.pdf": {
-    "hash": "14cca83724c8cc314e37da2e57068cff",
-    "wiki": ""
-  },
-  "QA/SOP-EBI-QA-035.06 Penanganan dan Manajemen CAPA.pdf": {
-    "hash": "80d041b822ee1c21f146f45ec957d644",
-    "wiki": ""
+  "Engineering\\SOP-EBI-EN-048.00 Perawatan Terhadap mesin debagging tofflon.pdf": {
+    "hash": "c12a071c975f909b32ce3e2605b0256e",
+    "wiki": "wiki\\Engineering\\perawatan-terhadap-mesin-debagging-tofflon.md"
   }
 }
