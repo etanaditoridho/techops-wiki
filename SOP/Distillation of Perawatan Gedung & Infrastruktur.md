@@ -14,7 +14,7 @@ tags:
   - Maintenance Types
   - SOP EN-003
 notion_id: 34c664a8-3e24-81c8-9cc4-fff22cb8440b
-synced: 2026-05-14
+synced: 2026-05-15
 ---
 
 **Summary**: Panduan untuk menentukan langkah-langkah pembersihan, perapihan, perawatan dan perbaikan terhadap sarana bangunan dan infrastruktur sesuai standar bangunan terbaru.
