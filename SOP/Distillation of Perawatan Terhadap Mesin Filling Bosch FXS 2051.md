@@ -14,7 +14,7 @@ tags:
   - Spare Parts Management
   - SOP EN-024
 notion_id: 35d664a8-3e24-81ad-977a-f79bebcc5f33
-synced: 2026-05-15
+synced: 2026-05-16
 ---
 
 **Summary**: SOP untuk perawatan berkala mesin Filling Bosch FXS 2051 pada area produksi dengan jadwal 1 bulanan (L1), 6 bulanan (L3) dan 1 tahunan (L4).
