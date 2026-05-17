@@ -260,6 +260,69 @@ class KMLogger:
         else:
             print(f"[Logger] ✗ Upload failed: {r.status_code}")
 
+        # Cleanup log lama otomatis setelah upload
+        self.cleanup_old_logs(token)
+
+    def cleanup_old_logs(self, token=None, retention_days=30):
+        """
+        Hapus log files di SharePoint yang sudah lebih dari retention_days hari.
+        Dipanggil otomatis setiap kali flush_to_sharepoint() selesai.
+        Hanya menyentuh file activity-YYYY-MM-DD.ndjson — file lain tidak disentuh.
+        """
+        try:
+            if token is None:
+                token = self._get_token()
+
+            encoded  = LOG_FOLDER.replace(" ", "%20")
+            list_url = f"https://graph.microsoft.com/v1.0/sites/{SITE_ID}/drive/root:/{encoded}:/children"
+            headers  = {"Authorization": f"Bearer {token}"}
+
+            r = requests.get(list_url, headers=headers)
+            if r.status_code != 200:
+                print(f"[Logger] Cleanup skip — cannot list log folder: {r.status_code}")
+                return
+
+            items   = r.json().get("value", [])
+            now     = datetime.now(timezone.utc)
+            deleted = 0
+
+            for item in items:
+                name = item.get("name", "")
+
+                # Hanya proses file activity-YYYY-MM-DD.ndjson
+                if not (name.startswith("activity-") and name.endswith(".ndjson")):
+                    continue
+
+                # Parse tanggal dari nama file
+                try:
+                    date_str  = name.replace("activity-", "").replace(".ndjson", "")
+                    file_date = datetime.strptime(date_str, "%Y-%m-%d").replace(tzinfo=timezone.utc)
+                    age_days  = (now - file_date).days
+                except ValueError:
+                    continue
+
+                if age_days > retention_days:
+                    item_id    = item["id"]
+                    delete_url = f"https://graph.microsoft.com/v1.0/sites/{SITE_ID}/drive/items/{item_id}"
+                    dr         = requests.delete(delete_url, headers=headers)
+
+                    if dr.status_code == 204:
+                        print(f"[Logger] Deleted: {name} ({age_days} days old)")
+                        self.log("LOG_CLEANUP", target=name,
+                                 detail=f"Auto-deleted — {age_days} days old (retention={retention_days}d)",
+                                 status="INFO", metadata={"age_days": age_days})
+                        deleted += 1
+                    else:
+                        print(f"[Logger] Failed to delete {name}: {dr.status_code}")
+
+            if deleted > 0:
+                print(f"[Logger] Cleanup done — {deleted} file(s) deleted")
+            else:
+                print(f"[Logger] Cleanup done — no files older than {retention_days} days")
+
+        except Exception as e:
+            print(f"[Logger] Cleanup error: {e}")
+
     def generate_summary_report(self):
         """Generate ringkasan session dalam format MD untuk dikirim via email."""
         success = [e for e in self._entries if e["status"] == "SUCCESS"]

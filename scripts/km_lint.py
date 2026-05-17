@@ -16,6 +16,7 @@ import json
 import subprocess
 from datetime import datetime
 from pathlib import Path
+from km_logger import get_logger
 
 # ============================================================
 # CONFIG
@@ -363,6 +364,8 @@ Ada di SharePoint tapi belum ada wiki page-nya.
 # MAIN
 # ============================================================
 def run():
+    logger = get_logger("km_lint")
+    logger.pipeline_start("Content lint check — wiki health scan")
     print("[Lint] Memulai content lint check...")
 
     REPORTS_DIR.mkdir(parents=True, exist_ok=True)
@@ -411,6 +414,9 @@ def run():
     report_path = REPORTS_DIR / f"lint-report-{date_str}.md"
     report_path.write_text(report_md, encoding="utf-8")
     print(f"[Lint] Report disimpan: {report_path}")
+    logger.log("LINT_REPORT_SAVED", target=str(report_path),
+               detail=f"health_score={max(0,100-(len(orphans)+len(broken)+len(incomplete)+len(stale)+len(missing_wiki))*5)}",
+               status="SUCCESS")
 
     # Simpan JSON untuk dipakai notifier
     Path("km_lint.json").write_text(json.dumps({
@@ -430,6 +436,12 @@ def run():
         }
     }, indent=2))
 
+    logger.pipeline_end(
+        total=len(orphans)+len(broken)+len(incomplete)+len(stale)+len(missing_wiki),
+        success=len(orphans)+len(broken)+len(incomplete)+len(stale)+len(missing_wiki),
+        failed=0
+    )
+    logger.flush_to_sharepoint()
     return results
 
 if __name__ == "__main__":

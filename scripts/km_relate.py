@@ -13,6 +13,7 @@ import json
 import subprocess
 from datetime import datetime
 from pathlib import Path
+from km_logger import get_logger
 
 # ============================================================
 # CONFIG
@@ -144,6 +145,8 @@ def update_related_pages(page_path, related_pages):
 # MAIN
 # ============================================================
 def run():
+    logger = get_logger("km_relate")
+    logger.pipeline_start("Auto-relate wiki pages via Codex")
     print("[Relate] Memulai auto-relate...")
 
     pages = load_wiki_pages()
@@ -178,6 +181,8 @@ def run():
             skipped += 1
 
     print(f"\n[Relate] Selesai — {updated} halaman diupdate, {skipped} di-skip")
+    logger.pipeline_end(total=len(pages), success=updated, failed=skipped)
+    logger.flush_to_sharepoint()
 
     Path("km_relate.json").write_text(json.dumps({
         "date":    datetime.now().isoformat(),
