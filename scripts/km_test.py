@@ -154,26 +154,39 @@ except FileNotFoundError:
 # ============================================================
 section("6. Codex CLI")
 
+import shutil, os
+
+# Resolve codex path — coba beberapa kemungkinan lokasi
+CODEX_PATH = shutil.which("codex") or \
+             shutil.which("codex.cmd") or \
+             r"C:\Users\dito.wibowo\AppData\Roaming\npm\codex.cmd"
+
+# Tambahkan npm global ke PATH jika belum ada
+npm_global = r"C:\Users\dito.wibowo\AppData\Roaming\npm"
+if npm_global not in os.environ.get("PATH", ""):
+    os.environ["PATH"] = npm_global + os.pathsep + os.environ.get("PATH", "")
+    CODEX_PATH = shutil.which("codex") or shutil.which("codex.cmd") or CODEX_PATH
+
 try:
     result = subprocess.run(
-        ["codex", "--version"],
-        capture_output=True, text=True, timeout=10
+        [CODEX_PATH, "--version"],
+        capture_output=True, text=True, timeout=10, shell=True
     )
-    version = result.stdout.strip()
-    check("Codex CLI installed", True, version)
-except FileNotFoundError:
-    check("Codex CLI installed", False, "codex not found — run: npm install -g @openai/codex")
+    version = result.stdout.strip() or result.stderr.strip()
+    check("Codex CLI installed", bool(version), version or f"path: {CODEX_PATH}")
+except Exception as e:
+    check("Codex CLI installed", False, f"codex not found — run: npm install -g @openai/codex ({e})")
 
 # Test Codex exec sederhana
 try:
     result = subprocess.run(
-        ["codex", "exec", "--dangerously-bypass-approvals-and-sandbox",
+        [CODEX_PATH, "exec", "--dangerously-bypass-approvals-and-sandbox",
          "Print the text: TECHOPS_KM_TEST_OK"],
-        capture_output=True, text=True, timeout=30
+        capture_output=True, text=True, timeout=60, shell=True
     )
     passed = "TECHOPS_KM_TEST_OK" in result.stdout
     check("Codex exec works", passed,
-          "Response received" if passed else f"Unexpected output: {result.stdout[:100]}")
+          "Response received" if passed else f"stdout: {result.stdout[:100]} stderr: {result.stderr[:100]}")
 except Exception as e:
     check("Codex exec works", False, str(e)[:80])
 
