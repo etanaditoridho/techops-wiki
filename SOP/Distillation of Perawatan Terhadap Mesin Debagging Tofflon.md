@@ -13,7 +13,7 @@ tags:
   - Maintenance Types
   - SOP EN-048
 notion_id: 35d664a8-3e24-81ad-b38c-fa17eb2b2ff4
-synced: 2026-05-16
+synced: 2026-05-17
 ---
 
 **Summary**: Petunjuk perawatan mesin Debagging Tofflon agar sesuai dengan standar PT Etana Biotechnologies Indonesia
