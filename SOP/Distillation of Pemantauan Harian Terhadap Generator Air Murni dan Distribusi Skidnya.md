@@ -12,7 +12,7 @@ tags:
   - Engineering Responsibilities
   - SOP EN-015
 notion_id: 35d664a8-3e24-8164-b5ef-c69153c83988
-synced: 2026-05-18
+synced: 2026-05-19
 ---
 
 **Summary**: Logbook untuk pemantauan harian generator air murni (PW) dan sistem distribusi skidnya dengan checklist parameter operasional dan standar nilai yang harus dipantau dalam 3 shift kerja.

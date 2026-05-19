@@ -10,7 +10,7 @@ tags:
   - Maintenance Types
   - Engineering Responsibilities
 notion_id: 358664a8-3e24-81a3-8416-f7fc9627a15b
-synced: 2026-05-18
+synced: 2026-05-19
 ---
 
 **Summary**: Langkah penanganan ketika hasil TOC Water for Injection melebihi batas 500 ppb, mencakup isolasi sistem, notifikasi QA, investigasi root cause, sanitasi, dan dokumentasi.
