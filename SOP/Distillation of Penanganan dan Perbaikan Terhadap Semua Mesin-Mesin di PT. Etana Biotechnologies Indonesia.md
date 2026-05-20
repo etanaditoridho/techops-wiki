@@ -14,7 +14,7 @@ tags:
   - Maintenance Types
   - SOP EN-014
 notion_id: 35d664a8-3e24-8147-aeb0-f8966bbc38ac
-synced: 2026-05-19
+synced: 2026-05-20
 ---
 
 **Summary**: SOP ini memberikan pedoman bagi Departemen Engineering dalam melakukan penanganan dan perbaikan mesin-mesin Utility, Produksi, Warehouse, Pemastian Mutu dan Pengawasan Mutu.

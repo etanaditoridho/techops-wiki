@@ -14,7 +14,7 @@ tags:
   - Spare Parts Management
   - SOP EN-044
 notion_id: 35d664a8-3e24-8195-aee5-e796b6e692b7
-synced: 2026-05-19
+synced: 2026-05-20
 ---
 
 **Summary**: SOP untuk perawatan rutin mesin Filling (Tofflon) agar sesuai dengan standar PT Etana Biotechnologies Indonesia.
