@@ -13,7 +13,7 @@ tags:
   - Maintenance Types
   - SOP EN-015
 notion_id: 35d664a8-3e24-8108-9eab-edb9c8a3e1bc
-synced: 2026-05-20
+synced: 2026-05-21
 ---
 
 **Summary**: Formulir logbook untuk pemantauan harian terhadap generator air murni (PW) dan sistem distribusi skidnya yang dilakukan dalam 3 shift.

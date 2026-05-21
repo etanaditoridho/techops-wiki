@@ -13,7 +13,7 @@ tags:
   - Maintenance Types
   - SOP EN-006
 notion_id: 35d664a8-3e24-8104-b7b1-fcaff6921efa
-synced: 2026-05-20
+synced: 2026-05-21
 ---
 
 **Summary**: SOP untuk pengelolaan dan penyimpanan pelumas dan grease yang mencakup petunjuk dasar pelumasan, klasifikasi pelumas, dan prosedur penyimpanan yang aman.
