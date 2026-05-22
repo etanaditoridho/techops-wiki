@@ -5,6 +5,9 @@ Deteksi perubahan SOP di SharePoint PTEBIIntranet:
 - File direvisi (lastModifiedDateTime berubah)
 - File stale (tidak diupdate > threshold hari)
 """
+from dotenv import load_dotenv
+load_dotenv()
+
 
 import os
 import json
@@ -20,7 +23,8 @@ TENANT_ID      = os.environ["SHAREPOINT_TENANT_ID"]
 CLIENT_ID      = os.environ["SHAREPOINT_CLIENT_ID"]
 CLIENT_SECRET  = os.environ["SHAREPOINT_CLIENT_SECRET"]
 SITE_ID        = "78d158e2-b13f-4d92-9235-12f054517ee9"  # PTEBIIntranet
-SOP_FOLDER     = "PTEBI SOP Library/SOP"
+DRIVE_ID       = "b!4ljReD-xkk2SNRLwVFF-6RYXGWai4FBOn2JCqjHwwogAFMwOg-A5Tb5abJ03zQVx"  # Document Library
+SOP_FOLDER     = "SOP"  # relatif dari root drive Document Library
 STALE_DAYS     = int(os.environ.get("STALE_THRESHOLD_DAYS", "180"))
 STATE_FILE     = Path("km_state.json")
 
@@ -45,7 +49,7 @@ def get_token():
 # ============================================================
 def list_sop_files(token, folder_path=SOP_FOLDER):
     encoded = folder_path.replace(" ", "%20").replace("&", "%26")
-    url     = f"https://graph.microsoft.com/v1.0/sites/{SITE_ID}/drive/root:/{encoded}:/children"
+    url     = f"https://graph.microsoft.com/v1.0/drives/{DRIVE_ID}/root:/{encoded}:/children"
     headers = {"Authorization": f"Bearer {token}"}
     all_files = []
     while url:
@@ -65,6 +69,7 @@ def list_sop_files(token, folder_path=SOP_FOLDER):
                     "name":         item["name"],
                     "path":         folder_path,
                     "full_path":    f"{folder_path}/{item['name']}",
+                    "department":   folder_path.split("/")[-1] if "/" in folder_path else "",
                     "size":         item.get("size", 0),
                     "modified":     item["lastModifiedDateTime"],
                     "download_url": item.get("@microsoft.graph.downloadUrl", ""),

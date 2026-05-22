@@ -9,6 +9,9 @@ Cek kesehatan wiki knowledge base:
 - Kontradiksi antar halaman (via Codex)
 Output: MD report disimpan ke Wiki/reports/ di OneDrive
 """
+from dotenv import load_dotenv
+load_dotenv()
+
 
 import os
 import re

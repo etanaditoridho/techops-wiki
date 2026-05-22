@@ -3,6 +3,9 @@ TechOpsKM — Knowledge Notifier
 Kirim email summary via Gmail SMTP.
 Tidak butuh permission tambahan dari IT.
 """
+from dotenv import load_dotenv
+load_dotenv()
+
 
 import os
 import json

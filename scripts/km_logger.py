@@ -3,6 +3,9 @@ TechOpsKM — Activity Logger
 Mencatat semua activity ke SharePoint sebagai audit log.
 Setiap action (baca, tulis, proses, error) tercatat dengan detail.
 """
+from dotenv import load_dotenv
+load_dotenv()
+
 
 import os
 import json
