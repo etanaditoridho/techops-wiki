@@ -16,7 +16,7 @@ tags:
   - Maintenance Types
   - SOP EN-002
 notion_id: 35d664a8-3e24-81c9-accf-c01978951822
-synced: 2026-05-25
+synced: 2026-05-26
 ---
 
 **Summary**: Prosedur untuk pengoperasian dan perawatan Generator Set Perkins 1000 kVA sebagai backup listrik saat pemadaman PLN di PT. Etana Biotechnologies Indonesia.
