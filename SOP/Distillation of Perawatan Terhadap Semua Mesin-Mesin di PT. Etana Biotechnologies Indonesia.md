@@ -15,7 +15,7 @@ tags:
   - Spare Parts Management
   - SOP EN-004
 notion_id: 35d664a8-3e24-81aa-b4e0-f538f3cd42b8
-synced: 2026-05-28
+synced: 2026-05-29
 ---
 
 **Summary**: Prosedur standar untuk perawatan preventif berkala dan pengawasan mesin-mesin produksi, utility, warehouse, QA dan QC, termasuk kartu riwayat mesin dan pengawasan selama libur panjang.
