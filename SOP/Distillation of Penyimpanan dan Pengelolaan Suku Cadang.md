@@ -13,7 +13,7 @@ tags:
   - Spare Parts Management
   - SOP EN-005
 notion_id: 35d664a8-3e24-81eb-a785-dcdaf43ed05e
-synced: 2026-05-29
+synced: 2026-05-30
 ---
 
 **Summary**: Panduan untuk melaksanakan pengelolaan suku cadang agar dapat dipergunakan sebagaimana mestinya dan menjamin stok dari suku cadang yang utama.
