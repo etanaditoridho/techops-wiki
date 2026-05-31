@@ -1,7 +1,7 @@
-# TechOps KM Wiki — Index
+﻿# TechOps KM Wiki — Index
 
-Wiki pengetahuan operasional Departemen Engineering PT Etana Biotechnologies Indonesia.
-Berisi ringkasan SOP, prosedur, dan konsep teknis yang dikelola oleh Claude Code.
+Wiki pengetahuan operasional Departemen Engineering dan Quality Assurance PT Etana Biotechnologies Indonesia.
+Berisi ringkasan SOP, prosedur, konsep teknis, dan hubungan lintas fungsi untuk mendukung pencarian knowledge berbasis graph.
 
 ---
 
@@ -11,17 +11,17 @@ Semua halaman SOP kini berada di subfolder `engineering/`.
 
 | Halaman | Deskripsi |
 |---|---|
-| [[engineering/penanganan-lampu-distribusi-listrik]] | SOP/EBI/EN-001 Rev.02 — Penanganan & Perawatan Lampu dan Sistem Distribusi Listrik |
+| [[engineering/lampu-dan-distribusi-listrik]] | SOP/EBI/EN-001 Rev.02 — Penanganan & Perawatan Lampu dan Sistem Distribusi Listrik |
 | [[engineering/perawatan-gedung-infrastruktur]] | SOP/EBI/EN-003 Rev.03 — Perawatan Gedung & Infrastruktur |
 | [[engineering/preventive-maintenance-mesin]] | SOP/EBI/EN-004 Rev.02 — Perawatan Preventive Maintenance Mesin |
 | [[engineering/pengelolaan-suku-cadang]] | SOP/EBI/EN-005 Rev.03 — Penyimpanan dan Pengelolaan Suku Cadang |
-| [[engineering/operasi-perawatan-udara-tekan]] | SOP/EBI/EN-013 Rev.04 — Pengoperasian dan Perawatan Sistem Udara Tekan |
+| [[engineering/operasional-udara-tekan]] | SOP/EBI/EN-013 Rev.04 — Pengoperasian dan Perawatan Sistem Udara Tekan |
 | [[engineering/penanganan-perbaikan-mesin]] | SOP/EBI/EN-014 Rev.01 — Penanganan dan Perbaikan Mesin |
-| [[engineering/operasi-perawatan-pengolahan-air]] | SOP/EBI/EN-015 Rev.08 — Pengoperasian dan Perawatan Sistem Pengolahan Air (109 hal.) |
-| [[engineering/operasi-perawatan-hvac]] | SOP/EBI/EN-016 Rev.07 — Pengoperasian dan Perawatan Sistem HVAC |
-| [[engineering/perawatan-mesin-filling-bosch]] | SOP/EBI/EN-024 Rev.04 — Perawatan Mesin Filling Bosch FXS 2051 |
+| [[engineering/sistem-pengolahan-air]] | SOP/EBI/EN-015 Rev.08 — Pengoperasian dan Perawatan Sistem Pengolahan Air (109 hal.) |
+| [[engineering/operasional-sistem-hvac]] | SOP/EBI/EN-016 Rev.07 — Pengoperasian dan Perawatan Sistem HVAC |
+| [[engineering/mesin-filling-bosch]] | SOP/EBI/EN-024 Rev.04 — Perawatan Mesin Filling Bosch FXS 2051 |
 | [[engineering/perawatan-mesin-filling-tofflon]] | SOP/EBI/EN-044 Rev.01 — Perawatan Mesin Filling Tofflon |
-| [[engineering/operasi-perawatan-bms-ems]] | SOP/EBI/EN-055 Rev.00 — Pengoperasian dan Perawatan Sistem EMS & BMS |
+| [[engineering/monitoring-bms-ems]] | SOP/EBI/EN-055 Rev.00 — Pengoperasian dan Perawatan Sistem EMS & BMS |
 
 ---
 
@@ -43,7 +43,7 @@ Semua halaman SOP kini berada di subfolder `engineering/`.
 |---|---|
 | [[engineering/maintenance-types]] | Empat jenis perawatan: PM, CM, Breakdown, Autonomous |
 | [[engineering/penanganan-perbaikan-mesin]] | Alur commissioning mesin baru, breakdown, PJE, dan vendor |
-| [[engineering/pje-permintaan-jasa-engineering]] | Formulir dan proses Permintaan Jasa Engineering lintas departemen |
+| [[engineering/permintaan-jasa-engineering]] | Formulir dan proses Permintaan Jasa Engineering lintas departemen |
 | [[engineering/spare-parts-management]] | Klasifikasi suku cadang critical vs non-critical, Part Code, inventori |
 
 ### Organisasi
@@ -58,9 +58,17 @@ Semua halaman SOP kini berada di subfolder `engineering/`.
 
 | Halaman | Deskripsi |
 |---|---|
-| [[engineering/synthesis-emergency-shutdown]] | Prosedur emergency shutdown lintas sistem: HVAC, udara tekan, listrik, mesin |
-| [[engineering/synthesis-onboarding-teknisi]] | Panduan orientasi teknisi baru — sistem, prosedur, dan formulir wajib dikuasai |
-| [[engineering/synthesis-daily-monitoring]] | Checklist monitoring harian semua sistem Engineering |
+| [[engineering/emergency-shutdown]] | Prosedur emergency shutdown lintas sistem: HVAC, udara tekan, listrik, mesin |
+| [[engineering/onboarding-teknisi-engineering]] | Panduan orientasi teknisi baru — sistem, prosedur, dan formulir wajib dikuasai |
+| [[engineering/monitoring-harian-engineering]] | Checklist monitoring harian semua sistem Engineering |
+
+---
+
+## Cross-functional Pages
+
+| Halaman | Deskripsi |
+|---|---|
+| [[cross-functional/alur-mutu-qa-engineering]] | Hub QA-Engineering untuk memutuskan kapan event Engineering perlu PJE, Change Control, Deviasi, atau CAPA |
 
 ---
 
@@ -68,9 +76,9 @@ Semua halaman SOP kini berada di subfolder `engineering/`.
 
 | Halaman | Deskripsi |
 |---|---|
-| [[qa/sop-qa-004-change-control]] | SOP/EBI/QA-004 Rev.04 — Manajemen Perubahan (Change Control) |
-| [[qa/sop-qa-008-deviasi]] | SOP/EBI/QA-008 Rev.08 — Penanganan Penyimpangan (Deviation Handling) |
-| [[qa/sop-qa-035-capa]] | SOP/EBI/QA-035 Rev.06 — Penanganan dan Manajemen CAPA |
+| [[qa/manajemen-perubahan]] | SOP/EBI/QA-004 Rev.04 — Manajemen Perubahan (Change Control) |
+| [[qa/penanganan-deviasi]] | SOP/EBI/QA-008 Rev.08 — Penanganan Penyimpangan (Deviation Handling) |
+| [[qa/manajemen-capa]] | SOP/EBI/QA-035 Rev.06 — Penanganan dan Manajemen CAPA |
 
 ---
 

@@ -1,3 +1,7 @@
+﻿---
+tags: ["electrical", "hvac", "maintenance", "water-system"]
+---
+
 # Boiler Leak Response
 
 ##  LLM Summary
@@ -31,26 +35,26 @@ This page does not replace controlled SOPs. It routes the responder to existing 
 
 1. Stop work near the leak if there is burn, electrical, slip, or pressure-release risk.
 2. Keep personnel away from hot surfaces, standing water, and nearby electrical panels.
-3. If water is near electrical equipment, treat the condition as an electrical isolation concern and consult [[electrical-system]] and [[penanganan-lampu-distribusi-listrik]].
+3. If water is near electrical equipment, treat the condition as an electrical isolation concern and consult [[engineering/electrical-system]] and [[engineering/lampu-dan-distribusi-listrik]].
 4. Escalate immediately to Supervisor Engineering if the leak is large, hot, near production areas, or affects HVAC operation.
 
 ## Diagnostic Cues
 
 | Observation | Likely Concern | Reference |
 |---|---|---|
-| Leak near HVAC heating loop or HWG | HVAC heating subsystem failure | [[hvac-system]], [[operasi-perawatan-hvac]] |
-| Water near panels or control cabinets | Electrical safety risk | [[electrical-system]], [[synthesis-emergency-shutdown]] |
-| HVAC parameter instability after leak | Environmental control impact | [[operasi-perawatan-bms-ems]], [[synthesis-daily-monitoring]] |
-| Repeated recurrence after temporary repair | Maintenance or failure-mode pattern | [[maintenance-types]], [[penanganan-perbaikan-mesin]] |
+| Leak near HVAC heating loop or HWG | HVAC heating subsystem failure | [[engineering/hvac-system]], [[engineering/operasional-sistem-hvac]] |
+| Water near panels or control cabinets | Electrical safety risk | [[engineering/electrical-system]], [[engineering/emergency-shutdown]] |
+| HVAC parameter instability after leak | Environmental control impact | [[engineering/monitoring-bms-ems]], [[engineering/monitoring-harian-engineering]] |
+| Repeated recurrence after temporary repair | Maintenance or failure-mode pattern | [[engineering/maintenance-types]], [[engineering/penanganan-perbaikan-mesin]] |
 
 ## Decision Flow
 
 1. Confirm location and severity without entering an unsafe area.
 2. Check whether the leak affects HVAC service, BMS/EMS readings, electrical panels, or production-area environmental conditions.
-3. If there is immediate safety or equipment damage risk, follow emergency isolation principles in [[synthesis-emergency-shutdown]].
+3. If there is immediate safety or equipment damage risk, follow emergency isolation principles in [[engineering/emergency-shutdown]].
 4. If production or classified-area conditions may be affected, inform Supervisor Engineering and coordinate with QA.
-5. Record the issue through the applicable maintenance or service-request path referenced in [[pje-permintaan-jasa-engineering]] and [[penanganan-perbaikan-mesin]].
-6. After repair, verify stable parameters through monitoring guidance in [[synthesis-daily-monitoring]].
+5. Record the issue through the applicable maintenance or service-request path referenced in [[engineering/permintaan-jasa-engineering]] and [[engineering/penanganan-perbaikan-mesin]].
+6. After repair, verify stable parameters through monitoring guidance in [[engineering/monitoring-harian-engineering]].
 
 ## Escalation
 
@@ -59,7 +63,7 @@ This page does not replace controlled SOPs. It routes the responder to existing 
 | Leak creates burn, slip, or electrical hazard | Supervisor Engineering and HSSE/K3 |
 | Leak affects classified production environment | Supervisor Engineering and QA |
 | Leak requires shutdown or isolation | Supervisor Engineering, then Manager Engineering if needed |
-| Spare part or vendor support is needed | Supervisor Engineering using [[spare-parts-management]] and [[pje-permintaan-jasa-engineering]] |
+| Spare part or vendor support is needed | Supervisor Engineering using [[engineering/spare-parts-management]] and [[engineering/permintaan-jasa-engineering]] |
 
 ## Evidence / Output
 
@@ -72,13 +76,13 @@ This page does not replace controlled SOPs. It routes the responder to existing 
 
 ## Related pages
 
-- [[hvac-system]]
-- [[operasi-perawatan-hvac]]
-- [[operasi-perawatan-bms-ems]]
-- [[electrical-system]]
-- [[maintenance-types]]
-- [[penanganan-perbaikan-mesin]]
-- [[pje-permintaan-jasa-engineering]]
-- [[spare-parts-management]]
-- [[synthesis-emergency-shutdown]]
-- [[synthesis-daily-monitoring]]
+- [[engineering/hvac-system]]
+- [[engineering/operasional-sistem-hvac]]
+- [[engineering/monitoring-bms-ems]]
+- [[engineering/electrical-system]]
+- [[engineering/maintenance-types]]
+- [[engineering/penanganan-perbaikan-mesin]]
+- [[engineering/permintaan-jasa-engineering]]
+- [[engineering/spare-parts-management]]
+- [[engineering/emergency-shutdown]]
+- [[engineering/monitoring-harian-engineering]]

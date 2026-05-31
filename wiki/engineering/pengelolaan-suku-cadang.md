@@ -1,3 +1,7 @@
+---
+tags: ["maintenance", "monitoring", "onboarding", "spare-parts"]
+---
+
 # SOP/EBI/EN-005 — Penyimpanan dan Pengelolaan Suku Cadang
 
 ##  LLM Summary

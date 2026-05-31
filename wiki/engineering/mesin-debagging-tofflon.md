@@ -1,3 +1,7 @@
+﻿---
+tags: ["capa", "change-control", "filling", "maintenance", "onboarding"]
+---
+
 # Perawatan Terhadap Mesin Debagging Tofflon
 
 **Summary**: Petunjuk perawatan mesin Debagging Tofflon agar sesuai dengan standar PT Etana Biotechnologies Indonesia
@@ -102,7 +106,7 @@ Periksa permukaan dari mata cutter, perbaiki atau ganti cutter jika diperlukan. 
 
 ## Related pages
 
-- [[machine-repair-workflow]]
+- [[engineering/penanganan-perbaikan-mesin]]
 - [[maintenance-types]]
 - [[spare-parts-management]]
 - [[engineering-responsibilities]]

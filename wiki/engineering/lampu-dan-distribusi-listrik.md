@@ -1,3 +1,7 @@
+---
+tags: ["electrical", "hvac", "maintenance", "onboarding"]
+---
+
 # SOP/EBI/EN-001 — Penanganan dan Perawatan Lampu Penerangan & Sistem Penyaluran Listrik
 
 ##  LLM Summary

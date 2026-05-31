@@ -1,3 +1,7 @@
+﻿---
+tags: ["deviation", "emergency", "hvac-bms", "maintenance", "monitoring", "onboarding", "water-system"]
+---
+
 # SOP/EBI/EN-015 — Pengoperasian dan Perawatan Sistem Pengolahan Air
 
 ##  LLM Summary
@@ -64,8 +68,8 @@ Digunakan Departemen Engineering khususnya operator Sistem Pengolahan Air.
 - [[maintenance-types]]
 - [[engineering-responsibilities]]
 - [[compressed-air-system]]
-- [[synthesis-daily-monitoring]]
-- [[synthesis-emergency-shutdown]]
-- [[pje-permintaan-jasa-engineering]]
+- [[engineering/monitoring-harian-engineering]]
+- [[engineering/emergency-shutdown]]
+- [[engineering/permintaan-jasa-engineering]]
 - [[spare-parts-management]]
-- [[boiler-leak-response]]
+- [[decision-support/respon-kebocoran-boiler]]

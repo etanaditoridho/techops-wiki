@@ -1,3 +1,7 @@
+﻿---
+tags: ["capa", "change-control", "filling", "maintenance", "onboarding", "water-system"]
+---
+
 # Perawatan Terhadap Mesin Filling (Tofflon)
 
 **Summary**: SOP untuk perawatan rutin mesin Filling (Tofflon) agar sesuai dengan standar PT Etana Biotechnologies Indonesia.
@@ -97,8 +101,8 @@ Dilakukan di area Conveyor belt main drive bevel gear menggunakan Grease Wurth M
 - SOP/EBI/EN-044-F01B: Formulir perawatan berkala terhadap Mesin Filling Tofflon
 
 ## Related pages
-- [[machine-repair-workflow]]
+- [[engineering/penanganan-perbaikan-mesin]]
 - [[maintenance-types]]
 - [[spare-parts-management]]
 - [[engineering-responsibilities]]
-- [[pje-permintaan-jasa-engineering]]
+- [[engineering/permintaan-jasa-engineering]]

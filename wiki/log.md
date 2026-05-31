@@ -168,3 +168,43 @@ Catatan append-only dari semua operasi wiki.
 - QA-035 melibatkan 8 reviewer lintas departemen — CAPA berdampak ke seluruh PT EBI
 
 ---
+## 2026-05-31 - Cross-link QA dan Engineering
+
+**Operasi:**
+- Path-qualified wikilinks QA <-> Engineering supaya graph Obsidian lintas folder lebih akurat.
+- Menambahkan hub `wiki/cross-functional/qa-engineering-quality-event-flow.md`.
+- Menambahkan backlink dari halaman Engineering utama ke SOP QA Change Control, Deviasi, dan CAPA.
+
+**Halaman utama diperbarui:**
+- `wiki/qa/sop-qa-004-change-control.md`
+- `wiki/qa/sop-qa-008-deviasi.md`
+- `wiki/qa/sop-qa-035-capa.md`
+- `wiki/engineering/engineering-responsibilities.md`
+- `wiki/engineering/preventive-maintenance-mesin.md`
+- `wiki/engineering/penanganan-perbaikan-mesin.md`
+- `wiki/engineering/spare-parts-management.md`
+- `wiki/engineering/pje-permintaan-jasa-engineering.md`
+- `wiki/engineering/synthesis-daily-monitoring.md`
+- `wiki/engineering/operasi-perawatan-bms-ems.md`
+- `wiki/index.md`
+
+**Catatan:**
+- Hub baru menghubungkan trigger Engineering (monitoring, PM, breakdown, PJE, spare part) ke keputusan QA: Change Control, Deviasi, atau CAPA.
+- PJE diposisikan sebagai work request Engineering, bukan pengganti Change Control jika pekerjaan berdampak GMP/validasi/kualitas.
+
+---
+
+## 2026-05-31 - Rename knowledge pages ke nama topik
+
+**Operasi:**
+- Rename halaman knowledge QA dari nama SOP ke nama proses: `manajemen-perubahan`, `penanganan-deviasi`, dan `manajemen-capa`.
+- Rename hub lintas fungsi menjadi `cross-functional/alur-mutu-qa-engineering`.
+- Rename beberapa halaman Engineering yang masih memakai judul dokumen panjang menjadi nama topik/equipment.
+- Update seluruh live `[[wikilinks]]` dan path-qualified links agar graph Obsidian tetap tersambung.
+- Mirror ulang folder knowledge ke `obsidian-vault` tanpa mengubah dokumen resmi di `raw/` dan `markdown/`.
+
+**Catatan:**
+- Nomor SOP tetap dipertahankan di isi halaman sebagai metadata dan sumber, bukan sebagai nama file knowledge.
+- Dokumen resmi SOP tetap boleh menggunakan nama/nomor SOP pada folder sumber resmi.
+
+---

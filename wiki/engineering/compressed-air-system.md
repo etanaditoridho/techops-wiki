@@ -1,3 +1,7 @@
+﻿---
+tags: ["cold-chain", "compressed-air", "filling", "maintenance", "monitoring", "water-system"]
+---
+
 # Sistem Udara Tekan — Konsep & Komponen
 
 ##  LLM Summary
@@ -78,8 +82,8 @@ Kompressor dijalankan secara bergantian (rotasi harian) untuk pemerataan jam ope
 
 ## Related pages
 
-- [[operasi-perawatan-udara-tekan]]
+- [[engineering/operasional-udara-tekan]]
 - [[finding-kompresor-trip-suhu-tinggi]]
 - [[maintenance-types]]
 - [[engineering-responsibilities]]
-- [[synthesis-daily-monitoring]]
+- [[engineering/monitoring-harian-engineering]]

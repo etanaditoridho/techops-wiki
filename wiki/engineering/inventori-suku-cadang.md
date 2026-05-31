@@ -1,3 +1,7 @@
+﻿---
+tags: ["onboarding", "spare-parts"]
+---
+
 # Penyimpanan dan Pengelolaan Suku Cadang
 
 **Summary**: Panduan untuk melaksanakan pengelolaan suku cadang agar dapat dipergunakan sebagaimana mestinya dan menjamin stok dari suku cadang yang utama.
@@ -86,5 +90,5 @@ Pelaksanaan SOP ini mencakup gudang suku cadang di Departemen Engineering.
 ## Related pages
 - [[spare-parts-management]]
 - [[engineering-responsibilities]]
-- [[machine-repair-workflow]]
-- [[building-maintenance-overview]]
+- [[engineering/penanganan-perbaikan-mesin]]
+- [[engineering/perawatan-gedung-infrastruktur]]

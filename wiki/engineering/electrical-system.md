@@ -1,3 +1,7 @@
+﻿---
+tags: ["electrical", "emergency", "hvac", "maintenance"]
+---
+
 # Sistem Kelistrikan — Konsep & Komponen
 
 ##  LLM Summary
@@ -93,8 +97,8 @@ Inspeksi tahanan grounding dilakukan secara berkala menggunakan earth tester.
 
 ## Related pages
 
-- [[penanganan-lampu-distribusi-listrik]]
+- [[engineering/lampu-dan-distribusi-listrik]]
 - [[maintenance-types]]
 - [[engineering-responsibilities]]
-- [[synthesis-daily-monitoring]]
-- [[synthesis-emergency-shutdown]]
+- [[engineering/monitoring-harian-engineering]]
+- [[engineering/emergency-shutdown]]

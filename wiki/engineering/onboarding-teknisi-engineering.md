@@ -1,3 +1,7 @@
+﻿---
+tags: ["compressed-air", "electrical", "filling", "hvac", "hvac-bms", "maintenance", "monitoring", "onboarding", "water-system"]
+---
+
 # Synthesis: Onboarding Teknisi Engineering Baru
 
 **Summary**: Panduan orientasi bagi teknisi Engineering baru di PT EBI — apa yang harus dipelajari, sistem apa yang harus dipahami, dan prosedur apa yang wajib dikuasai sebelum bekerja mandiri.
@@ -34,7 +38,7 @@ Baca [[engineering-responsibilities]] untuk memahami:
 
 ### Sistem HVAC
 
-Baca [[hvac-system]] dan [[operasi-perawatan-hvac]]:
+Baca [[hvac-system]] dan [[engineering/operasional-sistem-hvac]]:
 - Komponen: AHU, FCU, chiller, cooling tower, HWG, HEPA filter
 - Parameter yang dikontrol: partikel, suhu, aliran udara, tekanan, kelembaban
 - Konteks GMP — mengapa HVAC kritis di fasilitas farmasi
@@ -42,7 +46,7 @@ Baca [[hvac-system]] dan [[operasi-perawatan-hvac]]:
 
 ### Sistem Udara Tekan
 
-Baca [[compressed-air-system]] dan [[operasi-perawatan-udara-tekan]]:
+Baca [[compressed-air-system]] dan [[engineering/operasional-udara-tekan]]:
 - Klasifikasi: kontak produk vs non-kontak produk
 - Peralatan: kompressor Ingersoll Rand + Atlas Copco, dryer refrigerant + desiccant
 - Pola rotasi harian kompressor dan dryer
@@ -50,14 +54,14 @@ Baca [[compressed-air-system]] dan [[operasi-perawatan-udara-tekan]]:
 
 ### Sistem Kelistrikan
 
-Baca [[electrical-system]] dan [[penanganan-lampu-distribusi-listrik]]:
+Baca [[electrical-system]] dan [[engineering/lampu-dan-distribusi-listrik]]:
 - Alur distribusi: PLN → transformator → MDP → SDP → beban
 - Standar yang berlaku: PUIL 2011, Permenaker 12/2015
 - Persyaratan kompetensi: K3 Listrik
 
 ### EMS & BMS
 
-Baca [[operasi-perawatan-bms-ems]]:
+Baca [[engineering/monitoring-bms-ems]]:
 - Fungsi BMS: kontrol otomatis sistem HVAC
 - Fungsi EMS: monitoring lingkungan kritis, alert deviasi
 - Hanya personel terlatih yang boleh mengoperasikan
@@ -74,7 +78,7 @@ Baca [[maintenance-types]]:
 
 ### Proses PJE
 
-Baca [[pje-permintaan-jasa-engineering]]:
+Baca [[engineering/permintaan-jasa-engineering]]:
 - PJE = formulir resmi dari departemen lain ke Engineering
 - Kapan PJE diperlukan vs tidak
 - Alur: penerimaan → penugasan → pelaksanaan → verifikasi
@@ -109,7 +113,7 @@ Baca [[spare-parts-management]] dan [[pengelolaan-suku-cadang]]:
 
 ### Emergency Shutdown
 
-Baca [[synthesis-emergency-shutdown]] — wajib dipahami sebelum bertugas mandiri:
+Baca [[engineering/emergency-shutdown]] — wajib dipahami sebelum bertugas mandiri:
 - Urutan shutdown HVAC, udara tekan, dan listrik
 - Cara menggunakan label status mesin
 - Kapan dan bagaimana eskalasi
@@ -127,7 +131,7 @@ Baca [[synthesis-emergency-shutdown]] — wajib dipahami sebelum bertugas mandir
 
 ## Sistem Monitoring Harian
 
-Baca [[synthesis-daily-monitoring]] untuk panduan lengkap apa yang harus diperiksa setiap hari di setiap sistem.
+Baca [[engineering/monitoring-harian-engineering]] untuk panduan lengkap apa yang harus diperiksa setiap hari di setiap sistem.
 
 ## Checklist Onboarding
 
@@ -146,10 +150,10 @@ Baca [[synthesis-daily-monitoring]] untuk panduan lengkap apa yang harus diperik
 
 - [[engineering-responsibilities]]
 - [[maintenance-types]]
-- [[pje-permintaan-jasa-engineering]]
+- [[engineering/permintaan-jasa-engineering]]
 - [[spare-parts-management]]
-- [[synthesis-emergency-shutdown]]
-- [[synthesis-daily-monitoring]]
+- [[engineering/emergency-shutdown]]
+- [[engineering/monitoring-harian-engineering]]
 - [[hvac-system]]
 - [[compressed-air-system]]
 - [[electrical-system]]

@@ -1,3 +1,7 @@
+﻿---
+tags: ["capa", "deviation", "maintenance", "monitoring"]
+---
+
 # SOP/EBI/QA-008 — Penanganan Penyimpangan (Deviation Handling)
 
 **Summary**: Prosedur manajemen penyimpangan PT EBI mencakup pelaporan, klasifikasi dampak (Event Comment/Non-Conformity/Laporan Penyimpangan), investigasi akar masalah, CAPA, dan penutupan — berlaku untuk semua aktivitas GMP, GDP, dan GLP.
@@ -116,12 +120,27 @@ Koordinator Penyimpangan membuat laporan periodik yang mencakup:
 |---|---|
 | SOP/EBI/QA-008-L04 | Logsheet Tracking Event Initiation / Deviation Report |
 
+## Hubungan dengan SOP Engineering
+
+Deviasi QA terkait Engineering umumnya muncul dari parameter sistem yang keluar batas, kegagalan mesin, keterlambatan tindakan perawatan, atau pekerjaan teknis yang tidak sesuai prosedur.
+
+| Sumber Deviasi Engineering | Halaman Terkait | Catatan QA |
+|---|---|---|
+| Alarm EMS/BMS, parameter suhu/RH/tekanan area kritis di luar batas | [[engineering/monitoring-bms-ems]], [[engineering/hvac-system]], [[engineering/monitoring-harian-engineering]] | Catat waktu, nilai, area terdampak, dan tindakan awal sebelum klasifikasi event |
+| Breakdown mesin atau utility yang berdampak proses GMP | [[engineering/penanganan-perbaikan-mesin]], [[engineering/maintenance-types]] | Evaluasi apakah cukup event/non-conformity atau perlu laporan penyimpangan |
+| Kegagalan pemantauan harian atau keterlambatan eskalasi | [[engineering/monitoring-harian-engineering]], [[engineering/engineering-responsibilities]] | Perkuat bukti log, PIC, dan waktu eskalasi |
+| Perbaikan/modifikasi yang menimbulkan dampak tidak terduga | [[engineering/permintaan-jasa-engineering]], [[qa/manajemen-perubahan]] | Deviasi dapat memicu CC atau CAPA jika ada akar masalah sistemik |
+
 ## Catatan
 
 SOP ini adalah **revisi ke-8 (Rev.08)** — menunjukkan sistem penyimpangan yang sudah mature dan banyak direvisi berdasarkan pengalaman operasional. Dokumen sepanjang 64 halaman (40 halaman prosedur + lampiran).
 
 ## Related pages
 
-- [[sop-qa-035-capa]]
-- [[sop-qa-004-change-control]]
-- [[engineering-responsibilities]]
+- [[qa/manajemen-capa]]
+- [[qa/manajemen-perubahan]]
+- [[cross-functional/alur-mutu-qa-engineering]]
+- [[engineering/monitoring-harian-engineering]]
+- [[engineering/engineering-responsibilities]]
+- [[engineering/penanganan-perbaikan-mesin]]
+- [[engineering/monitoring-bms-ems]]

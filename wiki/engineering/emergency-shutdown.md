@@ -1,3 +1,7 @@
+﻿---
+tags: ["compressed-air", "electrical", "emergency", "hvac", "maintenance", "onboarding", "water-system"]
+---
+
 # Synthesis: Prosedur Emergency Shutdown
 
 ##  LLM Summary
@@ -127,14 +131,14 @@ Semua teknisi harus mengetahui urutan shutdown yang benar dan cara eskalasi yang
 
 ## Related pages
 
-- [[operasi-perawatan-hvac]]
-- [[operasi-perawatan-udara-tekan]]
-- [[penanganan-lampu-distribusi-listrik]]
+- [[engineering/operasional-sistem-hvac]]
+- [[engineering/operasional-udara-tekan]]
+- [[engineering/lampu-dan-distribusi-listrik]]
 - [[penanganan-perbaikan-mesin]]
-- [[operasi-perawatan-bms-ems]]
+- [[engineering/monitoring-bms-ems]]
 - [[hvac-system]]
-- [[hvac-failure-diagnosis]]
-- [[boiler-leak-response]]
+- [[decision-support/diagnosis-kegagalan-hvac]]
+- [[decision-support/respon-kebocoran-boiler]]
 - [[electrical-system]]
 - [[compressed-air-system]]
 - [[maintenance-types]]

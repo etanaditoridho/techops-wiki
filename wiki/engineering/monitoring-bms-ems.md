@@ -1,3 +1,7 @@
+﻿---
+tags: ["deviation", "hvac-bms", "maintenance", "monitoring", "onboarding"]
+---
+
 # SOP/EBI/EN-055 — Pengoperasian dan Perawatan Sistem EMS & BMS
 
 ##  LLM Summary
@@ -63,7 +67,10 @@ SOP ini adalah versi pertama (Revision 00) — dokumen baru. Dibuat untuk menduk
 ## Related pages
 
 - [[hvac-system]]
-- [[hvac-failure-diagnosis]]
+- [[decision-support/diagnosis-kegagalan-hvac]]
 - [[maintenance-types]]
 - [[engineering-responsibilities]]
-- [[operasi-perawatan-hvac]]
+- [[engineering/operasional-sistem-hvac]]
+- [[cross-functional/alur-mutu-qa-engineering]]
+- [[qa/manajemen-perubahan]]
+- [[qa/penanganan-deviasi]]

@@ -1,3 +1,7 @@
+﻿---
+tags: ["capa", "hvac", "maintenance", "onboarding"]
+---
+
 # SOP/EBI/EN-004 — Perawatan Terhadap Semua Mesin di PT Etana Biotechnologies Indonesia
 
 ##  LLM Summary
@@ -58,3 +62,7 @@ Mesin dan alat utility tetap diawasi selama libur panjang sesuai jadwal yang dit
 - [[penanganan-perbaikan-mesin]]
 - [[spare-parts-management]]
 - [[engineering-responsibilities]]
+- [[cross-functional/alur-mutu-qa-engineering]]
+- [[qa/manajemen-perubahan]]
+- [[qa/penanganan-deviasi]]
+- [[qa/manajemen-capa]]

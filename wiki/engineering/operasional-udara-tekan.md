@@ -1,3 +1,7 @@
+---
+tags: ["cold-chain", "compressed-air", "hvac-bms", "maintenance", "monitoring", "onboarding"]
+---
+
 # SOP/EBI/EN-013 — Pengoperasian dan Perawatan Sistem Udara Tekan
 
 ##  LLM Summary

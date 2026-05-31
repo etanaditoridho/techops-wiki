@@ -1,3 +1,7 @@
+﻿---
+tags: ["capa", "maintenance", "onboarding"]
+---
+
 # Perawatan Terhadap Semua Mesin-Mesin di PT. Etana Biotechnologies Indonesia
 
 **Summary**: Prosedur standar untuk perawatan preventif berkala dan pengawasan mesin-mesin produksi, utility, warehouse, QA dan QC, termasuk kartu riwayat mesin dan pengawasan selama libur panjang.
@@ -88,9 +92,9 @@ SOP ini digunakan oleh Departemen Engineering sebagai pedoman dalam melakukan pe
 
 ## Related pages
 
-- [[machine-repair-workflow]]
+- [[engineering/penanganan-perbaikan-mesin]]
 - [[maintenance-types]]
 - [[spare-parts-management]]
-- [[pje-permintaan-jasa-engineering]]
+- [[engineering/permintaan-jasa-engineering]]
 - [[engineering-responsibilities]]
-- [[building-maintenance-overview]]
+- [[engineering/perawatan-gedung-infrastruktur]]

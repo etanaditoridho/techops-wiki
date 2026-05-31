@@ -1,3 +1,7 @@
+﻿---
+tags: ["compressed-air", "deviation", "electrical", "hvac", "hvac-bms", "monitoring", "onboarding", "water-system"]
+---
+
 # Synthesis: Monitoring Harian Sistem Engineering
 
 **Summary**: Sintesis tugas pemantauan harian yang harus dilakukan teknisi Engineering PT EBI — mencakup semua sistem utama: HVAC, udara tekan, EMS/BMS, kelistrikan, dan mesin produksi.
@@ -129,11 +133,14 @@ Dokumentasikan di formulir yang relevan
 - [[hvac-system]]
 - [[compressed-air-system]]
 - [[electrical-system]]
-- [[operasi-perawatan-bms-ems]]
-- [[operasi-perawatan-udara-tekan]]
-- [[operasi-perawatan-hvac]]
-- [[hvac-failure-diagnosis]]
-- [[boiler-leak-response]]
+- [[engineering/monitoring-bms-ems]]
+- [[engineering/operasional-udara-tekan]]
+- [[engineering/operasional-sistem-hvac]]
+- [[decision-support/diagnosis-kegagalan-hvac]]
+- [[decision-support/respon-kebocoran-boiler]]
 - [[maintenance-types]]
 - [[engineering-responsibilities]]
-- [[synthesis-emergency-shutdown]]
+- [[engineering/emergency-shutdown]]
+- [[cross-functional/alur-mutu-qa-engineering]]
+- [[qa/penanganan-deviasi]]
+- [[qa/manajemen-capa]]

@@ -1,3 +1,7 @@
+﻿---
+tags: ["maintenance", "onboarding"]
+---
+
 # SOP/EBI/EN-014 — Penanganan dan Perbaikan Semua Mesin di PT Etana Biotechnologies Indonesia
 
 ##  LLM Summary
@@ -62,7 +66,7 @@ Digunakan Departemen Engineering untuk penanganan dan perbaikan mesin utility, p
 - Teknisi Engineering menangani dan mencatat di kartu riwayat mesin
 
 ### Permintaan Jasa Engineering (PJE)
-Lihat [[pje-permintaan-jasa-engineering]] untuk detail proses.
+Lihat [[engineering/permintaan-jasa-engineering]] untuk detail proses.
 
 ### Pekerjaan Vendor
 - Diberi label khusus "Sedang Diperbaiki oleh Vendor"
@@ -89,6 +93,10 @@ Prosedur khusus berlaku untuk mesin yang perlu dipindahkan keluar area GMP untuk
 
 - [[penanganan-perbaikan-mesin]]
 - [[maintenance-types]]
-- [[pje-permintaan-jasa-engineering]]
+- [[engineering/permintaan-jasa-engineering]]
 - [[spare-parts-management]]
 - [[engineering-responsibilities]]
+- [[cross-functional/alur-mutu-qa-engineering]]
+- [[qa/manajemen-perubahan]]
+- [[qa/penanganan-deviasi]]
+- [[qa/manajemen-capa]]

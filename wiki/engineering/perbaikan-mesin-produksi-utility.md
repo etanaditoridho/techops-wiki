@@ -1,3 +1,7 @@
+﻿---
+tags: ["hvac", "maintenance", "onboarding"]
+---
+
 # Penanganan dan Perbaikan Terhadap Semua Mesin-Mesin di PT. Etana Biotechnologies Indonesia
 
 **Summary**: SOP ini memberikan pedoman bagi Departemen Engineering dalam melakukan penanganan dan perbaikan mesin-mesin Utility, Produksi, Warehouse, Pemastian Mutu dan Pengawasan Mutu.
@@ -90,8 +94,8 @@ SOP ini digunakan oleh Departemen Engineering sebagai pedoman dalam melakukan pe
 - Formulir Label Keadaan Mesin Sedang Diperbaiki oleh Vendor (SOP/EBI/EN-014-F05B)
 
 ## Related pages
-- [[pje-permintaan-jasa-engineering]]
-- [[machine-repair-workflow]]
+- [[engineering/permintaan-jasa-engineering]]
+- [[engineering/penanganan-perbaikan-mesin]]
 - [[spare-parts-management]]
 - [[engineering-responsibilities]]
 - [[maintenance-types]]

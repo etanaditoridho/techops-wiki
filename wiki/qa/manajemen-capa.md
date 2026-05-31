@@ -1,3 +1,7 @@
+﻿---
+tags: ["capa", "change-control", "deviation", "maintenance"]
+---
+
 # SOP/EBI/QA-035 — Penanganan dan Manajemen CAPA
 
 **Summary**: Prosedur dokumentasi dan pengelolaan Tindakan Korektif dan Preventif (CAPA) PT EBI — mencakup inisiasi, asesmen SME, persetujuan, implementasi, pemeriksaan efektivitas, dan penutupan CAPA dari semua sumber quality event.
@@ -129,11 +133,22 @@ CAPA diinisiasi dari berbagai sumber. Hubungan antar dokumen:
 
 | Sumber | SOP Terkait |
 |---|---|
-| Penyimpangan | [[sop-qa-008-deviasi]] |
-| Change Control | [[sop-qa-004-change-control]] |
+| Penyimpangan | [[qa/penanganan-deviasi]] |
+| Change Control | [[qa/manajemen-perubahan]] |
 | Audit finding | Internal/Eksternal GxP audit |
 | Keluhan produk | SOP keluhan (tidak teridentifikasi) |
 | OOS/OOT | SOP pengujian QC |
+
+## Hubungan dengan SOP Engineering
+
+CAPA untuk Engineering biasanya dipakai saat akar masalah menunjukkan kelemahan sistem perawatan, monitoring, spare part, training, atau eskalasi lintas fungsi.
+
+| Akar Masalah Engineering | Halaman Terkait | Contoh CAPA |
+|---|---|---|
+| PM tidak efektif atau tidak cukup menangkap gejala kerusakan | [[engineering/preventive-maintenance-mesin]], [[engineering/maintenance-types]] | Revisi checklist PM, ubah frekuensi, tambah parameter monitoring |
+| Breakdown berulang atau perbaikan tidak menghilangkan akar masalah | [[engineering/penanganan-perbaikan-mesin]] | RCA teknis, penggantian komponen, update kartu riwayat mesin |
+| Spare part kritikal tidak tersedia atau spesifikasi tidak sesuai | [[engineering/spare-parts-management]], [[engineering/pengelolaan-suku-cadang]] | Revisi minimum stock, vendor qualification, atau CC spesifikasi |
+| Eskalasi deviasi lambat atau dokumentasi tidak lengkap | [[engineering/monitoring-harian-engineering]], [[engineering/engineering-responsibilities]] | Training ulang, update alur eskalasi, audit efektivitas |
 
 ## Catatan
 
@@ -141,6 +156,10 @@ SOP ini mencakup reviewer yang sangat luas (8 reviewer lintas departemen) — me
 
 ## Related pages
 
-- [[sop-qa-008-deviasi]]
-- [[sop-qa-004-change-control]]
-- [[engineering-responsibilities]]
+- [[qa/penanganan-deviasi]]
+- [[qa/manajemen-perubahan]]
+- [[cross-functional/alur-mutu-qa-engineering]]
+- [[engineering/preventive-maintenance-mesin]]
+- [[engineering/penanganan-perbaikan-mesin]]
+- [[engineering/spare-parts-management]]
+- [[engineering/engineering-responsibilities]]

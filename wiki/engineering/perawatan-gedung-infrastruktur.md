@@ -1,3 +1,7 @@
+﻿---
+tags: ["maintenance", "onboarding"]
+---
+
 # Perawatan Gedung & Infrastruktur
 
 **Summary**: Panduan untuk menentukan langkah-langkah pembersihan, perapihan, perawatan dan perbaikan terhadap sarana bangunan dan infrastruktur sesuai standar bangunan terbaru.
@@ -123,8 +127,8 @@ Kegiatan mengembalikan barang sesuai dengan tempatnya. Kerapian adalah hal menge
 
 ## Related pages
 
-- [[building-maintenance-overview]]
-- [[damage-classification]]
+- [[engineering/perawatan-gedung-infrastruktur]]
+- [[engineering/maintenance-types]]
 - [[maintenance-types]]
-- [[pje-permintaan-jasa-engineering]]
+- [[engineering/permintaan-jasa-engineering]]
 - [[engineering-responsibilities]]

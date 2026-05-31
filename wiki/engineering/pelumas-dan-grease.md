@@ -1,3 +1,7 @@
+﻿---
+tags: ["hvac", "maintenance", "onboarding", "water-system"]
+---
+
 # Sistem Pengelolaan dan Penyimpanan Pelumas dan Grease
 
 **Summary**: SOP untuk pengelolaan dan penyimpanan pelumas dan grease yang mencakup petunjuk dasar pelumasan, klasifikasi pelumas, dan prosedur penyimpanan yang aman.
@@ -68,4 +72,4 @@ SOP ini digunakan oleh departement Engineering sebagai pedoman dalam melakukan s
 - [[engineering-responsibilities]]
 - [[maintenance-types]]
 - [[spare-parts-management]]
-- [[machine-repair-workflow]]
+- [[engineering/penanganan-perbaikan-mesin]]

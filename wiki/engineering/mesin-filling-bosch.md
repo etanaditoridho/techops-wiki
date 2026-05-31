@@ -1,3 +1,7 @@
+﻿---
+tags: ["capa", "change-control", "filling", "hvac", "maintenance", "onboarding"]
+---
+
 # Perawatan Terhadap Mesin Filling Bosch FXS 2051
 
 **Summary**: SOP untuk perawatan berkala mesin Filling Bosch FXS 2051 pada area produksi dengan jadwal 1 bulanan (L1), 6 bulanan (L3) dan 1 tahunan (L4).
@@ -122,8 +126,8 @@ Penggantian filter udara model capsule 0,2µm untuk Point of use CA dan N2.
 
 ## Related pages
 
-- [[machine-repair-workflow]]
+- [[engineering/penanganan-perbaikan-mesin]]
 - [[maintenance-types]]
 - [[spare-parts-management]]
 - [[engineering-responsibilities]]
-- [[pje-permintaan-jasa-engineering]]
+- [[engineering/permintaan-jasa-engineering]]

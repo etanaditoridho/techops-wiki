@@ -1,3 +1,7 @@
+﻿---
+tags: ["capa", "filling", "maintenance", "onboarding", "water-system"]
+---
+
 # SOP/EBI/EN-044 — Perawatan Mesin Filling (Tofflon)
 
 ##  LLM Summary
@@ -57,9 +61,9 @@ Mesin Filling Tofflon berada di area produksi lantai 1 PT EBI. SOP ini adalah ve
 
 - [[penanganan-perbaikan-mesin]]
 - [[preventive-maintenance-mesin]]
-- [[pje-permintaan-jasa-engineering]]
-- [[synthesis-emergency-shutdown]]
+- [[engineering/permintaan-jasa-engineering]]
+- [[engineering/emergency-shutdown]]
 - [[maintenance-types]]
 - [[spare-parts-management]]
-- [[perawatan-mesin-filling-bosch]]
+- [[engineering/mesin-filling-bosch]]
 - [[engineering-responsibilities]]

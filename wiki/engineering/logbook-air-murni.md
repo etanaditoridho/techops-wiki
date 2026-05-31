@@ -1,3 +1,7 @@
+﻿---
+tags: ["electrical", "hvac", "hvac-bms", "monitoring", "water-system"]
+---
+
 # Logbook Pemantauan Harian Generator Air Murni dan Distribusi Skidnya
 
 **Summary**: Formulir logbook untuk pemantauan harian terhadap generator air murni (PW) dan sistem distribusi skidnya yang dilakukan dalam 3 shift.
@@ -84,5 +88,5 @@ Pemantauan meliputi semua parameter kritis dari sistem generator air murni dan d
 ## Related pages
 - [[engineering-responsibilities]]
 - [[compressed-air-system]]
-- [[building-maintenance-overview]]
+- [[engineering/perawatan-gedung-infrastruktur]]
 - [[maintenance-types]]

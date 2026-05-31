@@ -1,3 +1,7 @@
+﻿---
+tags: ["electrical", "hvac", "hvac-bms", "maintenance", "water-system"]
+---
+
 # Sistem HVAC — Konsep & Komponen
 
 ##  LLM Summary
@@ -59,7 +63,7 @@ Sistem HVAC adalah **sistem kritis** dalam produksi farmasi steril. Kegagalan si
 - Memicu out-of-specification (OOS) kondisi lingkungan
 - Mengharuskan investigasi dan potensi reject batch produksi
 
-Semua parameter harus terdokumentasi dan dipantau secara real-time via [[operasi-perawatan-bms-ems|EMS/BMS]].
+Semua parameter harus terdokumentasi dan dipantau secara real-time via [[engineering/monitoring-bms-ems|EMS/BMS]].
 
 ## Integrasi dengan BMS/EMS
 
@@ -76,10 +80,10 @@ BMS (Building Management System) mengintegrasikan kontrol dan monitoring sistem 
 
 ## Related pages
 
-- [[operasi-perawatan-hvac]]
-- [[operasi-perawatan-bms-ems]]
-- [[hvac-failure-diagnosis]]
-- [[boiler-leak-response]]
+- [[engineering/operasional-sistem-hvac]]
+- [[engineering/monitoring-bms-ems]]
+- [[decision-support/diagnosis-kegagalan-hvac]]
+- [[decision-support/respon-kebocoran-boiler]]
 - [[maintenance-types]]
 - [[engineering-responsibilities]]
-- [[synthesis-daily-monitoring]]
+- [[engineering/monitoring-harian-engineering]]

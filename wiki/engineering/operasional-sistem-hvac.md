@@ -1,3 +1,7 @@
+﻿---
+tags: ["deviation", "electrical", "hvac", "maintenance", "monitoring", "onboarding", "water-system"]
+---
+
 # SOP/EBI/EN-016 — Pengoperasian dan Perawatan Sistem HVAC
 
 ##  LLM Summary
@@ -68,7 +72,7 @@ Sistem HVAC kritis untuk mendukung proses produksi farmasi steril. Semua paramet
 ## Related pages
 
 - [[hvac-system]]
-- [[hvac-failure-diagnosis]]
+- [[decision-support/diagnosis-kegagalan-hvac]]
 - [[maintenance-types]]
 - [[engineering-responsibilities]]
-- [[pje-permintaan-jasa-engineering]]
+- [[engineering/permintaan-jasa-engineering]]

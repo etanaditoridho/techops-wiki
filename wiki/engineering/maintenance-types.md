@@ -1,3 +1,7 @@
+﻿---
+tags: ["capa", "hvac", "maintenance", "monitoring", "onboarding"]
+---
+
 # Jenis-Jenis Perawatan Mesin
 
 ##  LLM Summary
@@ -94,5 +98,5 @@
 - [[penanganan-perbaikan-mesin]]
 - [[engineering-responsibilities]]
 - [[spare-parts-management]]
-- [[pje-permintaan-jasa-engineering]]
-- [[synthesis-onboarding-teknisi]]
+- [[engineering/permintaan-jasa-engineering]]
+- [[engineering/onboarding-teknisi-engineering]]

@@ -1,3 +1,7 @@
+﻿---
+tags: ["capa", "compressed-air", "hvac", "hvac-bms", "maintenance", "monitoring", "water-system"]
+---
+
 # TEST — Kompresor trip saat suhu ambient tinggi
 
 ##  LLM Summary
@@ -35,6 +39,6 @@ SOP/EBI/EN-013
 
 ## Related pages
 - [[compressed-air-system]]
-- [[operasi-perawatan-udara-tekan]]
+- [[engineering/operasional-udara-tekan]]
 - [[preventive-maintenance-mesin]]
-- [[synthesis-daily-monitoring]]
+- [[engineering/monitoring-harian-engineering]]

@@ -1,3 +1,7 @@
+﻿---
+tags: ["electrical", "emergency", "hvac", "maintenance", "onboarding"]
+---
+
 # PJE — Permintaan Jasa Engineering
 
 ##  LLM Summary
@@ -80,3 +84,6 @@ Saat mengerjakan PJE, jika teknisi membutuhkan suku cadang atau material:
 - [[spare-parts-management]]
 - [[maintenance-types]]
 - [[engineering-responsibilities]]
+- [[cross-functional/alur-mutu-qa-engineering]]
+- [[qa/manajemen-perubahan]]
+- [[qa/penanganan-deviasi]]

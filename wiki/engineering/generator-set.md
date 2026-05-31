@@ -1,3 +1,7 @@
+﻿---
+tags: ["deviation", "electrical", "maintenance", "monitoring", "onboarding", "water-system"]
+---
+
 # Pengoperasian dan Perawatan Terhadap Generator Set (Perkins 1000 kVA)
 
 **Summary**: Prosedur untuk pengoperasian dan perawatan Generator Set Perkins 1000 kVA sebagai backup listrik saat pemadaman PLN di PT. Etana Biotechnologies Indonesia.
@@ -111,9 +115,9 @@ PT. Etana Biotechnologies Indonesia mempunyai 2 unit Generator Set merk Perkins,
 ## Related pages
 
 - [[electrical-system]]
-- [[building-maintenance-overview]]
+- [[engineering/perawatan-gedung-infrastruktur]]
 - [[maintenance-types]]
-- [[machine-repair-workflow]]
-- [[pje-permintaan-jasa-engineering]]
+- [[engineering/penanganan-perbaikan-mesin]]
+- [[engineering/permintaan-jasa-engineering]]
 - [[spare-parts-management]]
 - [[engineering-responsibilities]]

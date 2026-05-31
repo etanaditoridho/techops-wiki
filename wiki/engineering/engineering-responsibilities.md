@@ -1,3 +1,7 @@
+﻿---
+tags: ["compressed-air", "deviation", "electrical", "filling", "hvac", "hvac-bms", "maintenance", "monitoring", "onboarding", "water-system"]
+---
+
 # Matriks Tanggung Jawab Engineering
 
 ##  LLM Summary
@@ -95,8 +99,12 @@ Manager Engineering
 ## Related pages
 
 - [[maintenance-types]]
-- [[pje-permintaan-jasa-engineering]]
+- [[engineering/permintaan-jasa-engineering]]
 - [[spare-parts-management]]
 - [[preventive-maintenance-mesin]]
 - [[penanganan-perbaikan-mesin]]
-- [[synthesis-onboarding-teknisi]]
+- [[engineering/onboarding-teknisi-engineering]]
+- [[cross-functional/alur-mutu-qa-engineering]]
+- [[qa/manajemen-perubahan]]
+- [[qa/penanganan-deviasi]]
+- [[qa/manajemen-capa]]
