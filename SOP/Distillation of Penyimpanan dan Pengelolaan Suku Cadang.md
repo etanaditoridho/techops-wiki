@@ -7,15 +7,17 @@ version: 1
 review_date: 
 confidence: 
 tags:
-  - Machine Repair Workflow
-  - Building Maintenance Overview
-  - Engineering Responsibilities
   - Spare Parts Management
+  - Engineering/Penanganan Perbaikan Mesin
+  - Engineering/Perawatan Gedung Infrastruktur
+  - Engineering Responsibilities
   - SOP EN-005
-notion_id: 35d664a8-3e24-81eb-a785-dcdaf43ed05e
-synced: 2026-05-30
+notion_id: 371664a8-3e24-812d-aea0-f60a3ed7e414
+synced: 2026-05-31
 ---
 
+﻿---
+tags: ["onboarding", "spare-parts"]
 **Summary**: Panduan untuk melaksanakan pengelolaan suku cadang agar dapat dipergunakan sebagaimana mestinya dan menjamin stok dari suku cadang yang utama.
 **SOP Number**: SOP/EBI/EN-005
 **Revision**: 03
@@ -88,5 +90,5 @@ Pelaksanaan SOP ini mencakup gudang suku cadang di Departemen Engineering.
 ## Related pages
 - [[spare-parts-management]]
 - [[engineering-responsibilities]]
-- [[machine-repair-workflow]]
-- [[building-maintenance-overview]]
+- [[engineering/penanganan-perbaikan-mesin]]
+- [[engineering/perawatan-gedung-infrastruktur]]

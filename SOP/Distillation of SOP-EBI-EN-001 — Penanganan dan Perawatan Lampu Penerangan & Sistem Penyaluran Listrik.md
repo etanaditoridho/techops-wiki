@@ -3,18 +3,19 @@ title: "Distillation of SOP/EBI/EN-001 — Penanganan dan Perawatan Lampu Penera
 status: verified
 folder: ENGINEERING
 owner: "Muhamad Riki Depano (Engineering SPV), Wildan Nugraha (Prod Sr. SPV)"
-version: 2
+version: 1
 review_date: 
 confidence: 
 tags:
   - Electrical System
-  - Maintenance Types
   - Engineering Responsibilities
+  - Maintenance Types
   - SOP EN-001
-notion_id: 34c664a8-3e24-8116-9d6f-fc879a4da23a
-synced: 2026-05-30
+notion_id: 371664a8-3e24-814e-8100-c4525927c470
+synced: 2026-05-31
 ---
 
+tags: ["electrical", "hvac", "maintenance", "onboarding"]
 ## LLM Summary
 - System: Sistem Kelistrikan
 - Equipment: Lampu penerangan, panel distribusi, grounding, genset, UPS

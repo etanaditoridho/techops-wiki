@@ -8,17 +8,19 @@ review_date:
 confidence: 
 tags:
   - Electrical System
-  - Pje Permintaan Jasa Engineering
-  - Building Maintenance Overview
-  - Machine Repair Workflow
-  - Engineering Responsibilities
-  - Spare Parts Management
   - Maintenance Types
+  - Engineering/Perawatan Gedung Infrastruktur
+  - Engineering/Permintaan Jasa Engineering
+  - Spare Parts Management
+  - Engineering/Penanganan Perbaikan Mesin
+  - Engineering Responsibilities
   - SOP EN-002
-notion_id: 35d664a8-3e24-81c9-accf-c01978951822
-synced: 2026-05-30
+notion_id: 371664a8-3e24-818a-9a9a-e1416229a1de
+synced: 2026-05-31
 ---
 
+﻿---
+tags: ["deviation", "electrical", "maintenance", "monitoring", "onboarding", "water-system"]
 **Summary**: Prosedur untuk pengoperasian dan perawatan Generator Set Perkins 1000 kVA sebagai backup listrik saat pemadaman PLN di PT. Etana Biotechnologies Indonesia.
 **SOP Number**: SOP/EBI/EN-002
 **Revision**: 02
@@ -105,9 +107,9 @@ PT. Etana Biotechnologies Indonesia mempunyai 2 unit Generator Set merk Perkins,
 1. Formulir Pemanasan Generator Set No. SOP/EBI/EN-002-F03C
 ## Related pages
 - [[electrical-system]]
-- [[building-maintenance-overview]]
+- [[engineering/perawatan-gedung-infrastruktur]]
 - [[maintenance-types]]
-- [[machine-repair-workflow]]
-- [[pje-permintaan-jasa-engineering]]
+- [[engineering/penanganan-perbaikan-mesin]]
+- [[engineering/permintaan-jasa-engineering]]
 - [[spare-parts-management]]
 - [[engineering-responsibilities]]

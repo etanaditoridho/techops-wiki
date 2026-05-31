@@ -7,16 +7,18 @@ version: 1
 review_date: 
 confidence: 
 tags:
-  - Pje Permintaan Jasa Engineering
-  - Machine Repair Workflow
   - Maintenance Types
-  - Engineering Responsibilities
+  - Engineering/Permintaan Jasa Engineering
   - Spare Parts Management
+  - Engineering/Penanganan Perbaikan Mesin
+  - Engineering Responsibilities
   - SOP EN-044
-notion_id: 35d664a8-3e24-8195-aee5-e796b6e692b7
-synced: 2026-05-30
+notion_id: 371664a8-3e24-814d-8cdc-f85178539d26
+synced: 2026-05-31
 ---
 
+﻿---
+tags: ["capa", "change-control", "filling", "maintenance", "onboarding", "water-system"]
 **Summary**: SOP untuk perawatan rutin mesin Filling (Tofflon) agar sesuai dengan standar PT Etana Biotechnologies Indonesia.
 **SOP Number**: SOP/EBI/EN-044
 **Revision**: 01
@@ -98,8 +100,8 @@ Dilakukan di area Conveyor belt main drive bevel gear menggunakan Grease Wurth M
 ## Formulir
 - SOP/EBI/EN-044-F01B: Formulir perawatan berkala terhadap Mesin Filling Tofflon
 ## Related pages
-- [[machine-repair-workflow]]
+- [[engineering/penanganan-perbaikan-mesin]]
 - [[maintenance-types]]
 - [[spare-parts-management]]
 - [[engineering-responsibilities]]
-- [[pje-permintaan-jasa-engineering]]
+- [[engineering/permintaan-jasa-engineering]]

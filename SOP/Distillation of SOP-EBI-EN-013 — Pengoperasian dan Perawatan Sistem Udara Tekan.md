@@ -3,19 +3,20 @@ title: "Distillation of SOP/EBI/EN-013 — Pengoperasian dan Perawatan Sistem Ud
 status: verified
 folder: ENGINEERING
 owner: "Riki Depano (Engineering Supervisor)"
-version: 3
+version: 1
 review_date: 
 confidence: 
 tags:
   - Finding Kompresor Trip Suhu Tinggi
   - Engineering Responsibilities
-  - Compressed Air System
   - Maintenance Types
+  - Compressed Air System
   - SOP EN-013
-notion_id: 34c664a8-3e24-817c-98ad-f6bec5a92bce
-synced: 2026-05-30
+notion_id: 371664a8-3e24-8136-bedd-f027ac3a14c6
+synced: 2026-05-31
 ---
 
+tags: ["cold-chain", "compressed-air", "hvac-bms", "maintenance", "monitoring", "onboarding"]
 ## LLM Summary
 - System: Sistem Udara Tekan
 - Equipment: Kompresor, refrigerant dryer, desiccant dryer, filter, receiver tank

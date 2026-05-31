@@ -3,20 +3,22 @@ title: "📚 Concept: Sistem Kelistrikan — Konsep & Komponen"
 status: verified
 folder: ENGINEERING
 owner: ""
-version: 2
+version: 3
 review_date: 
 confidence: 
 tags:
-  - Synthesis Daily Monitoring
-  - Penanganan Lampu Distribusi Listrik
   - Maintenance Types
-  - Synthesis Emergency Shutdown
+  - Engineering/Lampu Dan Distribusi Listrik
+  - Engineering/Emergency Shutdown
+  - Engineering/Monitoring Harian Engineering
   - Engineering Responsibilities
   - SOP EN-001
 notion_id: 34c664a8-3e24-812e-b8d7-f04b4c83fd32
-synced: 2026-05-30
+synced: 2026-05-31
 ---
 
+﻿---
+tags: ["electrical", "emergency", "hvac", "maintenance"]
 ## LLM Summary
 - System: Sistem Kelistrikan
 - Equipment: Panel listrik, MDP, SDP, grounding, genset, UPS
@@ -73,8 +75,8 @@ Inspeksi tahanan grounding dilakukan secara berkala menggunakan earth tester.
 - **Gangguan produksi**: pemadaman daya yang tidak terencana
 - **Kerusakan peralatan**: tegangan tidak stabil atau surge
 ## Related pages
-- [[penanganan-lampu-distribusi-listrik]]
+- [[engineering/lampu-dan-distribusi-listrik]]
 - [[maintenance-types]]
 - [[engineering-responsibilities]]
-- [[synthesis-daily-monitoring]]
-- [[synthesis-emergency-shutdown]]
+- [[engineering/monitoring-harian-engineering]]
+- [[engineering/emergency-shutdown]]

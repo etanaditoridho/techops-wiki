@@ -3,23 +3,25 @@ title: "Distillation of SOP/EBI/EN-015 — Pengoperasian dan Perawatan Sistem Pe
 status: verified
 folder: ENGINEERING
 owner: "Riki Depano (Engineering Sr. SPV)"
-version: 3
+version: 1
 review_date: 
 confidence: 
 tags:
-  - Pje Permintaan Jasa Engineering
-  - Synthesis Daily Monitoring
-  - Spare Parts Management
+  - Decision Support/Respon Kebocoran Boiler
   - Maintenance Types
-  - Synthesis Emergency Shutdown
-  - Engineering Responsibilities
+  - Engineering/Permintaan Jasa Engineering
+  - Engineering/Emergency Shutdown
+  - Spare Parts Management
   - Compressed Air System
-  - Boiler Leak Response
+  - Engineering/Monitoring Harian Engineering
+  - Engineering Responsibilities
   - SOP EN-015
-notion_id: 34c664a8-3e24-81e1-8a1e-e78bd67e8727
-synced: 2026-05-30
+notion_id: 371664a8-3e24-81aa-bb6a-d565c7b1a8a2
+synced: 2026-05-31
 ---
 
+﻿---
+tags: ["deviation", "emergency", "hvac-bms", "maintenance", "monitoring", "onboarding", "water-system"]
 ## LLM Summary
 - System: Sistem Pengolahan Air
 - Equipment: Water treatment system, alat ukur conductivity, TOC, boiler sanitasi
@@ -64,8 +66,8 @@ Digunakan Departemen Engineering khususnya operator Sistem Pengolahan Air.
 - [[maintenance-types]]
 - [[engineering-responsibilities]]
 - [[compressed-air-system]]
-- [[synthesis-daily-monitoring]]
-- [[synthesis-emergency-shutdown]]
-- [[pje-permintaan-jasa-engineering]]
+- [[engineering/monitoring-harian-engineering]]
+- [[engineering/emergency-shutdown]]
+- [[engineering/permintaan-jasa-engineering]]
 - [[spare-parts-management]]
-- [[boiler-leak-response]]
+- [[decision-support/respon-kebocoran-boiler]]

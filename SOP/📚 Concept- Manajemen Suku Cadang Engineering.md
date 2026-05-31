@@ -3,20 +3,25 @@ title: "📚 Concept: Manajemen Suku Cadang Engineering"
 status: verified
 folder: ENGINEERING
 owner: ""
-version: 2
+version: 3
 review_date: 
 confidence: 
 tags:
-  - Pje Permintaan Jasa Engineering
+  - Maintenance Types
+  - Qa/Manajemen Capa
+  - Qa/Manajemen Perubahan
+  - Engineering/Permintaan Jasa Engineering
   - Penanganan Perbaikan Mesin
   - Pengelolaan Suku Cadang
-  - Maintenance Types
+  - Cross Functional/Alur Mutu Qa Engineering
   - Engineering Responsibilities
   - SOP EN-005
 notion_id: 34c664a8-3e24-817f-a21d-d33a0f98537c
-synced: 2026-05-30
+synced: 2026-05-31
 ---
 
+﻿---
+tags: ["change-control", "filling", "hvac", "maintenance", "onboarding", "spare-parts"]
 ## LLM Summary
 - System: Manajemen Suku Cadang Engineering
 - Equipment: Critical part, non-critical part, part code, stok suku cadang
@@ -81,6 +86,9 @@ Setiap kali spesifikasi spare parts **kritikal** diubah (berbeda dari spesifikas
 ## Related pages
 - [[pengelolaan-suku-cadang]]
 - [[maintenance-types]]
-- [[pje-permintaan-jasa-engineering]]
+- [[engineering/permintaan-jasa-engineering]]
 - [[engineering-responsibilities]]
 - [[penanganan-perbaikan-mesin]]
+- [[cross-functional/alur-mutu-qa-engineering]]
+- [[qa/manajemen-perubahan]]
+- [[qa/manajemen-capa]]

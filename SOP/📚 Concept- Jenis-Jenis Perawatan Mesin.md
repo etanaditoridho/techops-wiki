@@ -3,22 +3,24 @@ title: "📚 Concept: Jenis-Jenis Perawatan Mesin"
 status: verified
 folder: ENGINEERING
 owner: ""
-version: 2
+version: 3
 review_date: 
 confidence: 
 tags:
-  - Pje Permintaan Jasa Engineering
+  - Engineering/Onboarding Teknisi Engineering
+  - Engineering/Permintaan Jasa Engineering
   - Penanganan Perbaikan Mesin
   - Preventive Maintenance Mesin
   - Spare Parts Management
-  - Synthesis Onboarding Teknisi
   - Engineering Responsibilities
   - SOP EN-004
   - SOP EN-014
 notion_id: 34c664a8-3e24-81bd-87dc-edbca65e64c2
-synced: 2026-05-30
+synced: 2026-05-31
 ---
 
+﻿---
+tags: ["capa", "hvac", "maintenance", "monitoring", "onboarding"]
 ## LLM Summary
 - System: Manajemen Perawatan Mesin
 - Equipment: Mesin produksi, utility equipment, komponen mesin
@@ -72,5 +74,5 @@ synced: 2026-05-30
 - [[penanganan-perbaikan-mesin]]
 - [[engineering-responsibilities]]
 - [[spare-parts-management]]
-- [[pje-permintaan-jasa-engineering]]
-- [[synthesis-onboarding-teknisi]]
+- [[engineering/permintaan-jasa-engineering]]
+- [[engineering/onboarding-teknisi-engineering]]

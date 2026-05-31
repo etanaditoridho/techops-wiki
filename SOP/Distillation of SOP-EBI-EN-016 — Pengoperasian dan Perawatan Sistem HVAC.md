@@ -3,20 +3,22 @@ title: "Distillation of SOP/EBI/EN-016 — Pengoperasian dan Perawatan Sistem HV
 status: verified
 folder: ENGINEERING
 owner: "Riki Depano (Engineering SPV)"
-version: 3
+version: 1
 review_date: 
 confidence: 
 tags:
-  - Pje Permintaan Jasa Engineering
-  - Hvac System
-  - Hvac Failure Diagnosis
+  - Decision Support/Diagnosis Kegagalan Hvac
   - Maintenance Types
+  - Engineering/Permintaan Jasa Engineering
+  - Hvac System
   - Engineering Responsibilities
   - SOP EN-016
-notion_id: 34c664a8-3e24-8103-83af-f946a0e117a8
-synced: 2026-05-30
+notion_id: 371664a8-3e24-8196-b3d1-fd79e4f4127a
+synced: 2026-05-31
 ---
 
+﻿---
+tags: ["deviation", "electrical", "hvac", "maintenance", "monitoring", "onboarding", "water-system"]
 ## LLM Summary
 - System: HVAC
 - Equipment: AHU, FCU, exhaust fan, chiller, pompa sirkulasi, cooling tower, HEPA filter
@@ -64,7 +66,7 @@ Digunakan Departemen Engineering khususnya teknisi HVAC. Mencakup semua sistem H
 Sistem HVAC kritis untuk mendukung proses produksi farmasi steril. Semua parameter harus sesuai standar GMP yang berlaku.
 ## Related pages
 - [[hvac-system]]
-- [[hvac-failure-diagnosis]]
+- [[decision-support/diagnosis-kegagalan-hvac]]
 - [[maintenance-types]]
 - [[engineering-responsibilities]]
-- [[pje-permintaan-jasa-engineering]]
+- [[engineering/permintaan-jasa-engineering]]

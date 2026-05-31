@@ -7,15 +7,17 @@ version: 1
 review_date: 
 confidence: 
 tags:
-  - Machine Repair Workflow
-  - Spare Parts Management
   - Engineering Responsibilities
+  - Engineering/Penanganan Perbaikan Mesin
   - Maintenance Types
+  - Spare Parts Management
   - SOP EN-006
-notion_id: 35d664a8-3e24-8104-b7b1-fcaff6921efa
-synced: 2026-05-30
+notion_id: 371664a8-3e24-81e0-ad75-fe0bd9002b9a
+synced: 2026-05-31
 ---
 
+﻿---
+tags: ["hvac", "maintenance", "onboarding", "water-system"]
 **Summary**: SOP untuk pengelolaan dan penyimpanan pelumas dan grease yang mencakup petunjuk dasar pelumasan, klasifikasi pelumas, dan prosedur penyimpanan yang aman.
 **SOP Number**: SOP/EBI/EN-006
 **Revision**: 01
@@ -63,4 +65,4 @@ SOP ini digunakan oleh departement Engineering sebagai pedoman dalam melakukan s
 - [[engineering-responsibilities]]
 - [[maintenance-types]]
 - [[spare-parts-management]]
-- [[machine-repair-workflow]]
+- [[engineering/penanganan-perbaikan-mesin]]
