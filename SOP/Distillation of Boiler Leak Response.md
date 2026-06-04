@@ -16,7 +16,7 @@ tags:
   - Engineering/Penanganan Perbaikan Mesin
   - Engineering/Monitoring Harian Engineering
 notion_id: 371664a8-3e24-8113-8c02-ffc66e4681a6
-synced: 2026-06-03
+synced: 2026-06-04
 ---
 
 ﻿---
