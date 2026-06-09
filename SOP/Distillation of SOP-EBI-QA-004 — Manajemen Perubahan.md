@@ -16,7 +16,7 @@ tags:
   - Engineering/Monitoring Bms Ems
   - Cross Functional/Alur Mutu Qa Engineering
 notion_id: 371664a8-3e24-810a-9205-fd68a66db7c6
-synced: 2026-06-08
+synced: 2026-06-09
 ---
 
 ﻿---
