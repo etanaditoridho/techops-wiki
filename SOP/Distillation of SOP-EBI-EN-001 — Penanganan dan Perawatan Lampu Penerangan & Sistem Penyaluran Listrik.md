@@ -12,7 +12,7 @@ tags:
   - Maintenance Types
   - SOP EN-001
 notion_id: 371664a8-3e24-814e-8100-c4525927c470
-synced: 2026-07-22
+synced: 2026-07-23
 ---
 
 tags: ["electrical", "hvac", "maintenance", "onboarding"]
