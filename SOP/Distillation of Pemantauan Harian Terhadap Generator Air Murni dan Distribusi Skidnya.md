@@ -7,14 +7,16 @@ version: 1
 review_date: 
 confidence: 
 tags:
-  - Compressed Air System
-  - Building Maintenance Overview
   - Engineering Responsibilities
+  - Engineering/Perawatan Gedung Infrastruktur
+  - Compressed Air System
   - SOP EN-015
-notion_id: 35d664a8-3e24-8164-b5ef-c69153c83988
-synced: 2026-05-30
+notion_id: 371664a8-3e24-81f2-b6b6-c3dc52059ac7
+synced: 2026-05-31
 ---
 
+﻿---
+tags: ["electrical", "hvac", "hvac-bms", "monitoring", "water-system"]
 **Summary**: Logbook untuk pemantauan harian generator air murni (PW) dan sistem distribusi skidnya dengan checklist parameter operasional dan standar nilai yang harus dipantau dalam 3 shift kerja.
 **SOP Number**: SOP/EBI/EN-015-F01H
 **Revision**: —
@@ -82,5 +84,5 @@ Logbook ini mencakup pemantauan parameter operasional generator air murni dan si
 - Form logbook pemantauan harian dengan kolom waktu, parameter, nilai standar, hasil pengukuran, dan keterangan
 ## Related pages
 - [[engineering-responsibilities]]
-- [[building-maintenance-overview]]
+- [[engineering/perawatan-gedung-infrastruktur]]
 - [[compressed-air-system]]

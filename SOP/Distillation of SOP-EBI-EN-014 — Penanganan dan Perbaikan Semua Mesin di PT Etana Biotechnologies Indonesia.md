@@ -3,20 +3,25 @@ title: "Distillation of SOP/EBI/EN-014 — Penanganan dan Perbaikan Semua Mesin 
 status: verified
 folder: ENGINEERING
 owner: "Wendi Rukmansyah (Non Utility Engineering SPV)"
-version: 3
+version: 4
 review_date: 
 confidence: 
 tags:
-  - Pje Permintaan Jasa Engineering
-  - Penanganan Perbaikan Mesin
-  - Spare Parts Management
   - Maintenance Types
-  - Engineering Responsibilities
+  - Qa/Manajemen Capa
+  - Qa/Manajemen Perubahan
+  - Engineering/Permintaan Jasa Engineering
+  - Qa/Penanganan Deviasi
+  - Penanganan Perbaikan Mesin
+  - Cross Functional/Alur Mutu Qa Engineering
+  - Spare Parts Management
   - SOP EN-014
 notion_id: 34c664a8-3e24-81d1-9056-d3c9f39e94e3
-synced: 2026-05-30
+synced: 2026-05-31
 ---
 
+﻿---
+tags: ["maintenance", "onboarding"]
 ## LLM Summary
 - System: Penanganan Perbaikan Mesin
 - Equipment: Mesin produksi, mesin utility, label status mesin, formulir breakdown
@@ -61,7 +66,7 @@ Digunakan Departemen Engineering untuk penanganan dan perbaikan mesin utility, p
 - Operator/pemegang alat membuat laporan ke Engineering via formulir breakdown
 - Teknisi Engineering menangani dan mencatat di kartu riwayat mesin
 ### Permintaan Jasa Engineering (PJE)
-Lihat [[pje-permintaan-jasa-engineering]] untuk detail proses.
+Lihat [[engineering/permintaan-jasa-engineering]] untuk detail proses.
 ### Pekerjaan Vendor
 - Diberi label khusus "Sedang Diperbaiki oleh Vendor"
 - Engineering memantau progress pekerjaan vendor
@@ -81,6 +86,10 @@ Prosedur khusus berlaku untuk mesin yang perlu dipindahkan keluar area GMP untuk
 ## Related pages
 - [[penanganan-perbaikan-mesin]]
 - [[maintenance-types]]
-- [[pje-permintaan-jasa-engineering]]
+- [[engineering/permintaan-jasa-engineering]]
 - [[spare-parts-management]]
 - [[engineering-responsibilities]]
+- [[cross-functional/alur-mutu-qa-engineering]]
+- [[qa/manajemen-perubahan]]
+- [[qa/penanganan-deviasi]]
+- [[qa/manajemen-capa]]

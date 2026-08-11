@@ -3,20 +3,22 @@ title: "Distillation of Perawatan Gedung & Infrastruktur"
 status: verified
 folder: ENGINEERING
 owner: "Ridwan Andriansyah (Site Management Specialist)"
-version: 4
+version: 5
 review_date: 
 confidence: 
 tags:
-  - Pje Permintaan Jasa Engineering
-  - Building Maintenance Overview
-  - Engineering Responsibilities
-  - Damage Classification
   - Maintenance Types
+  - Engineering/Perawatan Gedung Infrastruktur
+  - Engineering/Permintaan Jasa Engineering
+  - Engineering Responsibilities
+  - Engineering/Maintenance Types
   - SOP EN-003
 notion_id: 34c664a8-3e24-81c8-9cc4-fff22cb8440b
-synced: 2026-05-30
+synced: 2026-05-31
 ---
 
+﻿---
+tags: ["maintenance", "onboarding"]
 **Summary**: Panduan untuk menentukan langkah-langkah pembersihan, perapihan, perawatan dan perbaikan terhadap sarana bangunan dan infrastruktur sesuai standar bangunan terbaru.
 **SOP Number**: SOP/EBI/EN-003
 **Revision**: 03
@@ -102,8 +104,8 @@ Kegiatan mengembalikan barang sesuai dengan tempatnya. Kerapian adalah hal menge
 - SOP/EBI/EN-003-F02C: Formulir evaluasi kondisi bangunan
 - SOP/EBI/EN-003-F03B: Formulir kegiatan dan evaluasi kebersihan gedung
 ## Related pages
-- [[building-maintenance-overview]]
-- [[damage-classification]]
+- [[engineering/perawatan-gedung-infrastruktur]]
+- [[engineering/maintenance-types]]
 - [[maintenance-types]]
-- [[pje-permintaan-jasa-engineering]]
+- [[engineering/permintaan-jasa-engineering]]
 - [[engineering-responsibilities]]

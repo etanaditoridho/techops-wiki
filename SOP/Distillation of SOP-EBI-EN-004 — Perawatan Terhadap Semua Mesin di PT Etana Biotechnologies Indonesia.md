@@ -3,19 +3,25 @@ title: "Distillation of SOP/EBI/EN-004 — Perawatan Terhadap Semua Mesin di PT 
 status: verified
 folder: ENGINEERING
 owner: "Wendi Rukmansyah (Engineering Supervisor), Riki Depano (Engineering Supervisor), Burhanuddin Robbani (Engineering Supervisor)"
-version: 3
+version: 4
 review_date: 
 confidence: 
 tags:
-  - Engineering Responsibilities
-  - Spare Parts Management
   - Maintenance Types
+  - Qa/Manajemen Capa
+  - Qa/Manajemen Perubahan
+  - Qa/Penanganan Deviasi
   - Penanganan Perbaikan Mesin
+  - Cross Functional/Alur Mutu Qa Engineering
+  - Spare Parts Management
+  - Engineering Responsibilities
   - SOP EN-004
 notion_id: 34c664a8-3e24-8115-b5eb-d21a76c140ad
-synced: 2026-05-30
+synced: 2026-05-31
 ---
 
+﻿---
+tags: ["capa", "hvac", "maintenance", "onboarding"]
 ## LLM Summary
 - System: Preventive Maintenance Mesin
 - Equipment: Mesin produksi, mesin utility, peralatan Engineering, label status
@@ -56,3 +62,7 @@ Mesin dan alat utility tetap diawasi selama libur panjang sesuai jadwal yang dit
 - [[penanganan-perbaikan-mesin]]
 - [[spare-parts-management]]
 - [[engineering-responsibilities]]
+- [[cross-functional/alur-mutu-qa-engineering]]
+- [[qa/manajemen-perubahan]]
+- [[qa/penanganan-deviasi]]
+- [[qa/manajemen-capa]]

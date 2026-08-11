@@ -7,16 +7,18 @@ version: 1
 review_date: 
 confidence: 
 tags:
-  - Pje Permintaan Jasa Engineering
-  - Machine Repair Workflow
   - Maintenance Types
-  - Engineering Responsibilities
+  - Engineering/Permintaan Jasa Engineering
   - Spare Parts Management
+  - Engineering/Penanganan Perbaikan Mesin
+  - Engineering Responsibilities
   - SOP EN-024
-notion_id: 35d664a8-3e24-81ad-977a-f79bebcc5f33
-synced: 2026-05-30
+notion_id: 371664a8-3e24-8121-81d0-dd5b56ec5bb0
+synced: 2026-05-31
 ---
 
+﻿---
+tags: ["capa", "change-control", "filling", "hvac", "maintenance", "onboarding"]
 **Summary**: SOP untuk perawatan berkala mesin Filling Bosch FXS 2051 pada area produksi dengan jadwal 1 bulanan (L1), 6 bulanan (L3) dan 1 tahunan (L4).
 **SOP Number**: SOP/EBI/EN-024
 **Revision**: 04
@@ -109,8 +111,7 @@ Penggantian filter udara model capsule 0,2µm untuk Point of use CA dan N2.
 ## Formulir
 - SOP/EBI/EN-024-F01E Perawatan berkala terhadap Mesin Filling Bosch FXS 2051
 ## Related pages
-- [[machine-repair-workflow]]
+- [[engineering/penanganan-perbaikan-mesin]]
 - [[maintenance-types]]
 - [[spare-parts-management]]
 - [[engineering-responsibilities]]
-- [[pje-permintaan-jasa-engineering]]

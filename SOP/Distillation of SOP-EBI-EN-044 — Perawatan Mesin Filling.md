@@ -3,23 +3,25 @@ title: "Distillation of SOP/EBI/EN-044 — Perawatan Mesin Filling"
 status: verified
 folder: ENGINEERING
 owner: "Pribadi Setia Bayu Aji (Non Utility Engineering Technician), Wendi Rukmansyah (Engineering SPV)"
-version: 3
+version: 4
 review_date: 
 confidence: 
 tags:
-  - Pje Permintaan Jasa Engineering
+  - Maintenance Types
+  - Engineering/Permintaan Jasa Engineering
+  - Engineering/Emergency Shutdown
   - Penanganan Perbaikan Mesin
   - Preventive Maintenance Mesin
   - Spare Parts Management
-  - Maintenance Types
-  - Synthesis Emergency Shutdown
-  - Perawatan Mesin Filling Bosch
+  - Engineering/Mesin Filling Bosch
   - Engineering Responsibilities
   - SOP EN-044
 notion_id: 34c664a8-3e24-8129-a7e7-ddd301f3b162
-synced: 2026-05-30
+synced: 2026-05-31
 ---
 
+﻿---
+tags: ["capa", "filling", "maintenance", "onboarding", "water-system"]
 ## LLM Summary
 - System: Perawatan Mesin Filling
 - Equipment: Mesin Filling Tofflon, pompa peristaltik, P&P, stoppering, komponen filling
@@ -59,9 +61,9 @@ Mesin Filling Tofflon berada di area produksi lantai 1 PT EBI. SOP ini adalah ve
 ## Related pages
 - [[penanganan-perbaikan-mesin]]
 - [[preventive-maintenance-mesin]]
-- [[pje-permintaan-jasa-engineering]]
-- [[synthesis-emergency-shutdown]]
+- [[engineering/permintaan-jasa-engineering]]
+- [[engineering/emergency-shutdown]]
 - [[maintenance-types]]
 - [[spare-parts-management]]
-- [[perawatan-mesin-filling-bosch]]
+- [[engineering/mesin-filling-bosch]]
 - [[engineering-responsibilities]]

@@ -7,16 +7,18 @@ version: 1
 review_date: 
 confidence: 
 tags:
-  - Pje Permintaan Jasa Engineering
-  - Machine Repair Workflow
-  - Engineering Responsibilities
-  - Spare Parts Management
   - Maintenance Types
+  - Engineering/Permintaan Jasa Engineering
+  - Spare Parts Management
+  - Engineering/Penanganan Perbaikan Mesin
+  - Engineering Responsibilities
   - SOP EN-014
-notion_id: 35d664a8-3e24-8147-aeb0-f8966bbc38ac
-synced: 2026-05-30
+notion_id: 371664a8-3e24-81a8-b09b-dbb4b3b333c3
+synced: 2026-05-31
 ---
 
+﻿---
+tags: ["hvac", "maintenance", "onboarding"]
 **Summary**: SOP ini memberikan pedoman bagi Departemen Engineering dalam melakukan penanganan dan perbaikan mesin-mesin Utility, Produksi, Warehouse, Pemastian Mutu dan Pengawasan Mutu.
 **SOP Number**: SOP/EBI/EN-014
 **Revision**: 01
@@ -82,8 +84,8 @@ SOP ini digunakan oleh Departemen Engineering sebagai pedoman dalam melakukan pe
 - Formulir Label Keadaan Mesin Sedang Diperbaiki oleh Engineering (SOP/EBI/EN-014-F04B)
 - Formulir Label Keadaan Mesin Sedang Diperbaiki oleh Vendor (SOP/EBI/EN-014-F05B)
 ## Related pages
-- [[pje-permintaan-jasa-engineering]]
-- [[machine-repair-workflow]]
+- [[engineering/permintaan-jasa-engineering]]
+- [[engineering/penanganan-perbaikan-mesin]]
 - [[spare-parts-management]]
 - [[engineering-responsibilities]]
 - [[maintenance-types]]

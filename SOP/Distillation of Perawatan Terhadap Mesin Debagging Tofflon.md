@@ -7,15 +7,17 @@ version: 1
 review_date: 
 confidence: 
 tags:
-  - Machine Repair Workflow
-  - Spare Parts Management
   - Engineering Responsibilities
   - Maintenance Types
+  - Engineering/Penanganan Perbaikan Mesin
+  - Spare Parts Management
   - SOP EN-048
-notion_id: 35d664a8-3e24-81ad-b38c-fa17eb2b2ff4
-synced: 2026-05-30
+notion_id: 371664a8-3e24-81be-9db0-cc99e76b7b7b
+synced: 2026-05-31
 ---
 
+﻿---
+tags: ["capa", "change-control", "filling", "maintenance", "onboarding"]
 **Summary**: Petunjuk perawatan mesin Debagging Tofflon agar sesuai dengan standar PT Etana Biotechnologies Indonesia
 **SOP Number**: SOP/EBI/EN-048
 **Revision**: 00
@@ -90,7 +92,7 @@ Periksa permukaan dari mata cutter, perbaiki atau ganti cutter jika diperlukan. 
 ## Formulir
 - Formulir perawatan berkala terhadap mesin Debagging Tofflon No. SOP/EBI/EN-048-F01A
 ## Related pages
-- [[machine-repair-workflow]]
+- [[engineering/penanganan-perbaikan-mesin]]
 - [[maintenance-types]]
 - [[spare-parts-management]]
 - [[engineering-responsibilities]]

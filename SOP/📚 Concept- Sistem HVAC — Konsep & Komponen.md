@@ -3,24 +3,26 @@ title: "📚 Concept: Sistem HVAC — Konsep & Komponen"
 status: verified
 folder: ENGINEERING
 owner: ""
-version: 3
+version: 4
 review_date: 
 confidence: 
 tags:
-  - Operasi Perawatan Bms Ems|Ems/Bms
-  - Hvac Failure Diagnosis
-  - Synthesis Daily Monitoring
-  - Operasi Perawatan Hvac
+  - Decision Support/Diagnosis Kegagalan Hvac
+  - Decision Support/Respon Kebocoran Boiler
   - Maintenance Types
+  - Engineering/Monitoring Bms Ems|Ems/Bms
+  - Engineering/Operasional Sistem Hvac
+  - Engineering/Monitoring Bms Ems
+  - Engineering/Monitoring Harian Engineering
   - Engineering Responsibilities
-  - Operasi Perawatan Bms Ems
-  - Boiler Leak Response
   - SOP EN-016
   - SOP EN-055
 notion_id: 34c664a8-3e24-8186-a4c2-c17b2eb6b492
-synced: 2026-05-30
+synced: 2026-05-31
 ---
 
+﻿---
+tags: ["electrical", "hvac", "hvac-bms", "maintenance", "water-system"]
 ## LLM Summary
 - System: HVAC
 - Equipment: AHU, FCU, exhaust fan, chiller, cooling tower, HWG, HEPA filter
@@ -63,7 +65,7 @@ Sistem HVAC adalah **sistem kritis** dalam produksi farmasi steril. Kegagalan si
 - Menyebabkan kontaminasi partikel pada produk
 - Memicu out-of-specification (OOS) kondisi lingkungan
 - Mengharuskan investigasi dan potensi reject batch produksi
-Semua parameter harus terdokumentasi dan dipantau secara real-time via [[operasi-perawatan-bms-ems|EMS/BMS]].
+Semua parameter harus terdokumentasi dan dipantau secara real-time via [[engineering/monitoring-bms-ems|EMS/BMS]].
 ## Integrasi dengan BMS/EMS
 BMS (Building Management System) mengintegrasikan kontrol dan monitoring sistem HVAC secara otomatis. EMS (Environmental Monitoring System) memantau parameter lingkungan kritis secara kontinu dan menghasilkan alert jika terjadi deviasi.
 ## Jadwal Perawatan
@@ -74,10 +76,10 @@ BMS (Building Management System) mengintegrasikan kontrol dan monitoring sistem 
 | Bulanan | Penggantian filter medium, kalibrasi sensor |
 | Tahunan/Semi-tahunan | Penggantian HEPA filter, overhaul chiller, cleaning cooling tower |
 ## Related pages
-- [[operasi-perawatan-hvac]]
-- [[operasi-perawatan-bms-ems]]
-- [[hvac-failure-diagnosis]]
-- [[boiler-leak-response]]
+- [[engineering/operasional-sistem-hvac]]
+- [[engineering/monitoring-bms-ems]]
+- [[decision-support/diagnosis-kegagalan-hvac]]
+- [[decision-support/respon-kebocoran-boiler]]
 - [[maintenance-types]]
 - [[engineering-responsibilities]]
-- [[synthesis-daily-monitoring]]
+- [[engineering/monitoring-harian-engineering]]

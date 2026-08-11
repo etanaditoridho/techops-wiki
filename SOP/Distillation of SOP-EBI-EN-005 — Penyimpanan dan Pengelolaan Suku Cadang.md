@@ -3,7 +3,7 @@ title: "Distillation of SOP/EBI/EN-005 — Penyimpanan dan Pengelolaan Suku Cada
 status: verified
 folder: ENGINEERING
 owner: "Jihan Salsabila (Engineering Staff)"
-version: 3
+version: 4
 review_date: 
 confidence: 
 tags:
@@ -12,9 +12,10 @@ tags:
   - Penanganan Perbaikan Mesin
   - SOP EN-005
 notion_id: 34c664a8-3e24-81ae-8cd8-d3fc42633bed
-synced: 2026-05-30
+synced: 2026-05-31
 ---
 
+tags: ["maintenance", "monitoring", "onboarding", "spare-parts"]
 ## LLM Summary
 - System: Pengelolaan Suku Cadang Engineering
 - Equipment: Suku cadang, gudang spare part, part code, stok critical part

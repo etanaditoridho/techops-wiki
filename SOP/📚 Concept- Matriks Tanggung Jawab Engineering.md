@@ -3,24 +3,26 @@ title: "📚 Concept: Matriks Tanggung Jawab Engineering"
 status: verified
 folder: ENGINEERING
 owner: ""
-version: 2
+version: 3
 review_date: 
 confidence: 
 tags:
-  - Pje Permintaan Jasa Engineering
+  - Maintenance Types
+  - Qa/Manajemen Capa
+  - Engineering/Onboarding Teknisi Engineering
+  - Qa/Manajemen Perubahan
+  - Engineering/Permintaan Jasa Engineering
+  - Qa/Penanganan Deviasi
   - Penanganan Perbaikan Mesin
   - Preventive Maintenance Mesin
-  - Spare Parts Management
-  - Synthesis Onboarding Teknisi
-  - Maintenance Types
   - SOP EN-001
   - SOP EN-004
-  - SOP EN-005
-  - SOP EN-013
 notion_id: 34c664a8-3e24-8141-9080-cd53ea270dd9
-synced: 2026-05-30
+synced: 2026-05-31
 ---
 
+﻿---
+tags: ["compressed-air", "deviation", "electrical", "filling", "hvac", "hvac-bms", "maintenance", "monitoring", "onboarding", "water-system"]
 ## LLM Summary
 - System: Organisasi Engineering
 - Equipment: N/A
@@ -87,8 +89,12 @@ synced: 2026-05-30
 - Hanya personel terlatih dan terkualifikasi yang boleh mengoperasikan sistem kritis
 ## Related pages
 - [[maintenance-types]]
-- [[pje-permintaan-jasa-engineering]]
+- [[engineering/permintaan-jasa-engineering]]
 - [[spare-parts-management]]
 - [[preventive-maintenance-mesin]]
 - [[penanganan-perbaikan-mesin]]
-- [[synthesis-onboarding-teknisi]]
+- [[engineering/onboarding-teknisi-engineering]]
+- [[cross-functional/alur-mutu-qa-engineering]]
+- [[qa/manajemen-perubahan]]
+- [[qa/penanganan-deviasi]]
+- [[qa/manajemen-capa]]
