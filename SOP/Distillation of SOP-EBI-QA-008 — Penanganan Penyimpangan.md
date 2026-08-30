@@ -1,6 +1,6 @@
 ---
 title: "Distillation of SOP/EBI/QA-008 — Penanganan Penyimpangan"
-status: verified
+status: stale
 folder: QA
 owner: "- Ega Widyaningrum (QA Deviation Sr. Staff)"
 version: 1
@@ -16,7 +16,7 @@ tags:
   - Engineering/Penanganan Perbaikan Mesin
   - Engineering/Monitoring Harian Engineering
 notion_id: 371664a8-3e24-81ea-a155-fb432ec204ff
-synced: 2026-08-29
+synced: 2026-08-30
 ---
 
 ﻿---

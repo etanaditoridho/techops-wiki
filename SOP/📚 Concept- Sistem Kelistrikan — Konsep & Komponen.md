@@ -1,6 +1,6 @@
 ---
 title: "📚 Concept: Sistem Kelistrikan — Konsep & Komponen"
-status: verified
+status: stale
 folder: ENGINEERING
 owner: ""
 version: 3
@@ -14,7 +14,7 @@ tags:
   - Engineering Responsibilities
   - SOP EN-001
 notion_id: 34c664a8-3e24-812e-b8d7-f04b4c83fd32
-synced: 2026-08-29
+synced: 2026-08-30
 ---
 
 ﻿---

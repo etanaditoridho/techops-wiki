@@ -1,6 +1,6 @@
 ---
 title: "Distillation of SOP/EBI/EN-044 — Perawatan Mesin Filling"
-status: verified
+status: stale
 folder: ENGINEERING
 owner: "Pribadi Setia Bayu Aji (Non Utility Engineering Technician), Wendi Rukmansyah (Engineering SPV)"
 version: 4
@@ -17,7 +17,7 @@ tags:
   - Engineering Responsibilities
   - SOP EN-044
 notion_id: 34c664a8-3e24-8129-a7e7-ddd301f3b162
-synced: 2026-08-29
+synced: 2026-08-30
 ---
 
 ﻿---

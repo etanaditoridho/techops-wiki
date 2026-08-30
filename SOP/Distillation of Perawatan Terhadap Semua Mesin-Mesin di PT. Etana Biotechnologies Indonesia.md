@@ -1,6 +1,6 @@
 ---
 title: "Distillation of Perawatan Terhadap Semua Mesin-Mesin di PT. Etana Biotechnologies Indonesia"
-status: verified
+status: stale
 folder: ENGINEERING
 owner: "Wendi Rukmansyah (Engineering Supervisor), Riki Depano (Engineering Supervisor), Burhanuddin Robbani (Engineering Supervisor)"
 version: 1
@@ -15,7 +15,7 @@ tags:
   - Engineering Responsibilities
   - SOP EN-004
 notion_id: 371664a8-3e24-81df-81b8-c63240e8c595
-synced: 2026-08-29
+synced: 2026-08-30
 ---
 
 ﻿---

@@ -1,6 +1,6 @@
 ---
 title: "Distillation of Perawatan Terhadap Mesin Filling"
-status: verified
+status: stale
 folder: ENGINEERING
 owner: "Pribadi Setia Bayu Aji (Non Utility Engineering Technician), Wendi Rukmansyah (Engineering SPV), Muhamad Wildan Nugraha (Prod Sr. SPV)"
 version: 1
@@ -14,7 +14,7 @@ tags:
   - Engineering Responsibilities
   - SOP EN-044
 notion_id: 371664a8-3e24-814d-8cdc-f85178539d26
-synced: 2026-08-29
+synced: 2026-08-30
 ---
 
 ﻿---

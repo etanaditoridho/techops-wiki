@@ -1,6 +1,6 @@
 ---
 title: "Distillation of Pengoperasian dan Perawatan Terhadap Generator Set"
-status: verified
+status: stale
 folder: ENGINEERING
 owner: "Riki Depano (Engineering SPV)"
 version: 1
@@ -16,7 +16,7 @@ tags:
   - Engineering Responsibilities
   - SOP EN-002
 notion_id: 371664a8-3e24-818a-9a9a-e1416229a1de
-synced: 2026-08-29
+synced: 2026-08-30
 ---
 
 ﻿---

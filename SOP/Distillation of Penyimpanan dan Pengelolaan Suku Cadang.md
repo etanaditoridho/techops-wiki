@@ -1,6 +1,6 @@
 ---
 title: "Distillation of Penyimpanan dan Pengelolaan Suku Cadang"
-status: verified
+status: stale
 folder: ENGINEERING
 owner: "Jihan Salsabila (Engineering Staff)"
 version: 1
@@ -13,7 +13,7 @@ tags:
   - Engineering Responsibilities
   - SOP EN-005
 notion_id: 371664a8-3e24-812d-aea0-f60a3ed7e414
-synced: 2026-08-29
+synced: 2026-08-30
 ---
 
 ﻿---

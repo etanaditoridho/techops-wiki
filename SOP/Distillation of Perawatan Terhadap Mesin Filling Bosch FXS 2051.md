@@ -1,6 +1,6 @@
 ---
 title: "Distillation of Perawatan Terhadap Mesin Filling Bosch FXS 2051"
-status: verified
+status: stale
 folder: ENGINEERING
 owner: "WENDI RUKMANSYAH (Engineering SPV)"
 version: 1
@@ -14,7 +14,7 @@ tags:
   - Engineering Responsibilities
   - SOP EN-024
 notion_id: 371664a8-3e24-8121-81d0-dd5b56ec5bb0
-synced: 2026-08-29
+synced: 2026-08-30
 ---
 
 ﻿---

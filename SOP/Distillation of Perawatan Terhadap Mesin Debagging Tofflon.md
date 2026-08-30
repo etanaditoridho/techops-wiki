@@ -1,6 +1,6 @@
 ---
 title: "Distillation of Perawatan Terhadap Mesin Debagging Tofflon"
-status: verified
+status: stale
 folder: ENGINEERING
 owner: "Pribadi Setia Bayu Aji (Non Utility Engineering Technician)"
 version: 1
@@ -13,7 +13,7 @@ tags:
   - Spare Parts Management
   - SOP EN-048
 notion_id: 371664a8-3e24-81be-9db0-cc99e76b7b7b
-synced: 2026-08-29
+synced: 2026-08-30
 ---
 
 ﻿---

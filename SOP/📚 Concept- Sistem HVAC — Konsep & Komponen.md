@@ -1,6 +1,6 @@
 ---
 title: "📚 Concept: Sistem HVAC — Konsep & Komponen"
-status: verified
+status: stale
 folder: ENGINEERING
 owner: ""
 version: 4
@@ -18,7 +18,7 @@ tags:
   - SOP EN-016
   - SOP EN-055
 notion_id: 34c664a8-3e24-8186-a4c2-c17b2eb6b492
-synced: 2026-08-29
+synced: 2026-08-30
 ---
 
 ﻿---

@@ -1,6 +1,6 @@
 ---
 title: "Distillation of SOP/EBI/EN-016 — Pengoperasian dan Perawatan Sistem HVAC"
-status: verified
+status: stale
 folder: ENGINEERING
 owner: "Riki Depano (Engineering SPV)"
 version: 1
@@ -14,7 +14,7 @@ tags:
   - Engineering Responsibilities
   - SOP EN-016
 notion_id: 371664a8-3e24-8196-b3d1-fd79e4f4127a
-synced: 2026-08-29
+synced: 2026-08-30
 ---
 
 ﻿---

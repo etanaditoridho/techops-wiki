@@ -1,6 +1,6 @@
 ---
 title: "Distillation of SOP/EBI/EN-055 — Pengoperasian dan Perawatan Sistem EMS & BMS"
-status: verified
+status: stale
 folder: ENGINEERING
 owner: "Riki Depano (Engineering SPV)"
 version: 1
@@ -17,7 +17,7 @@ tags:
   - Engineering Responsibilities
   - SOP EN-055
 notion_id: 371664a8-3e24-81af-9494-d9349369e4a7
-synced: 2026-08-29
+synced: 2026-08-30
 ---
 
 ﻿---

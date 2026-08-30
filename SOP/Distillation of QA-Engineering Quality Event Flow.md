@@ -1,6 +1,6 @@
 ---
 title: "Distillation of QA-Engineering Quality Event Flow"
-status: verified
+status: stale
 folder: CROSS-FUNCTIONAL
 owner: ""
 version: 1
@@ -18,7 +18,7 @@ tags:
   - SOP EN-004
   - SOP EN-005
 notion_id: 371664a8-3e24-811c-a2b9-ea365f44cef0
-synced: 2026-08-29
+synced: 2026-08-30
 ---
 
 ﻿---

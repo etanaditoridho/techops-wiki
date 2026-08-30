@@ -1,6 +1,6 @@
 ---
 title: "Distillation of Penanganan dan Perbaikan Terhadap Semua Mesin-Mesin di PT. Etana Biotechnologies Indonesia"
-status: verified
+status: stale
 folder: ENGINEERING
 owner: "Wendi Rukmansyah (Non Utility Engineering SPV)"
 version: 1
@@ -14,7 +14,7 @@ tags:
   - Engineering Responsibilities
   - SOP EN-014
 notion_id: 371664a8-3e24-81a8-b09b-dbb4b3b333c3
-synced: 2026-08-29
+synced: 2026-08-30
 ---
 
 ﻿---

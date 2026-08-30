@@ -1,6 +1,6 @@
 ---
 title: "Distillation of Pemantauan Harian Terhadap Generator Air Murni dan Distribusi Skidnya"
-status: verified
+status: stale
 folder: ENGINEERING
 owner: "—"
 version: 1
@@ -12,7 +12,7 @@ tags:
   - Compressed Air System
   - SOP EN-015
 notion_id: 371664a8-3e24-81f2-b6b6-c3dc52059ac7
-synced: 2026-08-29
+synced: 2026-08-30
 ---
 
 ﻿---

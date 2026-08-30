@@ -1,6 +1,6 @@
 ---
 title: "📚 Concept: Manajemen Suku Cadang Engineering"
-status: verified
+status: stale
 folder: ENGINEERING
 owner: ""
 version: 3
@@ -17,7 +17,7 @@ tags:
   - Engineering Responsibilities
   - SOP EN-005
 notion_id: 34c664a8-3e24-817f-a21d-d33a0f98537c
-synced: 2026-08-29
+synced: 2026-08-30
 ---
 
 ﻿---

@@ -1,6 +1,6 @@
 ---
 title: "Distillation of 🔬 Penanganan WFI TOC Out of Limit"
-status: verified
+status: stale
 folder: ENGINEERING
 owner: ""
 version: 1
@@ -10,7 +10,7 @@ tags:
   - Engineering Responsibilities
   - Maintenance Types
 notion_id: 371664a8-3e24-815e-aa05-dbef22e9ce3f
-synced: 2026-08-29
+synced: 2026-08-30
 ---
 
 tags: ["maintenance", "water-system"]

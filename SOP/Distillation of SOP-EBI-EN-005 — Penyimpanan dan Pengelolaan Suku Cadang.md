@@ -1,6 +1,6 @@
 ---
 title: "Distillation of SOP/EBI/EN-005 — Penyimpanan dan Pengelolaan Suku Cadang"
-status: verified
+status: stale
 folder: ENGINEERING
 owner: "Jihan Salsabila (Engineering Staff)"
 version: 4
@@ -12,7 +12,7 @@ tags:
   - Penanganan Perbaikan Mesin
   - SOP EN-005
 notion_id: 34c664a8-3e24-81ae-8cd8-d3fc42633bed
-synced: 2026-08-29
+synced: 2026-08-30
 ---
 
 tags: ["maintenance", "monitoring", "onboarding", "spare-parts"]

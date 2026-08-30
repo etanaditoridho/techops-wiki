@@ -1,6 +1,6 @@
 ---
 title: "📚 Concept: Jenis-Jenis Perawatan Mesin"
-status: verified
+status: stale
 folder: ENGINEERING
 owner: ""
 version: 3
@@ -16,7 +16,7 @@ tags:
   - SOP EN-004
   - SOP EN-014
 notion_id: 34c664a8-3e24-81bd-87dc-edbca65e64c2
-synced: 2026-08-29
+synced: 2026-08-30
 ---
 
 ﻿---

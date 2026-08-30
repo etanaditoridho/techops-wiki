@@ -1,6 +1,6 @@
 ---
 title: "Distillation of SOP/EBI/EN-013 — Pengoperasian dan Perawatan Sistem Udara Tekan"
-status: verified
+status: stale
 folder: ENGINEERING
 owner: "Riki Depano (Engineering Supervisor)"
 version: 1
@@ -13,7 +13,7 @@ tags:
   - Compressed Air System
   - SOP EN-013
 notion_id: 371664a8-3e24-8136-bedd-f027ac3a14c6
-synced: 2026-08-29
+synced: 2026-08-30
 ---
 
 tags: ["cold-chain", "compressed-air", "hvac-bms", "maintenance", "monitoring", "onboarding"]

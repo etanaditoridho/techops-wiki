@@ -1,6 +1,6 @@
 ---
 title: "Distillation of SOP/EBI/EN-001 — Penanganan dan Perawatan Lampu Penerangan & Sistem Penyaluran Listrik"
-status: verified
+status: stale
 folder: ENGINEERING
 owner: "Muhamad Riki Depano (Engineering SPV), Wildan Nugraha (Prod Sr. SPV)"
 version: 1
@@ -12,7 +12,7 @@ tags:
   - Maintenance Types
   - SOP EN-001
 notion_id: 371664a8-3e24-814e-8100-c4525927c470
-synced: 2026-08-29
+synced: 2026-08-30
 ---
 
 tags: ["electrical", "hvac", "maintenance", "onboarding"]

@@ -1,6 +1,6 @@
 ---
 title: "Distillation of Prosedur Emergency Shutdown"
-status: verified
+status: stale
 folder: ENGINEERING
 owner: ""
 version: 1
@@ -18,7 +18,7 @@ tags:
   - SOP EN-016
   - SOP EN-013
 notion_id: 371664a8-3e24-81c4-a912-cc15f39c7702
-synced: 2026-08-29
+synced: 2026-08-30
 ---
 
 ﻿---

@@ -1,6 +1,6 @@
 ---
 title: "Distillation of Sistem Pengelolaan dan Penyimpanan Pelumas dan Grease"
-status: verified
+status: stale
 folder: ENGINEERING
 owner: "Wendi Rukmansyah (Engineering Jr. Supervisor)"
 version: 1
@@ -13,7 +13,7 @@ tags:
   - Spare Parts Management
   - SOP EN-006
 notion_id: 371664a8-3e24-81e0-ad75-fe0bd9002b9a
-synced: 2026-08-29
+synced: 2026-08-30
 ---
 
 ﻿---

@@ -1,6 +1,6 @@
 ---
 title: "Distillation of HVAC Failure Diagnosis"
-status: verified
+status: stale
 folder: DECISION-SUPPORT
 owner: ""
 version: 1
@@ -16,7 +16,7 @@ tags:
   - Engineering/Penanganan Perbaikan Mesin
   - Engineering/Monitoring Harian Engineering
 notion_id: 371664a8-3e24-815a-a71c-fd68cadf5ed6
-synced: 2026-08-29
+synced: 2026-08-30
 ---
 
 ﻿---

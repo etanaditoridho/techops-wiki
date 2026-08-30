@@ -1,6 +1,6 @@
 ---
 title: "📚 Concept: Sistem Udara Tekan — Konsep & Komponen"
-status: verified
+status: stale
 folder: ENGINEERING
 owner: ""
 version: 4
@@ -14,7 +14,7 @@ tags:
   - Engineering/Operasional Udara Tekan
   - SOP EN-013
 notion_id: 34c664a8-3e24-81a7-9d70-d159f97bf4af
-synced: 2026-08-29
+synced: 2026-08-30
 ---
 
 ﻿---

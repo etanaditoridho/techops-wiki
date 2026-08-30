@@ -1,6 +1,6 @@
 ---
 title: "Distillation of Boiler Leak Response"
-status: verified
+status: stale
 folder: DECISION-SUPPORT
 owner: ""
 version: 1
@@ -16,7 +16,7 @@ tags:
   - Engineering/Penanganan Perbaikan Mesin
   - Engineering/Monitoring Harian Engineering
 notion_id: 371664a8-3e24-8113-8c02-ffc66e4681a6
-synced: 2026-08-29
+synced: 2026-08-30
 ---
 
 ﻿---

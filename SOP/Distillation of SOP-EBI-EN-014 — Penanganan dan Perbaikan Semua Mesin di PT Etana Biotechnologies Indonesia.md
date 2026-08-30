@@ -1,6 +1,6 @@
 ---
 title: "Distillation of SOP/EBI/EN-014 — Penanganan dan Perbaikan Semua Mesin di PT Etana Biotechnologies Indonesia"
-status: verified
+status: stale
 folder: ENGINEERING
 owner: "Wendi Rukmansyah (Non Utility Engineering SPV)"
 version: 4
@@ -17,7 +17,7 @@ tags:
   - Spare Parts Management
   - SOP EN-014
 notion_id: 34c664a8-3e24-81d1-9056-d3c9f39e94e3
-synced: 2026-08-29
+synced: 2026-08-30
 ---
 
 ﻿---

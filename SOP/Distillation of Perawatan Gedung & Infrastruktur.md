@@ -1,6 +1,6 @@
 ---
 title: "Distillation of Perawatan Gedung & Infrastruktur"
-status: verified
+status: stale
 folder: ENGINEERING
 owner: "Ridwan Andriansyah (Site Management Specialist)"
 version: 5
@@ -14,7 +14,7 @@ tags:
   - Engineering/Maintenance Types
   - SOP EN-003
 notion_id: 34c664a8-3e24-81c8-9cc4-fff22cb8440b
-synced: 2026-08-29
+synced: 2026-08-30
 ---
 
 ﻿---

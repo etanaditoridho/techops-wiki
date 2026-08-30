@@ -1,6 +1,6 @@
 ---
 title: "Distillation of SOP/EBI/QA-004 — Manajemen Perubahan"
-status: verified
+status: stale
 folder: QA
 owner: "- Sarah Arlisyahnaz (QA Staff)"
 version: 1
@@ -16,7 +16,7 @@ tags:
   - Engineering/Monitoring Bms Ems
   - Cross Functional/Alur Mutu Qa Engineering
 notion_id: 371664a8-3e24-810a-9205-fd68a66db7c6
-synced: 2026-08-29
+synced: 2026-08-30
 ---
 
 ﻿---
